@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Footer } from '@/components/layout/footer'
 
 /**
  * Placeholder product detail page for Critical Illness insurance
@@ -22,6 +23,7 @@ export default function CriticalIllnessPage() {
           </Button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

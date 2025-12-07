@@ -1,4 +1,6 @@
 import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
+import { NewsletterSection } from '@/components/sections/newsletter-section'
 import { HeroSection } from '@/components/sections/hero-section'
 import { TrustIndicators } from '@/components/sections/trust-indicators'
 import { WhyChooseSection } from '@/components/sections/why-choose'
@@ -18,7 +20,7 @@ import { landingPageContent } from '@/lib/constants'
  */
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <Header navigation={landingPageContent.navigation} />
       <HeroSection hero={landingPageContent.hero} />
       <TrustIndicators
@@ -55,7 +57,9 @@ export default function HomePage() {
         <ClaimsProcessSection claimsInfo={landingPageContent.claimsProcess} />
       )}
       <WhyBCSection whyBC={landingPageContent.whyBC} />
+      <NewsletterSection />
       <FAQSection faq={landingPageContent.faq} />
+      <Footer />
     </main>
   )
 }

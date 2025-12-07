@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Footer } from '@/components/layout/footer'
 
 /**
  * Placeholder quote request page
@@ -24,6 +25,7 @@ export default function GetQuotePage() {
           </Button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

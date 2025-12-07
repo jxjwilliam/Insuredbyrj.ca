@@ -300,4 +300,57 @@ export interface LandingPageContent {
   serviceAreas?: ServiceArea
 }
 
+// Footer and common features types
+export interface SocialMediaLink {
+  platform: 'facebook' | 'twitter' | 'linkedin'
+  url: string
+  label: string
+}
+
+export interface LegalLink {
+  label: string
+  href: string
+}
+
+export interface NewsletterFormConfig {
+  placeholder: string
+  buttonText: string
+  successMessage: string
+  errorMessage: string
+  duplicateMessage: string
+}
+
+export interface FooterContent {
+  companyInfo: {
+    name: string
+    tagline?: string
+    logoUrl?: string
+  }
+  quickLinks: NavigationItem[]
+  contactDetails: ContactDetails
+  socialMediaLinks: SocialMediaLink[]
+  legalLinks: LegalLink[]
+  newsletterForm: NewsletterFormConfig
+  copyright: {
+    text: string
+    year: number
+  }
+}
+
+export interface NewsletterSubscription {
+  email: string
+  subscriptionStatus: 'pending' | 'success' | 'error' | 'duplicate'
+  subscriptionTimestamp?: Date
+  errorMessage?: string
+}
+
+export interface GoogleMapConfig {
+  apiKey: string
+  center: { lat: number; lng: number }
+  zoom: number
+  markerPosition: { lat: number; lng: number }
+  markerTitle: string
+  mapTypeId: 'roadmap' | 'satellite' | 'hybrid' | 'terrain'
+}
+
 

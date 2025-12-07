@@ -1068,3 +1068,47 @@ export const landingPageContent: LandingPageContent = {
   ],
 }
 
+// Footer content for all pages
+import type { FooterContent } from './types'
+
+export const footerContent: FooterContent = {
+  companyInfo: {
+    name: 'Insured by Rajan',
+    tagline: "British Columbia's Trusted Life Insurance Agency",
+  },
+  quickLinks: landingPageContent.navigation,
+  contactDetails: landingPageContent.contactDetails!,
+  socialMediaLinks: [
+    {
+      platform: 'facebook',
+      url: 'https://facebook.com/insurelineinfinity', // Update with actual URL when available
+      label: 'Facebook',
+    },
+    {
+      platform: 'twitter',
+      url: 'https://x.com/insurelineinfinity', // Update with actual URL when available
+      label: 'X',
+    },
+    {
+      platform: 'linkedin',
+      url: 'https://linkedin.com/company/insureline-infinity', // Update with actual URL when available
+      label: 'LinkedIn',
+    },
+  ],
+  legalLinks: [
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+  ],
+  newsletterForm: {
+    placeholder: 'Enter your email',
+    buttonText: 'Subscribe',
+    successMessage: 'Thank you for subscribing!',
+    errorMessage: 'Something went wrong. Please try again or contact us directly.',
+    duplicateMessage: "You're already subscribed!",
+  },
+  copyright: {
+    text: '© Insured by Rajan. All rights reserved.',
+    year: new Date().getFullYear(),
+  },
+}
+

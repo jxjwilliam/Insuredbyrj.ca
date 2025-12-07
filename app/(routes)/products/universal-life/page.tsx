@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Footer } from '@/components/layout/footer'
 
 /**
  * Placeholder product detail page for Universal Life insurance
@@ -22,6 +23,7 @@ export default function UniversalLifePage() {
           </Button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

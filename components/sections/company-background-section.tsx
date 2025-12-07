@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { MapPin, Building2, Award, Users, Heart } from 'lucide-react'
+import { GoogleMap } from '@/components/ui/GoogleMap'
 import type { CompanyBackground } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
@@ -147,7 +148,8 @@ export function CompanyBackgroundSection({
                 <MapPin className="h-5 w-5" />
                 Our Location
               </h4>
-              <p className="text-gray-700">{background.location.fullAddress}</p>
+              <p className="text-gray-700 mb-4">{background.location.fullAddress}</p>
+              <GoogleMap />
             </div>
 
             {/* Brand Affiliation Benefits */}

@@ -5,6 +5,8 @@ Auto-generated from all feature plans. Last updated: 2025-12-06
 ## Active Technologies
 - TypeScript 5.x (strict mode) / Node.js 20.x LTS + Next.js 15.x (App Router), React 18.3.x, Tailwind CSS 3.4.x, shadcn/ui (latest), framer-motion ^11.x, magicui (latest), gsap ^3.12.x, acernity-ui (latest), @radix-ui/* (existing) (002-improve-webpage-details)
 - N/A (static content, no database - content stored in TypeScript constants) (002-improve-webpage-details)
+- TypeScript 5.x (strict mode), React 18.3.1, Next.js 15.0.0 (003-improve-ui-features)
+- N/A (frontend-only feature, newsletter subscription will integrate with external email service provider) (003-improve-ui-features)
 
 - TypeScript 5.x (latest stable) / Node.js 20.x LTS + Next.js 15.x (App Router), React 19.x, Tailwind CSS 3.x (latest), shadcn/ui (latest), @radix-ui/react-accordion, @radix-ui/react-navigation-menu (001-clone-landing-page)
 
@@ -25,6 +27,7 @@ npm test && npm run lint
 TypeScript 5.x (latest stable) / Node.js 20.x LTS: Follow standard conventions
 
 ## Recent Changes
+- 003-improve-ui-features: Added TypeScript 5.x (strict mode), React 18.3.1, Next.js 15.0.0
 - 002-improve-webpage-details: Added TypeScript 5.x (strict mode) / Node.js 20.x LTS + Next.js 15.x (App Router), React 18.3.x, Tailwind CSS 3.4.x, shadcn/ui (latest), framer-motion ^11.x, magicui (latest), gsap ^3.12.x, acernity-ui (latest), @radix-ui/* (existing)
 
 - 001-clone-landing-page: Added TypeScript 5.x (latest stable) / Node.js 20.x LTS + Next.js 15.x (App Router), React 19.x, Tailwind CSS 3.x (latest), shadcn/ui (latest), @radix-ui/react-accordion, @radix-ui/react-navigation-menu

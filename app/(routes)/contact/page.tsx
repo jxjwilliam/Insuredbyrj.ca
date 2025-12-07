@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Footer } from '@/components/layout/footer'
+import { GoogleMap } from '@/components/ui/GoogleMap'
 import { landingPageContent } from '@/lib/constants'
 
 /**
@@ -28,7 +30,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <div id="main-content" className="min-h-screen bg-gray-50 py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -99,9 +101,12 @@ export default function ContactPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-lg font-semibold mb-2">
+              <p className="text-lg font-semibold mb-4">
                 {contactDetails.address.fullAddress}
               </p>
+              <div className="mb-4">
+                <GoogleMap />
+              </div>
               {serviceAreas && (
                 <div className="mt-4">
                   <p className="text-sm font-medium mb-2">Service Areas:</p>
@@ -159,6 +164,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
