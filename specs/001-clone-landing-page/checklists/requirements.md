@@ -35,3 +35,4 @@
 - Specification is ready for `/speckit.plan` command
 - No clarifications needed - all requirements are clear and testable
 
+

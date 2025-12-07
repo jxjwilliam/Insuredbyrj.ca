@@ -226,3 +226,4 @@ This feature requires no database, API endpoints, or data persistence. All conte
 - Type-safe (TypeScript interfaces)
 - Easy to update (edit constants file)
 
+

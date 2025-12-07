@@ -125,3 +125,4 @@ export function HeroSection({ hero }: HeroSectionProps) {
   )
 }
 
+
