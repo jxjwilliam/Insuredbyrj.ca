@@ -108,7 +108,7 @@ export function ContactInquiryForm({
             'Failed to send your inquiry. Please try again or contact us directly.'
         )
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setErrorMessage(
         'Network error. Please check your connection and try again.'

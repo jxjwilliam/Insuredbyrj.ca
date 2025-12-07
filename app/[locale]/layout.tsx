@@ -35,7 +35,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
-  const { locale } = await params
+  await params // Locale is not needed for metadata generation
   const supportedLocales = getSupportedLanguages()
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://insuredbyrajan.com'
   

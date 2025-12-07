@@ -2,6 +2,7 @@
   "name": "insuredbyrj",
   "version": "0.1.0",
   "private": true,
+  "description": "Modern multilingual life insurance agency website for British Columbia built with Next.js 15, Tailwind CSS, and Supabase",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

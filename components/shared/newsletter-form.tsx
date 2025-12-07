@@ -77,7 +77,7 @@ export function NewsletterForm({ source, className }: NewsletterFormProps) {
         setStatus('error')
         setErrorMessage(data.error?.message || config.errorMessage)
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setErrorMessage(
         `${config.errorMessage} Contact us at ${footerContent.contactDetails.email.primary} or ${footerContent.contactDetails.phone.primary}`

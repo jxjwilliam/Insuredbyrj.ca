@@ -37,7 +37,6 @@ interface CompanyBackgroundSectionProps {
 export function CompanyBackgroundSection({
   background,
   showImage = true,
-  layout = 'split',
   className,
 }: CompanyBackgroundSectionProps) {
   const { openDialog } = useContactDialog()

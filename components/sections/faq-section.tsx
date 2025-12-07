@@ -29,24 +29,24 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
   const { t } = useTranslation()
   const { openDialog } = useContactDialog()
   
-  // Get FAQ items from translations or fallback to props
-  const getFAQItem = (id: string): FAQItem | undefined => {
-    const questionKey = `faq.${id}.question`
-    const answerKey = `faq.${id}.answer`
-    const question = t(questionKey)
-    const answer = t(answerKey)
-    
-    // If translation exists (not just the key), use it
-    if (question !== questionKey && answer !== answerKey) {
-      return { id, question, answer }
-    }
-    
-    // Fallback to prop FAQ item
-    return faq.find((item) => item.id === id)
-  }
-  
   // Get all FAQ items - try translations first, then fallback to props
   const faqItems: FAQItem[] = useMemo(() => {
+    // Get FAQ items from translations or fallback to props
+    const getFAQItem = (id: string): FAQItem | undefined => {
+      const questionKey = `faq.${id}.question`
+      const answerKey = `faq.${id}.answer`
+      const question = t(questionKey)
+      const answer = t(answerKey)
+      
+      // If translation exists (not just the key), use it
+      if (question !== questionKey && answer !== answerKey) {
+        return { id, question, answer }
+      }
+      
+      // Fallback to prop FAQ item
+      return faq.find((item) => item.id === id)
+    }
+    
     // Try to get FAQ from translations
     const faqIds = ['coverageAmount', 'termVsWhole', 'healthImpact', 'coverageSpeed', 'taxImplications', 'cancellation']
     const translatedFAQ = faqIds
