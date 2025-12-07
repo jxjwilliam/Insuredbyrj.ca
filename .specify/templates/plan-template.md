@@ -31,7 +31,14 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify compliance with InsuredByRJ Constitution principles:
+
+- **Code Quality**: TypeScript strict mode, proper types, documentation plan, error handling strategy
+- **Testing Standards**: Test coverage plan (80% minimum, 100% for critical paths), TDD approach, test types required
+- **User Experience**: Design system adherence (shadcn/ui), accessibility plan (WCAG 2.1 AA), responsive design approach
+- **Performance**: Performance targets (Core Web Vitals, bundle size, API response times), optimization strategy
+
+Document any constitution violations in Complexity Tracking section below with justification.
 
 ## Project Structure
 

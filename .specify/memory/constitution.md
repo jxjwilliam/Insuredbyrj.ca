@@ -1,50 +1,63 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version: 1.0.0 (initial version)
+Modified principles: N/A (initial creation)
+Added sections:
+  - I. Code Quality Standards
+  - II. Testing Standards
+  - III. User Experience Consistency
+  - IV. Performance Requirements
+  - Development Workflow
+Removed sections: N/A
+Templates requiring updates:
+  ✅ plan-template.md - Constitution Check section aligns with new principles
+  ✅ tasks-template.md - Testing tasks align with Testing Standards principle
+  ✅ spec-template.md - No changes needed (user story format unchanged)
+Follow-up TODOs: None
+-->
+
+# InsuredByRJ Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality Standards
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All code MUST adhere to strict quality standards ensuring maintainability, readability, and reliability. TypeScript strict mode is mandatory; no `any` types without explicit justification. Code organization follows single responsibility principle with clear separation of concerns. All exported functions, components, and public APIs require JSDoc/TSDoc documentation. File naming uses kebab-case convention. Error handling must be explicit with user-friendly messages and proper logging. Code must pass linting, type checking, and formatting checks before commit.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Testing Standards (NON-NEGOTIABLE)
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Test-Driven Development (TDD) is mandatory for new features: tests written → approved → tests fail → then implement. Minimum 80% code coverage required for business logic; 100% coverage for critical paths (authentication, payments, data mutations). All reusable UI components require unit tests; all API endpoints require integration tests. Tests must be isolated, deterministic, and follow Arrange-Act-Assert pattern. Test execution must be fast: unit tests <100ms, integration tests <5s, E2E tests <30s. All tests must pass before code merge.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. User Experience Consistency
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+All UI components MUST adhere to the design system (shadcn/ui foundation) and use Tailwind CSS exclusively for styling. WCAG 2.1 Level AA accessibility compliance is mandatory. Semantic HTML and ARIA attributes required; all interactive elements must be keyboard accessible. Consistent navigation patterns, loading states, error messages, and empty states across all pages. Forms require real-time validation with clear error messages. Perceived performance: loading feedback within 100ms, optimistic updates when possible, skeleton screens for content loading.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Performance Requirements
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Core Web Vitals MUST meet: LCP < 2.5s, FID < 100ms, CLS < 0.1, TTFB < 600ms. Page load time < 3s on 3G; Time to Interactive < 5s. JavaScript bundle size: initial < 200KB gzipped, total < 500KB gzipped. API response time p95 < 500ms; database queries < 100ms. All images optimized (WebP/AVIF, responsive sizes, lazy loading). Implement route-based code splitting, API response caching, and static asset CDN delivery. Performance monitoring and budgets enforced in CI/CD pipeline.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+### Pre-Commit Requirements
+
+All code MUST pass ESLint, TypeScript compilation, and Prettier formatting checks. Affected tests must pass before commit. Pre-commit hooks enforce these requirements automatically.
+
+### Code Review Standards
+
+All pull requests require review for constitution compliance. Test coverage must be maintained or improved. Performance impact must be assessed; UI changes require accessibility review. Constitution violations block merge unless explicitly justified and documented.
+
+### Deployment Standards
+
+All changes tested in staging before production. Database migrations must be backward-compatible or include migration scripts. Feature flags required for risky changes. Documented rollback procedures mandatory for all deployments.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other coding standards, style guides, and practices. All code, regardless of author or urgency, MUST comply with these principles. Violations require explicit documentation of why the exception is necessary.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments require proposal with rationale, review and approval from project maintainers, documentation with version history, and communication to all team members before enforcement.
+
+Enforcement via automated CI/CD checks (linting, type checking, tests), mandatory code review compliance verification, quarterly compliance audits, and systematic violation tracking.
+
+Complexity must be justified; prefer simple solutions following YAGNI principle. Technical debt must be documented and prioritized with a plan to address.
+
+**Version**: 1.0.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
