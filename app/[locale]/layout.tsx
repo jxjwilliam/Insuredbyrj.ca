@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { BackToTopButton } from '@/components/shared/back-to-top-button'
 import { ErrorBoundary } from '@/components/shared/error-boundary'
+import { ContactDialogProvider } from '@/components/shared/contact-dialog-provider'
 import { I18nProvider } from '@/lib/i18n/context'
 import { getSupportedLanguages, isSupportedLocale, getDefaultLocale } from '@/lib/i18n/config'
 import { loadTranslations } from '@/lib/i18n/utils'
@@ -108,7 +109,9 @@ export default async function LocaleLayout({
         </a>
         <ErrorBoundary>
           <I18nProvider initialLocale={validLocale} translations={translations}>
-            {children}
+            <ContactDialogProvider>
+              {children}
+            </ContactDialogProvider>
           </I18nProvider>
         </ErrorBoundary>
         <BackToTopButton />

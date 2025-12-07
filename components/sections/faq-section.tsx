@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n/hooks'
+import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import type { FAQItem } from '@/lib/types'
 
 interface FAQSectionProps {
@@ -27,6 +27,7 @@ interface FAQSectionProps {
  */
 export function FAQSection({ faq = [] }: FAQSectionProps) {
   const { t } = useTranslation()
+  const { openDialog } = useContactDialog()
   
   // Get FAQ items from translations or fallback to props
   const getFAQItem = (id: string): FAQItem | undefined => {
@@ -142,10 +143,10 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
   }
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Common <span className="text-blue-500">Questions</span> About Life
             Insurance
@@ -223,11 +224,9 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Still have questions?</p>
-          <Button asChild>
-            <Link href="/contact">
-              <span className="mr-2">💬</span>
-              Chat With an Expert
-            </Link>
+          <Button onClick={openDialog}>
+            <span className="mr-2">💬</span>
+            Chat With an Expert
           </Button>
         </div>
       </div>

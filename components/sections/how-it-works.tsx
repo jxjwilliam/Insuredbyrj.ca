@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { ExpandableContent } from '@/components/shared/expandable-content'
@@ -26,6 +27,7 @@ export function HowItWorksSection({
   howItWorks,
   processDetails,
 }: HowItWorksSectionProps) {
+  const { openDialog } = useContactDialog()
   const { t } = useTranslation()
   
   // Get translations for section header
@@ -175,7 +177,7 @@ export function HowItWorksSection({
     )
   }
   return (
-    <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
+    <section id="how-it-works" className="py-16 bg-white relative overflow-hidden">
       {/* Background Infinity Pattern */}
       <div className="absolute top-10 right-10 text-[10rem] text-blue-500 opacity-5 font-serif">
         ∞
@@ -183,7 +185,7 @@ export function HowItWorksSection({
 
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             {title.split(' ')[0]} <span className="text-blue-500">{title.split(' ').slice(1).join(' ')}</span>
           </h2>
@@ -247,7 +249,7 @@ export function HowItWorksSection({
 
         {/* Bottom CTA Card */}
         <div className="mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 lg:p-12 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 text-9xl text-white opacity-5 font-serif">
+          <div className="absolute top-0 right-0 text-9xl text-white opacity-10 font-serif">
             ∞
           </div>
           <div className="relative z-10">
@@ -265,11 +267,9 @@ export function HowItWorksSection({
                   <span className="ml-2">→</span>
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900">
-                <Link href="/contact">
-                  <span className="mr-2">📞</span>
-                  Talk to Rajan
-                </Link>
+              <Button onClick={openDialog} variant="outline" size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900">
+                <span className="mr-2">📞</span>
+                Talk to Rajan
               </Button>
             </div>
             <p className="text-sm text-gray-400 mt-6">

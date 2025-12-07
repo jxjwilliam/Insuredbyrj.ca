@@ -1,11 +1,16 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/layout/footer'
+import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 
 /**
  * Placeholder quote request page
  */
 export default function GetQuotePage() {
+  const { openDialog } = useContactDialog()
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-2xl mx-auto text-center px-4">
@@ -17,8 +22,8 @@ export default function GetQuotePage() {
           your free life insurance quote.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
+          <Button onClick={openDialog}>
+            Contact Us
           </Button>
           <Button asChild variant="outline">
             <Link href="/">Back to Home</Link>

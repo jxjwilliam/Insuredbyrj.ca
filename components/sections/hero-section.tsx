@@ -1,8 +1,10 @@
 'use client'
 
 import { CTAButton } from '@/components/shared/cta-button'
+import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { ImageWithFallback } from '@/components/shared/image-with-fallback'
 import { useTranslation } from '@/lib/i18n/hooks'
+import { Button } from '@/components/ui/button'
 import type { HeroSection as HeroSectionType } from '@/lib/types'
 
 interface HeroSectionProps {
@@ -16,6 +18,7 @@ interface HeroSectionProps {
  */
 export function HeroSection({ hero }: HeroSectionProps) {
   const { t, translations } = useTranslation()
+  const { openDialog } = useContactDialog()
   
   // Use translations if available, fallback to hero prop for backward compatibility
   const headline = t('hero.headline', hero?.headline || 'Life Insurance That Stands the Test of Time')
@@ -86,7 +89,13 @@ export function HeroSection({ hero }: HeroSectionProps) {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <CTAButton cta={{ text: primaryCTAText, href: primaryCTAHref, variant: 'primary' }} />
-              <CTAButton cta={{ text: secondaryCTAText, href: secondaryCTAHref, variant: 'outline' }} />
+              {secondaryCTAHref === '/contact' ? (
+                <Button onClick={openDialog} variant="outline">
+                  {secondaryCTAText}
+                </Button>
+              ) : (
+                <CTAButton cta={{ text: secondaryCTAText, href: secondaryCTAHref, variant: 'outline' }} />
+              )}
             </div>
 
             {/* Trust Microcopy */}

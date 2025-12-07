@@ -62,7 +62,7 @@ export function TestimonialsSection({
   return (
     <section
       id="testimonials"
-      className={cn('py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50', className)}
+      className={cn('py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50', className)}
     >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}

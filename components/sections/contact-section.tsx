@@ -1,9 +1,11 @@
 'use client'
 
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, MessageSquare } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n/hooks'
+import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { landingPageContent } from '@/lib/constants'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { GoogleMap } from '@/components/ui/GoogleMap'
 
 /**
@@ -12,28 +14,28 @@ import { GoogleMap } from '@/components/ui/GoogleMap'
  */
 export function ContactSection() {
   const { t } = useTranslation()
+  const { openDialog } = useContactDialog()
   const contactDetails = landingPageContent.contactDetails
-  const serviceAreas = landingPageContent.serviceAreas
 
   if (!contactDetails) {
     return null
   }
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               {t('contact.title', 'Get in Touch')}
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base text-gray-600">
               {t('contact.description', 'We\'re here to help. Reach out to Rajan directly for personalized insurance advice.')}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* Phone */}
             <Card>
               <CardHeader>
@@ -81,10 +83,31 @@ export function ContactSection() {
                 )}
               </CardContent>
             </Card>
+
+            {/* Office Hours */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  {t('contact.hours.title', 'Office Hours')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p className="font-medium">{contactDetails.officeHours.weekdays}</p>
+                  {contactDetails.officeHours.saturday && (
+                    <p className="text-muted-foreground">{contactDetails.officeHours.saturday}</p>
+                  )}
+                  {contactDetails.officeHours.sunday && (
+                    <p className="text-muted-foreground">{contactDetails.officeHours.sunday}</p>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Office Location */}
-          <Card className="mb-12">
+          <Card className="mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="h-5 w-5" />
@@ -92,63 +115,21 @@ export function ContactSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-lg font-semibold mb-4">
+              <p className="text-lg font-semibold mb-6">
                 {contactDetails.address.fullAddress}
               </p>
-              <div className="mb-4">
-                <GoogleMap />
-              </div>
-              {serviceAreas && (
-                <div className="mt-4">
-                  <p className="text-sm font-medium mb-2">
-                    {t('contact.serviceAreas', 'Service Areas')}:
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {t('contact.primary', 'Primary')}: {serviceAreas.primary.join(', ')}
-                    {serviceAreas.secondary &&
-                      serviceAreas.secondary.length > 0 && (
-                        <span>
-                          {' '}
-                          | {t('contact.secondary', 'Secondary')}: {serviceAreas.secondary.join(', ')}
-                        </span>
-                      )}
-                  </p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Office Hours */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock className="h-5 w-5" />
-                {t('contact.hours.title', 'Office Hours')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <p className="font-medium">{contactDetails.officeHours.weekdays}</p>
-                {contactDetails.officeHours.saturday && (
-                  <p className="text-sm text-muted-foreground">
-                    {contactDetails.officeHours.saturday}
-                  </p>
-                )}
-                {contactDetails.officeHours.sunday && (
-                  <p className="text-sm text-muted-foreground">
-                    {contactDetails.officeHours.sunday}
-                  </p>
-                )}
+              <div className="w-full h-[600px] rounded-lg overflow-hidden">
+                <GoogleMap className="h-full" />
               </div>
             </CardContent>
           </Card>
 
-          {/* Preferred Contact Method */}
-          <div className="bg-blue-50 rounded-lg p-6 mb-12">
-            <p className="font-medium mb-2">
-              {t('contact.preferredMethod', 'Preferred Contact Method')}:
-            </p>
-            <p className="text-gray-700">{contactDetails.responseTimes.preferred}</p>
+          {/* Contact Form CTA */}
+          <div className="text-center mt-8">
+            <Button onClick={openDialog} size="lg" className="px-8">
+              <MessageSquare className="h-5 w-5 mr-2" />
+              {t('contact.formButton', 'Send Us a Message')}
+            </Button>
           </div>
         </div>
       </div>

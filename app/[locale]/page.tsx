@@ -73,11 +73,6 @@ export default async function HomePage({ params }: HomePageProps) {
           showImage={true}
         />
       )}
-      {landingPageContent.claimsProcess && (
-        <ClaimsProcessSection claimsInfo={landingPageContent.claimsProcess} />
-      )}
-      <WhyBCSection whyBC={landingPageContent.whyBC} />
-      <NewsletterSection />
       <FAQSection faq={landingPageContent.faq} />
       <ContactSection />
       <Footer />

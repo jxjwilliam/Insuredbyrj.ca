@@ -48,7 +48,29 @@
     "serviceAreas": "Service Areas",
     "primary": "Primary",
     "secondary": "Secondary",
-    "preferredMethod": "Preferred Contact Method"
+    "preferredMethod": "Preferred Contact Method",
+    "formButton": "Send Us a Message",
+    "form": {
+      "title": "Get in Touch",
+      "description": "Fill out the form below and we'll get back to you as soon as possible.",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is this regarding?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us how we can help you...",
+      "submit": "Send Inquiry",
+      "submitting": "Sending...",
+      "privacy": "By submitting this form, you agree to our privacy policy. We will never share your information.",
+      "success": {
+        "title": "Thank You!",
+        "message": "We have received your inquiry and will get back to you soon."
+      }
+    }
   },
   "whyChoose": {
     "title": "Why Choose Insured by Rajan",

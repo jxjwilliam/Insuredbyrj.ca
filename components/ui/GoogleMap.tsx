@@ -27,16 +27,16 @@ export function GoogleMap({ className = '' }: GoogleMapProps) {
   // If API key is available, use embed. Otherwise, show fallback with link
   if (apiKey) {
     return (
-      <div className={`w-full rounded-lg overflow-hidden ${className}`}>
+      <div className={`w-full h-full rounded-lg overflow-hidden ${className}`}>
         <iframe
           src={mapEmbedUrl}
           width="100%"
-          height="400"
+          height="100%"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="w-full"
+          className="w-full h-full"
           title={`${address} - Office Location`}
         />
       </div>

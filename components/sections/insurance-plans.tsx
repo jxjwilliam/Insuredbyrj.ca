@@ -30,11 +30,11 @@ export function InsurancePlansSection({
   return (
     <section
       id="plans"
-      className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50"
+      className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50"
     >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             {t('insurancePlans.title', 'Life Insurance Plans for Every Need')}
           </h2>

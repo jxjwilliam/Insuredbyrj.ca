@@ -48,7 +48,29 @@
     "serviceAreas": "Zones de service",
     "primary": "Primaire",
     "secondary": "Secondaire",
-    "preferredMethod": "Méthode de contact préférée"
+    "preferredMethod": "Méthode de contact préférée",
+    "formButton": "Envoyez-nous un message",
+    "form": {
+      "title": "Contactez-nous",
+      "description": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.",
+      "name": "Nom complet",
+      "namePlaceholder": "Entrez votre nom complet",
+      "email": "Courriel",
+      "emailPlaceholder": "Entrez votre adresse courriel",
+      "phone": "Numéro de téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "subject": "Sujet",
+      "subjectPlaceholder": "De quoi s'agit-il?",
+      "message": "Message",
+      "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
+      "submit": "Envoyer la demande",
+      "submitting": "Envoi en cours...",
+      "privacy": "En soumettant ce formulaire, vous acceptez notre politique de confidentialité. Nous ne partagerons jamais vos informations.",
+      "success": {
+        "title": "Merci!",
+        "message": "Nous avons reçu votre demande et vous répondrons bientôt."
+      }
+    }
   },
   "whyChoose": {
     "title": "Pourquoi choisir Insured by Rajan",

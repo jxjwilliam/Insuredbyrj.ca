@@ -39,10 +39,10 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
     },
   ]
   return (
-    <section id="why-choose" className="py-20 bg-white">
+    <section id="why-choose" className="py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-6">
             <span className="text-3xl text-blue-500 font-serif">∞</span>
           </div>
