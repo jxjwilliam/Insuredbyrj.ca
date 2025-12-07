@@ -1,28 +1,55 @@
 'use client'
 
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { ExpandableContent } from '@/components/shared/expandable-content'
+import { useTranslation } from '@/lib/i18n/hooks'
 import type {
   HowItWorksSection as HowItWorksSectionType,
   ProcessDetail,
 } from '@/lib/types'
 
 interface HowItWorksSectionProps {
-  howItWorks: HowItWorksSectionType
+  howItWorks?: HowItWorksSectionType
   processDetails?: ProcessDetail[]
 }
 
 /**
  * Enhanced How It Works section component displaying three-step process with detailed information
- * @param howItWorks - How It Works section content data
+ * Uses translations from i18n system
+ * @param howItWorks - Optional How It Works section content data (for backward compatibility)
  * @param processDetails - Optional array of detailed process information
  */
 export function HowItWorksSection({
   howItWorks,
   processDetails,
 }: HowItWorksSectionProps) {
+  const { t } = useTranslation()
+  
+  // Get translations for section header
+  const title = t('howItWorks.title', howItWorks?.title || 'How It Works')
+  const description = t('howItWorks.description', howItWorks?.description || 'Getting life insurance shouldn\'t be complicated.')
+  
+  // Get translations for steps
+  const steps = [
+    {
+      title: t('howItWorks.steps.step1.title', howItWorks?.steps?.[0]?.title || 'Share Your Needs'),
+      description: t('howItWorks.steps.step1.description', howItWorks?.steps?.[0]?.description || 'Tell us about yourself...'),
+      timeIndicator: t('howItWorks.steps.step1.timeIndicator', howItWorks?.steps?.[0]?.timeIndicator || '2 minutes'),
+    },
+    {
+      title: t('howItWorks.steps.step2.title', howItWorks?.steps?.[1]?.title || 'Get Instant Quotes'),
+      description: t('howItWorks.steps.step2.description', howItWorks?.steps?.[1]?.description || 'Receive personalized quotes...'),
+      timeIndicator: t('howItWorks.steps.step2.timeIndicator', howItWorks?.steps?.[1]?.timeIndicator || 'Instant results'),
+    },
+    {
+      title: t('howItWorks.steps.step3.title', howItWorks?.steps?.[2]?.title || 'Get Protected'),
+      description: t('howItWorks.steps.step3.description', howItWorks?.steps?.[2]?.description || 'Complete your application...'),
+      timeIndicator: t('howItWorks.steps.step3.timeIndicator', howItWorks?.steps?.[2]?.timeIndicator || 'Same-day coverage'),
+    },
+  ]
   const getProcessDetail = (stepNumber: number): ProcessDetail | undefined => {
     return processDetails?.find((detail) => detail.stepNumber === stepNumber)
   }
@@ -158,10 +185,10 @@ export function HowItWorksSection({
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            How It <span className="text-blue-500">Works</span>
+            {title.split(' ')[0]} <span className="text-blue-500">{title.split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            {howItWorks.description}
+            {description}
           </p>
         </div>
 
@@ -171,11 +198,12 @@ export function HowItWorksSection({
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-amber-500 to-blue-500 transform -translate-y-1/2 z-0" />
 
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 relative z-10">
-            {howItWorks.steps.map((step) => {
-              const processDetail = getProcessDetail(step.number)
+            {steps.map((step, stepIndex) => {
+              const stepNumber = stepIndex + 1
+              const processDetail = getProcessDetail(stepNumber)
               return (
                 <div
-                  key={step.number}
+                  key={stepNumber}
                   className="group text-center"
                   data-testid="process-step"
                 >
@@ -186,7 +214,7 @@ export function HowItWorksSection({
                     </div>
                     {/* Step Number Badge */}
                     <div className="absolute -top-2 -right-2 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg z-20">
-                      {step.number}
+                      {stepNumber}
                     </div>
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -232,16 +260,16 @@ export function HowItWorksSection({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
-                <a href="/get-quote">
+                <Link href="/get-quote">
                   Start Your Free Quote
                   <span className="ml-2">→</span>
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900">
-                <a href="/contact">
+                <Link href="/contact">
                   <span className="mr-2">📞</span>
                   Talk to Rajan
-                </a>
+                </Link>
               </Button>
             </div>
             <p className="text-sm text-gray-400 mt-6">

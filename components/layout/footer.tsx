@@ -6,14 +6,17 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { NewsletterForm } from '@/components/shared/newsletter-form'
 import { smoothScrollTo } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n/hooks'
 import { footerContent } from '@/lib/constants'
 import type { NavigationItem } from '@/lib/types'
 
 /**
  * Footer component with company info, navigation links, contact details, social media, and legal links
  * Displays on all pages for consistent site-wide navigation
+ * Uses translations from i18n system
  */
 export function Footer() {
+  const { t } = useTranslation()
   const handleNavClick = (
     item: NavigationItem,
     e: React.MouseEvent<HTMLAnchorElement>
@@ -51,10 +54,10 @@ export function Footer() {
             aria-labelledby="company-info-heading"
           >
             <h3 id="company-info-heading" className="text-white text-xl font-bold">
-              {footerContent.companyInfo.name}
+              {t('footer.companyName', footerContent.companyInfo.name)}
             </h3>
             {footerContent.companyInfo.tagline && (
-              <p className="text-sm text-gray-400">{footerContent.companyInfo.tagline}</p>
+              <p className="text-sm text-gray-400">{t('footer.tagline', footerContent.companyInfo.tagline)}</p>
             )}
           </motion.section>
 
@@ -67,7 +70,7 @@ export function Footer() {
             className="space-y-4"
             aria-label="Footer navigation"
           >
-            <h4 className="text-white font-semibold">Quick Links</h4>
+            <h4 className="text-white font-semibold">{t('footer.quickLinks', 'Quick Links')}</h4>
             <ul className="space-y-2">
               {footerContent.quickLinks.map((item) => (
                 <li key={item.href}>
@@ -92,7 +95,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-4 not-italic"
           >
-            <h4 className="text-white font-semibold">Contact Us</h4>
+            <h4 className="text-white font-semibold">{t('footer.contactUs', 'Contact Us')}</h4>
             <div className="space-y-3">
               {footerContent.contactDetails.phone.primary && (
                 <div className="flex items-start gap-2">
@@ -137,7 +140,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="space-y-4"
           >
-            <h4 className="text-white font-semibold">Stay Updated</h4>
+            <h4 className="text-white font-semibold">{t('footer.stayUpdated', 'Stay Updated')}</h4>
             <p className="text-sm text-gray-400">Get insurance tips and updates</p>
             <NewsletterForm source="footer" />
           </motion.div>
@@ -150,7 +153,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="space-y-4"
           >
-            <h4 className="text-white font-semibold">Follow Us</h4>
+            <h4 className="text-white font-semibold">{t('footer.followUs', 'Follow Us')}</h4>
             <div className="flex gap-4 mb-4">
               {footerContent.socialMediaLinks.map((social) => (
                 <a
@@ -166,7 +169,7 @@ export function Footer() {
               ))}
             </div>
             <div className="space-y-2">
-              <h4 className="text-white font-semibold">Legal</h4>
+              <h4 className="text-white font-semibold">{t('footer.legal', 'Legal')}</h4>
               <ul className="space-y-2">
                 {footerContent.legalLinks.map((link) => (
                   <li key={link.href}>

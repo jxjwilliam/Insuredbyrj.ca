@@ -1062,8 +1062,8 @@ export const landingPageContent: LandingPageContent = {
     },
     {
       label: 'Contact',
-      href: '/contact',
-      isAnchor: false,
+      href: '#contact',
+      isAnchor: true,
     },
   ],
 }

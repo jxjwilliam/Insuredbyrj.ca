@@ -4,22 +4,25 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PlanCard } from '@/components/shared/plan-card'
 import { StaggerChildren } from '@/components/animations/stagger-children'
+import { useTranslation } from '@/lib/i18n/hooks'
 import type { InsurancePlan, DetailedPlanInformation } from '@/lib/types'
 
 interface InsurancePlansSectionProps {
-  plans: InsurancePlan[]
+  plans?: InsurancePlan[]
   detailedPlanInfo?: DetailedPlanInformation[]
 }
 
 /**
  * Insurance plans section component displaying all plan cards with detailed information
- * @param plans - Array of insurance plan data
+ * Uses translations from i18n system
+ * @param plans - Optional array of insurance plan data (for backward compatibility)
  * @param detailedPlanInfo - Optional array of detailed plan information
  */
 export function InsurancePlansSection({
-  plans,
+  plans = [],
   detailedPlanInfo,
 }: InsurancePlansSectionProps) {
+  const { t } = useTranslation()
   const getDetailedInfo = (planId: string): DetailedPlanInformation | undefined => {
     return detailedPlanInfo?.find((info) => info.planId === planId)
   }
@@ -33,12 +36,10 @@ export function InsurancePlansSection({
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Life Insurance <span className="text-blue-500">Plans</span> for Every
-            Need
+            {t('insurancePlans.title', 'Life Insurance Plans for Every Need')}
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            From affordable term coverage to lifelong protection, we have the right
-            plan to secure your family&apos;s financial future.
+            {t('insurancePlans.description', 'From affordable term coverage to lifelong protection, we have the right plan to secure your family\'s financial future.')}
           </p>
         </div>
 
@@ -58,11 +59,11 @@ export function InsurancePlansSection({
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">
-            Not sure which plan is right for you?
+            {t('insurancePlans.ctaText', 'Not sure which plan is right for you?')}
           </p>
           <Button asChild>
             <Link href="/get-quote">
-              Get Personalized Recommendations
+              {t('insurancePlans.ctaButton', 'Get Personalized Recommendations')}
               <span className="ml-2">→</span>
             </Link>
           </Button>

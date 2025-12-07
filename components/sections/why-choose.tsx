@@ -1,14 +1,43 @@
+'use client'
+
+import { useTranslation } from '@/lib/i18n/hooks'
 import type { WhyChooseSection as WhyChooseSectionType } from '@/lib/types'
 
 interface WhyChooseSectionProps {
-  whyChoose: WhyChooseSectionType
+  whyChoose?: WhyChooseSectionType
 }
 
 /**
  * Why Choose section component displaying four benefit points
- * @param whyChoose - Why Choose section content data
+ * Uses translations from i18n system
+ * @param whyChoose - Optional Why Choose section content data (for backward compatibility)
  */
 export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
+  const { t } = useTranslation()
+  
+  // Get translations or fallback to props
+  const title = t('whyChoose.title', whyChoose?.title || 'Why Choose Insured by Rajan')
+  const description = t('whyChoose.description', whyChoose?.description || 'We\'re not just another insurance broker.')
+  
+  // Translate benefits
+  const benefits = [
+    {
+      title: t('whyChoose.benefits.bcLicensed.title', whyChoose?.benefits?.[0]?.title || 'BC-Licensed Expert'),
+      description: t('whyChoose.benefits.bcLicensed.description', whyChoose?.benefits?.[0]?.description || 'Fully licensed and regulated...'),
+    },
+    {
+      title: t('whyChoose.benefits.transparentPricing.title', whyChoose?.benefits?.[1]?.title || 'Transparent Pricing'),
+      description: t('whyChoose.benefits.transparentPricing.description', whyChoose?.benefits?.[1]?.description || 'No hidden fees...'),
+    },
+    {
+      title: t('whyChoose.benefits.familyFirst.title', whyChoose?.benefits?.[2]?.title || 'Family-First Approach'),
+      description: t('whyChoose.benefits.familyFirst.description', whyChoose?.benefits?.[2]?.description || 'We treat every client...'),
+    },
+    {
+      title: t('whyChoose.benefits.fastSimple.title', whyChoose?.benefits?.[3]?.title || 'Fast & Simple Process'),
+      description: t('whyChoose.benefits.fastSimple.description', whyChoose?.benefits?.[3]?.description || 'Get a quote in minutes...'),
+    },
+  ]
   return (
     <section id="why-choose" className="py-20 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
@@ -18,17 +47,17 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             <span className="text-3xl text-blue-500 font-serif">∞</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {whyChoose.title.split('Insured by Rajan')[0]}
+            {title.split('Insured by Rajan')[0]}
             <span className="text-blue-500">Insured by Rajan</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            {whyChoose.description}
+            {description}
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {whyChoose.benefits.map((benefit, index) => (
+          {benefits.map((benefit, index) => (
             <div
               key={index}
               className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"

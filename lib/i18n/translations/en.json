@@ -1,0 +1,212 @@
+{
+  "hero": {
+    "headline": "Life Insurance That Stands the Test of Time",
+    "subheadline": "Protecting British Columbia families with transparent, affordable coverage built for the long haul. Get the peace of mind you deserve.",
+    "primaryCTA": {
+      "text": "Get Your Free Quote",
+      "href": "/get-quote"
+    },
+    "secondaryCTA": {
+      "text": "Speak to a BC Advisor",
+      "href": "/contact"
+    },
+    "trustMicrocopy": [
+      "No obligation quote",
+      "2-minute application",
+      "Instant estimates"
+    ],
+    "imageAlt": "Life insurance and family protection concept. assurance, insurance, car, real estate and property, travel, finances, health, family, life, accident, and logistics insurance. complete insurance,"
+  },
+  "trustIndicators": {
+    "financialStrength": "Financial Strength",
+    "familiesProtected": "Families Protected",
+    "yearsOfService": "Years of Service"
+  },
+  "navigation": {
+    "whyChoose": "Why Choose",
+    "plans": "Plans",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "We're here to help. Reach out to Rajan directly for personalized insurance advice.",
+    "phone": {
+      "title": "Phone"
+    },
+    "email": {
+      "title": "Email"
+    },
+    "location": {
+      "title": "Office Location"
+    },
+    "hours": {
+      "title": "Office Hours"
+    },
+    "responseTime": "Response time",
+    "serviceAreas": "Service Areas",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "preferredMethod": "Preferred Contact Method"
+  },
+  "whyChoose": {
+    "title": "Why Choose Insured by Rajan",
+    "description": "We're not just another insurance broker. We're your BC neighbors committed to protecting what matters most to you and your family.",
+    "benefits": {
+      "bcLicensed": {
+        "title": "BC-Licensed Expert",
+        "description": "Fully licensed and regulated in British Columbia, ensuring you receive expert guidance tailored to provincial regulations."
+      },
+      "transparentPricing": {
+        "title": "Transparent Pricing",
+        "description": "No hidden fees or surprises. Get clear, upfront pricing and understand exactly what you're paying for."
+      },
+      "familyFirst": {
+        "title": "Family-First Approach",
+        "description": "We treat every client like family, taking the time to understand your unique needs and life goals."
+      },
+      "fastSimple": {
+        "title": "Fast & Simple Process",
+        "description": "Get a quote in minutes, not hours. Our streamlined application process makes protecting your family effortless."
+      }
+    }
+  },
+  "insurancePlans": {
+    "title": "Life Insurance Plans for Every Need",
+    "description": "From affordable term coverage to lifelong protection, we have the right plan to secure your family's financial future.",
+    "ctaText": "Not sure which plan is right for you?",
+    "ctaButton": "Get Personalized Recommendations",
+    "termLife": {
+      "type": "Term Life",
+      "description": "Affordable coverage for a specific period",
+      "startingPrice": "From $25/month",
+      "features": [
+        "10, 20, or 30-year terms",
+        "Coverage up to $5M",
+        "Convertible options"
+      ]
+    },
+    "wholeLife": {
+      "type": "Whole Life",
+      "description": "Lifelong protection with cash value",
+      "startingPrice": "From $85/month",
+      "features": [
+        "Guaranteed premiums",
+        "Builds cash value",
+        "Lifetime coverage"
+      ]
+    },
+    "universalLife": {
+      "type": "Universal Life",
+      "description": "Flexible premiums & investment options",
+      "startingPrice": "From $120/month",
+      "features": [
+        "Adjustable premiums",
+        "Investment component",
+        "Tax-advantaged growth"
+      ]
+    },
+    "criticalIllness": {
+      "type": "Critical Illness",
+      "description": "Lump-sum payment for serious illness",
+      "startingPrice": "From $45/month",
+      "features": [
+        "Covers 25+ conditions",
+        "Tax-free lump sum",
+        "Use funds as needed"
+      ]
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "Getting life insurance shouldn't be complicated. Our simple 3-step process makes protecting your family effortless.",
+    "steps": {
+      "step1": {
+        "title": "Share Your Needs",
+        "description": "Tell us about yourself, your family, and your coverage goals. Our simple questionnaire takes just 2 minutes.",
+        "timeIndicator": "2 minutes"
+      },
+      "step2": {
+        "title": "Get Instant Quotes",
+        "description": "Receive personalized quotes from Canada's top insurers. Compare plans side-by-side to find your perfect match.",
+        "timeIndicator": "Instant results"
+      },
+      "step3": {
+        "title": "Get Protected",
+        "description": "Complete your application online or speak with Rajan directly. Coverage can start as soon as the same day.",
+        "timeIndicator": "Same-day coverage"
+      }
+    }
+  },
+  "whyBC": {
+    "title": "Why British Columbians Choose Insured by Rajan",
+    "description": "As a fellow British Columbian, Rajan Thind understands the unique needs of families across our beautiful province—from Vancouver to Victoria, Kelowna to Surrey.",
+    "valuePropositions": {
+      "localExpertise": {
+        "title": "Local BC Expertise",
+        "description": "Deep understanding of BC regulations, tax advantages, and family needs"
+      },
+      "personalizedService": {
+        "title": "Personalized Service",
+        "description": "One-on-one consultations, not automated responses—talk to Rajan directly"
+      },
+      "noPressure": {
+        "title": "No Pressure, Just Honest Advice",
+        "description": "We prioritize your family's needs over commissions—always"
+      },
+      "lifetimeSupport": {
+        "title": "Lifetime Support",
+        "description": "From application to claims, we're here for every step of your journey"
+      }
+    }
+  },
+  "faq": {
+    "coverageAmount": {
+      "question": "How much life insurance do I need?",
+      "answer": "A good rule of thumb is to have coverage worth 10-12 times your annual income. However, the right amount depends on your specific situation—including debts, dependents, income replacement needs, and future goals like college funding. Our free quote tool will help you calculate a personalized recommendation based on your unique circumstances."
+    },
+    "termVsWhole": {
+      "question": "What's the difference between term and whole life insurance?",
+      "answer": "**Term life** covers you for a specific period (10, 20, or 30 years) and is typically more affordable. It's perfect for covering temporary needs like a mortgage or raising children. **Whole life** provides lifetime coverage and builds cash value over time, but costs more. Think of term as \"renting\" and whole life as \"buying\" your insurance."
+    },
+    "healthImpact": {
+      "question": "Will my health affect my life insurance rates?",
+      "answer": "Yes, your health, age, and lifestyle all impact your premium rates. That's why it's best to apply when you're younger and healthier. However, even if you have pre-existing conditions, you can still get coverage—you may just pay slightly higher rates. We work with multiple insurers to find you the best rates regardless of your health situation."
+    },
+    "coverageSpeed": {
+      "question": "How quickly can I get covered?",
+      "answer": "For simplified issue policies (no medical exam), you can get coverage in as little as 24-48 hours. For fully underwritten policies that require a medical exam, the process typically takes 2-4 weeks. We'll guide you through every step and work to get you approved as quickly as possible."
+    },
+    "taxImplications": {
+      "question": "Are life insurance payouts taxable in Canada?",
+      "answer": "No! Life insurance death benefits are generally tax-free in Canada. Your beneficiaries receive the full payout without owing income tax on it. This makes life insurance one of the most tax-efficient ways to transfer wealth and protect your family's financial future."
+    },
+    "cancellation": {
+      "question": "Can I cancel my policy if my situation changes?",
+      "answer": "Yes, you can cancel your life insurance policy at any time. Most policies have a 10-day \"free look\" period where you can cancel for a full refund. After that, you can still cancel, though you won't receive a refund for term policies. For whole life or universal life policies with cash value, you may be entitled to receive the surrender value. We're always here to discuss your options if your needs change."
+    }
+  },
+  "footer": {
+    "companyName": "Insured by Rajan",
+    "tagline": "British Columbia's Trusted Life Insurance Agency",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "stayUpdated": "Stay Updated",
+    "getInsuranceTips": "Get insurance tips and updates",
+    "followUs": "Follow Us",
+    "legal": "Legal",
+    "copyright": "© Insured by Rajan. All rights reserved."
+  },
+  "common": {
+    "getMyFreeQuote": "Get My Free Quote",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "close": "Close",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  }
+}

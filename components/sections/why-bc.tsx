@@ -1,17 +1,46 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/shared/image-with-fallback'
+import { useTranslation } from '@/lib/i18n/hooks'
 import type { WhyBCSection as WhyBCSectionType } from '@/lib/types'
 
 interface WhyBCSectionProps {
-  whyBC: WhyBCSectionType
+  whyBC?: WhyBCSectionType
 }
 
 /**
  * Why BC section component displaying value propositions and statistics
- * @param whyBC - Why BC section content data
+ * Uses translations from i18n system
+ * @param whyBC - Optional Why BC section content data (for backward compatibility)
  */
 export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
+  const { t } = useTranslation()
+  
+  // Get translations
+  const title = t('whyBC.title', whyBC?.title || 'Why British Columbians Choose Insured by Rajan')
+  const description = t('whyBC.description', whyBC?.description || 'As a fellow British Columbian...')
+  
+  // Translate value propositions
+  const valuePropositions = [
+    {
+      title: t('whyBC.valuePropositions.localExpertise.title', whyBC?.valuePropositions?.[0]?.title || 'Local BC Expertise'),
+      description: t('whyBC.valuePropositions.localExpertise.description', whyBC?.valuePropositions?.[0]?.description || 'Deep understanding...'),
+    },
+    {
+      title: t('whyBC.valuePropositions.personalizedService.title', whyBC?.valuePropositions?.[1]?.title || 'Personalized Service'),
+      description: t('whyBC.valuePropositions.personalizedService.description', whyBC?.valuePropositions?.[1]?.description || 'One-on-one consultations...'),
+    },
+    {
+      title: t('whyBC.valuePropositions.noPressure.title', whyBC?.valuePropositions?.[2]?.title || 'No Pressure, Just Honest Advice'),
+      description: t('whyBC.valuePropositions.noPressure.description', whyBC?.valuePropositions?.[2]?.description || 'We prioritize...'),
+    },
+    {
+      title: t('whyBC.valuePropositions.lifetimeSupport.title', whyBC?.valuePropositions?.[3]?.title || 'Lifetime Support'),
+      description: t('whyBC.valuePropositions.lifetimeSupport.description', whyBC?.valuePropositions?.[3]?.description || 'From application...'),
+    },
+  ]
   return (
     <section
       id="why-bc"
@@ -29,8 +58,8 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src={whyBC.imageUrl}
-                  alt={whyBC.imageAlt}
+                  src={whyBC?.imageUrl || ''}
+                  alt={whyBC?.imageAlt || ''}
                   width={600}
                   height={400}
                   className="w-full h-auto"
@@ -38,7 +67,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
               </div>
 
               {/* Floating Stats Cards */}
-              {whyBC.statistics && whyBC.statistics.length > 0 && (
+              {whyBC?.statistics && whyBC.statistics.length > 0 && (
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-6 border-4 border-blue-500">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center">
@@ -68,17 +97,17 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              {whyBC.title.split('Insured by Rajan')[0]}
+              {title.split('Insured by Rajan')[0]}
               <span className="text-blue-500">Insured by Rajan</span>
             </h2>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              {whyBC.description}
+              {description}
             </p>
 
             {/* Benefits List */}
             <div className="space-y-4">
-              {whyBC.valuePropositions.map((proposition, index) => (
+              {valuePropositions.map((proposition, index) => (
                 <div
                   key={index}
                   className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"

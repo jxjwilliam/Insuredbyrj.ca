@@ -1,0 +1,212 @@
+{
+  "hero": {
+    "headline": "Assurance-vie qui résiste à l'épreuve du temps",
+    "subheadline": "Protéger les familles de la Colombie-Britannique avec une couverture transparente et abordable conçue pour durer. Obtenez la tranquillité d'esprit que vous méritez.",
+    "primaryCTA": {
+      "text": "Obtenez votre devis gratuit",
+      "href": "/get-quote"
+    },
+    "secondaryCTA": {
+      "text": "Parlez à un conseiller de la C.-B.",
+      "href": "/contact"
+    },
+    "trustMicrocopy": [
+      "Devis sans engagement",
+      "Demande en 2 minutes",
+      "Estimations instantanées"
+    ],
+    "imageAlt": "Concept d'assurance-vie et de protection familiale."
+  },
+  "trustIndicators": {
+    "financialStrength": "Solidité financière",
+    "familiesProtected": "Familles protégées",
+    "yearsOfService": "Années de service"
+  },
+  "navigation": {
+    "whyChoose": "Pourquoi nous choisir",
+    "plans": "Plans",
+    "howItWorks": "Comment ça fonctionne",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Nous sommes là pour vous aider. Contactez Rajan directement pour des conseils d'assurance personnalisés.",
+    "phone": {
+      "title": "Téléphone"
+    },
+    "email": {
+      "title": "Courriel"
+    },
+    "location": {
+      "title": "Emplacement du bureau"
+    },
+    "hours": {
+      "title": "Heures d'ouverture"
+    },
+    "responseTime": "Temps de réponse",
+    "serviceAreas": "Zones de service",
+    "primary": "Primaire",
+    "secondary": "Secondaire",
+    "preferredMethod": "Méthode de contact préférée"
+  },
+  "whyChoose": {
+    "title": "Pourquoi choisir Insured by Rajan",
+    "description": "Nous ne sommes pas qu'un autre courtier d'assurance. Nous sommes vos voisins de la C.-B. engagés à protéger ce qui compte le plus pour vous et votre famille.",
+    "benefits": {
+      "bcLicensed": {
+        "title": "Expert agréé en C.-B.",
+        "description": "Entièrement agréé et réglementé en Colombie-Britannique, garantissant que vous recevez des conseils d'experts adaptés aux règlements provinciaux."
+      },
+      "transparentPricing": {
+        "title": "Tarification transparente",
+        "description": "Aucun frais caché ou surprise. Obtenez des prix clairs et à l'avance et comprenez exactement ce pour quoi vous payez."
+      },
+      "familyFirst": {
+        "title": "Approche axée sur la famille",
+        "description": "Nous traitons chaque client comme de la famille, prenant le temps de comprendre vos besoins uniques et vos objectifs de vie."
+      },
+      "fastSimple": {
+        "title": "Processus rapide et simple",
+        "description": "Obtenez un devis en quelques minutes, pas en heures. Notre processus de demande rationalisé rend la protection de votre famille sans effort."
+      }
+    }
+  },
+  "insurancePlans": {
+    "title": "Plans d'assurance-vie pour tous les besoins",
+    "description": "De la couverture temporaire abordable à la protection à vie, nous avons le bon plan pour sécuriser l'avenir financier de votre famille.",
+    "ctaText": "Vous ne savez pas quel plan vous convient?",
+    "ctaButton": "Obtenez des recommandations personnalisées",
+    "termLife": {
+      "type": "Assurance-vie temporaire",
+      "description": "Couverture abordable pour une période spécifique",
+      "startingPrice": "À partir de 25 $/mois",
+      "features": [
+        "Termes de 10, 20 ou 30 ans",
+        "Couverture jusqu'à 5 M$",
+        "Options convertibles"
+      ]
+    },
+    "wholeLife": {
+      "type": "Assurance-vie entière",
+      "description": "Protection à vie avec valeur de rachat",
+      "startingPrice": "À partir de 85 $/mois",
+      "features": [
+        "Primes garanties",
+        "Construit une valeur de rachat",
+        "Couverture à vie"
+      ]
+    },
+    "universalLife": {
+      "type": "Assurance-vie universelle",
+      "description": "Primes flexibles et options d'investissement",
+      "startingPrice": "À partir de 120 $/mois",
+      "features": [
+        "Primes ajustables",
+        "Composante d'investissement",
+        "Croissance avantageuse sur le plan fiscal"
+      ]
+    },
+    "criticalIllness": {
+      "type": "Maladie grave",
+      "description": "Paiement forfaitaire pour maladie grave",
+      "startingPrice": "À partir de 45 $/mois",
+      "features": [
+        "Couvre 25+ conditions",
+        "Somme forfaitaire non imposable",
+        "Utilisez les fonds selon vos besoins"
+      ]
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça fonctionne",
+    "description": "Obtenir une assurance-vie ne devrait pas être compliqué. Notre processus simple en 3 étapes rend la protection de votre famille sans effort.",
+    "steps": {
+      "step1": {
+        "title": "Partagez vos besoins",
+        "description": "Parlez-nous de vous, de votre famille et de vos objectifs de couverture. Notre questionnaire simple ne prend que 2 minutes.",
+        "timeIndicator": "2 minutes"
+      },
+      "step2": {
+        "title": "Obtenez des devis instantanés",
+        "description": "Recevez des devis personnalisés des meilleures compagnies d'assurance du Canada. Comparez les plans côte à côte pour trouver votre correspondance parfaite.",
+        "timeIndicator": "Résultats instantanés"
+      },
+      "step3": {
+        "title": "Soyez protégé",
+        "description": "Complétez votre demande en ligne ou parlez directement à Rajan. La couverture peut commencer dès le même jour.",
+        "timeIndicator": "Couverture le jour même"
+      }
+    }
+  },
+  "whyBC": {
+    "title": "Pourquoi les Colombiens-Britanniques choisissent Insured by Rajan",
+    "description": "En tant que Colombien-Britannique, Rajan Thind comprend les besoins uniques des familles à travers notre belle province—de Vancouver à Victoria, de Kelowna à Surrey.",
+    "valuePropositions": {
+      "localExpertise": {
+        "title": "Expertise locale en C.-B.",
+        "description": "Compréhension approfondie des règlements de la C.-B., des avantages fiscaux et des besoins familiaux"
+      },
+      "personalizedService": {
+        "title": "Service personnalisé",
+        "description": "Consultations individuelles, pas de réponses automatisées—parlez directement à Rajan"
+      },
+      "noPressure": {
+        "title": "Aucune pression, juste des conseils honnêtes",
+        "description": "Nous donnons la priorité aux besoins de votre famille plutôt qu'aux commissions—toujours"
+      },
+      "lifetimeSupport": {
+        "title": "Soutien à vie",
+        "description": "De la demande aux réclamations, nous sommes là pour chaque étape de votre parcours"
+      }
+    }
+  },
+  "faq": {
+    "coverageAmount": {
+      "question": "De combien d'assurance-vie ai-je besoin?",
+      "answer": "Une bonne règle générale est d'avoir une couverture valant 10 à 12 fois votre revenu annuel. Cependant, le montant approprié dépend de votre situation spécifique—y compris les dettes, les personnes à charge, les besoins de remplacement de revenu et les objectifs futurs comme le financement des études collégiales. Notre outil de devis gratuit vous aidera à calculer une recommandation personnalisée basée sur vos circonstances uniques."
+    },
+    "termVsWhole": {
+      "question": "Quelle est la différence entre l'assurance-vie temporaire et l'assurance-vie entière?",
+      "answer": "**L'assurance-vie temporaire** vous couvre pour une période spécifique (10, 20 ou 30 ans) et est généralement plus abordable. Elle est parfaite pour couvrir des besoins temporaires comme une hypothèque ou l'éducation des enfants. **L'assurance-vie entière** offre une couverture à vie et accumule une valeur de rachat au fil du temps, mais coûte plus cher. Pensez à l'assurance temporaire comme \"louer\" et à l'assurance-vie entière comme \"acheter\" votre assurance."
+    },
+    "healthImpact": {
+      "question": "Ma santé affectera-t-elle mes tarifs d'assurance-vie?",
+      "answer": "Oui, votre santé, votre âge et votre mode de vie ont tous un impact sur vos tarifs de prime. C'est pourquoi il est préférable de faire une demande lorsque vous êtes plus jeune et en meilleure santé. Cependant, même si vous avez des conditions préexistantes, vous pouvez toujours obtenir une couverture—vous pourriez simplement payer des tarifs légèrement plus élevés. Nous travaillons avec plusieurs assureurs pour vous trouver les meilleurs tarifs, quelle que soit votre situation de santé."
+    },
+    "coverageSpeed": {
+      "question": "À quelle vitesse puis-je être couvert?",
+      "answer": "Pour les polices à émission simplifiée (sans examen médical), vous pouvez obtenir une couverture en aussi peu que 24 à 48 heures. Pour les polices entièrement souscrites qui nécessitent un examen médical, le processus prend généralement 2 à 4 semaines. Nous vous guiderons à chaque étape et travaillerons pour vous faire approuver le plus rapidement possible."
+    },
+    "taxImplications": {
+      "question": "Les paiements d'assurance-vie sont-ils imposables au Canada?",
+      "answer": "Non! Les prestations de décès d'assurance-vie sont généralement non imposables au Canada. Vos bénéficiaires reçoivent le paiement complet sans devoir d'impôt sur le revenu. Cela fait de l'assurance-vie l'un des moyens les plus avantageux sur le plan fiscal de transférer la richesse et de protéger l'avenir financier de votre famille."
+    },
+    "cancellation": {
+      "question": "Puis-je annuler ma police si ma situation change?",
+      "answer": "Oui, vous pouvez annuler votre police d'assurance-vie à tout moment. La plupart des polices ont une période de \"regard gratuit\" de 10 jours où vous pouvez annuler pour un remboursement complet. Après cela, vous pouvez toujours annuler, bien que vous ne receviez pas de remboursement pour les polices temporaires. Pour les polices d'assurance-vie entière ou universelle avec valeur de rachat, vous pourriez avoir droit à recevoir la valeur de rachat. Nous sommes toujours là pour discuter de vos options si vos besoins changent."
+    }
+  },
+  "footer": {
+    "companyName": "Insured by Rajan",
+    "tagline": "Agence d'assurance-vie de confiance de la Colombie-Britannique",
+    "quickLinks": "Liens rapides",
+    "contactUs": "Contactez-nous",
+    "stayUpdated": "Restez informé",
+    "getInsuranceTips": "Recevez des conseils et des mises à jour sur l'assurance",
+    "followUs": "Suivez-nous",
+    "legal": "Légal",
+    "copyright": "© Insured by Rajan. Tous droits réservés."
+  },
+  "common": {
+    "getMyFreeQuote": "Obtenez mon devis gratuit",
+    "learnMore": "En savoir plus",
+    "readMore": "Lire la suite",
+    "close": "Fermer",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès"
+  }
+}

@@ -12,17 +12,37 @@ import { PricingSection } from '@/components/sections/pricing-section'
 import { CompanyBackgroundSection } from '@/components/sections/company-background-section'
 import { ClaimsProcessSection } from '@/components/sections/claims-process-section'
 import { FAQSection } from '@/components/sections/faq-section'
+import { ContactSection } from '@/components/sections/contact-section'
 import { landingPageContent } from '@/lib/constants'
+import { getSupportedLanguages } from '@/lib/i18n/config'
+
+/**
+ * Generate static params for all supported locales
+ */
+export async function generateStaticParams() {
+  const supportedLocales = getSupportedLanguages().map((lang) => lang.code)
+  return supportedLocales.map((locale) => ({
+    locale,
+  }))
+}
+
+interface HomePageProps {
+  params: Promise<{ locale: string }>
+}
 
 /**
  * Main landing page component
  * Assembles all content sections in order
+ * Components now use translations via useTranslation() hook
+ * Receives locale from URL params
  */
-export default function HomePage() {
+export default async function HomePage({ params }: HomePageProps) {
+  // Locale is handled by layout, not needed here but kept for future use
+  await params
   return (
     <main id="main-content" className="min-h-screen">
       <Header navigation={landingPageContent.navigation} />
-      <HeroSection hero={landingPageContent.hero} />
+      <HeroSection />
       <TrustIndicators
         indicators={landingPageContent.trustIndicators}
         credentials={landingPageContent.trustCredentials}
@@ -59,6 +79,7 @@ export default function HomePage() {
       <WhyBCSection whyBC={landingPageContent.whyBC} />
       <NewsletterSection />
       <FAQSection faq={landingPageContent.faq} />
+      <ContactSection />
       <Footer />
     </main>
   )

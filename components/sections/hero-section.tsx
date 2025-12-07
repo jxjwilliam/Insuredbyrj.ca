@@ -1,16 +1,45 @@
+'use client'
+
 import { CTAButton } from '@/components/shared/cta-button'
 import { ImageWithFallback } from '@/components/shared/image-with-fallback'
+import { useTranslation } from '@/lib/i18n/hooks'
 import type { HeroSection as HeroSectionType } from '@/lib/types'
 
 interface HeroSectionProps {
-  hero: HeroSectionType
+  hero?: HeroSectionType // Optional for backward compatibility during migration
 }
 
 /**
  * Hero section component displaying main headline, CTAs, and hero image
- * @param hero - Hero section content data
+ * Uses translations from i18n system
+ * @param hero - Optional hero section content data (for backward compatibility)
  */
 export function HeroSection({ hero }: HeroSectionProps) {
+  const { t, translations } = useTranslation()
+  
+  // Use translations if available, fallback to hero prop for backward compatibility
+  const headline = t('hero.headline', hero?.headline || 'Life Insurance That Stands the Test of Time')
+  const subheadline = t('hero.subheadline', hero?.subheadline || 'Protecting British Columbia families...')
+  const primaryCTAText = t('hero.primaryCTA.text', hero?.primaryCTA?.text || 'Get Your Free Quote')
+  const primaryCTAHref = t('hero.primaryCTA.href', hero?.primaryCTA?.href || '/get-quote')
+  const secondaryCTAText = t('hero.secondaryCTA.text', hero?.secondaryCTA?.text || 'Speak to a BC Advisor')
+  const secondaryCTAHref = t('hero.secondaryCTA.href', hero?.secondaryCTA?.href || '/contact')
+  
+  // Get trust microcopy from translations array or fallback to hero prop
+  const heroTranslations = translations?.hero
+  const trustMicrocopy = 
+    (heroTranslations && 
+     typeof heroTranslations === 'object' && 
+     'trustMicrocopy' in heroTranslations &&
+     Array.isArray(heroTranslations.trustMicrocopy))
+      ? heroTranslations.trustMicrocopy as string[]
+      : (hero?.trustMicrocopy || [
+          'No obligation quote',
+          '2-minute application',
+          'Instant estimates',
+        ])
+  
+  const imageAlt = t('hero.imageAlt', hero?.imageAlt || 'Life insurance and family protection concept')
   return (
     <section
       id="hero"
@@ -44,29 +73,29 @@ export function HeroSection({ hero }: HeroSectionProps) {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {hero.headline.split('Time')[0]}
+              {headline.split('Time')[0]}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-amber-500">
-                Time
+                {headline.includes('Time') ? 'Time' : headline.split(' ').slice(-2).join(' ')}
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              {hero.subheadline}
+              {subheadline}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <CTAButton cta={hero.primaryCTA} />
-              <CTAButton cta={hero.secondaryCTA} />
+              <CTAButton cta={{ text: primaryCTAText, href: primaryCTAHref, variant: 'primary' }} />
+              <CTAButton cta={{ text: secondaryCTAText, href: secondaryCTAHref, variant: 'outline' }} />
             </div>
 
             {/* Trust Microcopy */}
             <p className="text-sm text-gray-400 flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1">
-              {hero.trustMicrocopy.map((item, index) => (
+              {trustMicrocopy.map((item, index) => (
                 <span key={index} className="flex items-center">
                   <span className="text-blue-500 mr-1">✓</span>
                   {item}
-                  {index < hero.trustMicrocopy.length - 1 && (
+                  {index < trustMicrocopy.length - 1 && (
                     <span className="text-white/30 mx-2">•</span>
                   )}
                 </span>
@@ -82,8 +111,8 @@ export function HeroSection({ hero }: HeroSectionProps) {
               </div>
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/20">
                 <ImageWithFallback
-                  src={hero.imageUrl}
-                  alt={hero.imageAlt}
+                  src={hero?.imageUrl || 'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/7efb3018-05ca-453e-0d48-cc1b38a44900/public'}
+                  alt={imageAlt}
                   fill
                   className="object-cover"
                 />

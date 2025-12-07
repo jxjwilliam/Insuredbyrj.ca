@@ -13,17 +13,48 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
 import { Search } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n/hooks'
 import type { FAQItem } from '@/lib/types'
 
 interface FAQSectionProps {
-  faq: FAQItem[]
+  faq?: FAQItem[]
 }
 
 /**
  * Enhanced FAQ section component with search and category grouping
- * @param faq - Array of FAQ items
+ * Uses translations from i18n system
+ * @param faq - Optional array of FAQ items (for backward compatibility)
  */
-export function FAQSection({ faq }: FAQSectionProps) {
+export function FAQSection({ faq = [] }: FAQSectionProps) {
+  const { t } = useTranslation()
+  
+  // Get FAQ items from translations or fallback to props
+  const getFAQItem = (id: string): FAQItem | undefined => {
+    const questionKey = `faq.${id}.question`
+    const answerKey = `faq.${id}.answer`
+    const question = t(questionKey)
+    const answer = t(answerKey)
+    
+    // If translation exists (not just the key), use it
+    if (question !== questionKey && answer !== answerKey) {
+      return { id, question, answer }
+    }
+    
+    // Fallback to prop FAQ item
+    return faq.find((item) => item.id === id)
+  }
+  
+  // Get all FAQ items - try translations first, then fallback to props
+  const faqItems: FAQItem[] = useMemo(() => {
+    // Try to get FAQ from translations
+    const faqIds = ['coverageAmount', 'termVsWhole', 'healthImpact', 'coverageSpeed', 'taxImplications', 'cancellation']
+    const translatedFAQ = faqIds
+      .map((id) => getFAQItem(id))
+      .filter((item): item is FAQItem => item !== undefined)
+    
+    // If we have translated FAQ, use it; otherwise use props
+    return translatedFAQ.length > 0 ? translatedFAQ : faq
+  }, [faq, t])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
@@ -69,13 +100,13 @@ export function FAQSection({ faq }: FAQSectionProps) {
     return categories
   }
 
-  const categories = useMemo(() => categorizeFAQ(faq), [faq])
+  const categories = useMemo(() => categorizeFAQ(faqItems), [faqItems])
 
   // Filter FAQ based on search and category
   const filteredFAQ = useMemo(() => {
     let items =
       selectedCategory === 'all'
-        ? faq
+        ? faqItems
         : categories[selectedCategory as keyof typeof categories] || []
 
     if (searchQuery.trim()) {
@@ -88,7 +119,7 @@ export function FAQSection({ faq }: FAQSectionProps) {
     }
 
     return items
-  }, [faq, searchQuery, selectedCategory, categories])
+  }, [faqItems, searchQuery, selectedCategory, categories])
 
   // Render markdown-like formatting in answers
   const renderAnswer = (answer: string) => {

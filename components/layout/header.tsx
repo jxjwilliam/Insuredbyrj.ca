@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { smoothScrollTo } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n/hooks'
+import { LanguageSelector } from '@/components/shared/language-selector'
 import type { NavigationItem } from '@/lib/types'
 
 interface HeaderProps {
@@ -16,9 +18,10 @@ interface HeaderProps {
 export function Header({ navigation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
+  const { t } = useTranslation()
 
   useEffect(() => {
-    const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'why-bc', 'faq']
+    const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'why-bc', 'faq', 'contact']
     const observerOptions = {
       root: null,
       rootMargin: '-100px 0px -66%',
@@ -70,7 +73,7 @@ export function Header({ navigation }: HeaderProps) {
             href="/"
             className="flex-shrink-0 transition-transform hover:scale-105"
           >
-            <span className="text-2xl font-bold text-gray-900">
+            <span className="text-2xl font-bold text-gray-900 shrink-0">
               Insured by Rajan
             </span>
           </Link>
@@ -82,6 +85,16 @@ export function Header({ navigation }: HeaderProps) {
               const isActive =
                 activeSection === sectionId ||
                 (sectionId === '' && activeSection === 'hero')
+              // Get translation key for navigation item - map common labels
+              const labelMap: Record<string, string> = {
+                'Why Choose': 'navigation.whyChoose',
+                'Plans': 'navigation.plans',
+                'How It Works': 'navigation.howItWorks',
+                'FAQ': 'navigation.faq',
+                'Contact': 'navigation.contact',
+              }
+              const translationKey = labelMap[item.label] || `navigation.${item.label.toLowerCase().replace(/\s+/g, '')}`
+              const label = t(translationKey, item.label)
               return (
                 <Link
                   key={item.href}
@@ -93,20 +106,23 @@ export function Header({ navigation }: HeaderProps) {
                       : 'text-gray-700 hover:text-blue-500'
                   }`}
                 >
-                  {item.label}
+                  {label}
                 </Link>
               )
             })}
           </nav>
 
-          {/* CTA Button (Desktop) */}
-          <Link
-            href="/get-quote"
-            className="hidden lg:inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            Get My Free Quote
-            <span className="ml-2">→</span>
-          </Link>
+          {/* Language Selector & CTA Button (Desktop) */}
+          <div className="hidden lg:flex items-center gap-4">
+            <LanguageSelector />
+            <Link
+              href="/get-quote"
+              className="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              {t('common.getMyFreeQuote', 'Get My Free Quote')}
+              <span className="ml-2">→</span>
+            </Link>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -122,23 +138,37 @@ export function Header({ navigation }: HeaderProps) {
         {mobileMenuOpen && (
           <div className="lg:hidden pb-6">
             <nav className="flex flex-col space-y-4">
-              {navigation.map((item) => (
+              {navigation.map((item) => {
+                const labelMap: Record<string, string> = {
+                  'Why Choose': 'navigation.whyChoose',
+                  'Plans': 'navigation.plans',
+                  'How It Works': 'navigation.howItWorks',
+                  'FAQ': 'navigation.faq',
+                  'Contact': 'navigation.contact',
+                }
+                const translationKey = labelMap[item.label] || `navigation.${item.label.toLowerCase().replace(/\s+/g, '')}`
+                const label = t(translationKey, item.label)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(item, e)}
+                    className="text-gray-700 hover:text-blue-500 font-medium transition-colors duration-200 py-2 border-b border-gray-200"
+                  >
+                    {label}
+                  </Link>
+                )
+              })}
+              <div className="mt-4 space-y-4">
+                <LanguageSelector />
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(item, e)}
-                  className="text-gray-700 hover:text-blue-500 font-medium transition-colors duration-200 py-2 border-b border-gray-200"
+                  href="/get-quote"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md w-full"
                 >
-                  {item.label}
+                  {t('common.getMyFreeQuote', 'Get My Free Quote')}
+                  <span className="ml-2">→</span>
                 </Link>
-              ))}
-              <Link
-                href="/get-quote"
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md mt-4"
-              >
-                Get My Free Quote
-                <span className="ml-2">→</span>
-              </Link>
+              </div>
             </nav>
           </div>
         )}
