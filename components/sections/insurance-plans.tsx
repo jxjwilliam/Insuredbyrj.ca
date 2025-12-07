@@ -1,19 +1,29 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PlanCard } from '@/components/shared/plan-card'
-import type { InsurancePlan } from '@/lib/types'
+import { StaggerChildren } from '@/components/animations/stagger-children'
+import type { InsurancePlan, DetailedPlanInformation } from '@/lib/types'
 
 interface InsurancePlansSectionProps {
   plans: InsurancePlan[]
+  detailedPlanInfo?: DetailedPlanInformation[]
 }
 
 /**
- * Insurance plans section component displaying all plan cards
+ * Insurance plans section component displaying all plan cards with detailed information
  * @param plans - Array of insurance plan data
+ * @param detailedPlanInfo - Optional array of detailed plan information
  */
 export function InsurancePlansSection({
   plans,
+  detailedPlanInfo,
 }: InsurancePlansSectionProps) {
+  const getDetailedInfo = (planId: string): DetailedPlanInformation | undefined => {
+    return detailedPlanInfo?.find((info) => info.planId === planId)
+  }
+
   return (
     <section
       id="plans"
@@ -33,11 +43,17 @@ export function InsurancePlansSection({
         </div>
 
         {/* Plans Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {plans.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
-          ))}
-        </div>
+        <StaggerChildren staggerDelay={0.1} animation="fadeIn">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {plans.map((plan) => (
+              <PlanCard
+                key={plan.id}
+                plan={plan}
+                detailedInfo={getDetailedInfo(plan.id)}
+              />
+            ))}
+          </div>
+        </StaggerChildren>
 
         {/* Bottom CTA */}
         <div className="text-center mt-12">
