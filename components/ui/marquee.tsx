@@ -87,7 +87,7 @@ export function Marquee({
     >
       <div
         className={cn(
-          'flex shrink-0 gap-4',
+          'flex shrink-0',
           pauseOnHover && 'group-hover:[animation-play-state:paused]'
         )}
         style={{
@@ -99,7 +99,7 @@ export function Marquee({
       </div>
       <div
         className={cn(
-          'flex shrink-0 gap-4',
+          'flex shrink-0',
           pauseOnHover && 'group-hover:[animation-play-state:paused]'
         )}
         style={{
@@ -125,7 +125,7 @@ export function MarqueeItem({ children, className, ...props }: MarqueeItemProps)
   return (
     <div
       {...props}
-      className={cn('flex shrink-0', className)}
+      className={cn('flex shrink-0 mr-4', className)}
     >
       {children}
     </div>

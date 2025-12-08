@@ -80,7 +80,7 @@ export function TestimonialsSection({
         <Marquee pauseOnHover className="[--duration:40s]">
           {testimonials.map((testimonial) => (
             <MarqueeItem key={testimonial.id} className="w-[350px]">
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full hover:shadow-lg transition-shadow m-0">
                 <CardContent className="p-6 flex flex-col h-full">
                   {/* Header */}
                   <div className="mb-4">

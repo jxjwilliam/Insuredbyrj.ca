@@ -20,8 +20,7 @@ export const landingPageContent: LandingPageContent = {
       '2-minute application',
       'Instant estimates',
     ],
-    imageUrl:
-      'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/7efb3018-05ca-453e-0d48-cc1b38a44900/public',
+    imageUrl: '/origin/hero-image.webp',
     imageAlt:
       'Life insurance and family protection concept. assurance, insurance, car, real estate and property, travel, finances, health, family, life, accident, and logistics insurance. complete insurance,',
   },
@@ -144,8 +143,7 @@ export const landingPageContent: LandingPageContent = {
         'Coverage up to $5M',
         'Convertible options',
       ],
-      imageUrl:
-        'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/2e332dcf-96f1-42d9-faf9-250cfd336c00/public',
+      imageUrl: '/origin/plan-term-life.webp',
       imageAlt:
         'A wooden doll under an umbrella holding by agent represent insurance . Family , protection, life.',
       ctaLink: '/products/term-life',
@@ -157,8 +155,7 @@ export const landingPageContent: LandingPageContent = {
       description: 'Lifelong protection with cash value',
       startingPrice: 'From $85/month',
       features: ['Guaranteed premiums', 'Builds cash value', 'Lifetime coverage'],
-      imageUrl:
-        'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/1f33fc20-aa5b-4764-64a2-41a8496ac000/public',
+      imageUrl: '/origin/plan-whole-life.webp',
       imageAlt:
         'Umbrella icon and family model, Security protection and health insurance. The concept of family home, protection, health care day, car insurance.',
       ctaLink: '/products/whole-life',
@@ -174,8 +171,7 @@ export const landingPageContent: LandingPageContent = {
         'Investment component',
         'Tax-advantaged growth',
       ],
-      imageUrl:
-        'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/a82f3505-69e4-41db-c2fd-2a97c213f100/public',
+      imageUrl: '/origin/plan-universal-life.webp',
       imageAlt:
         'Umbrella icon and family model, Security protection and health insurance. The concept of family home, protection, health care day, car insurance.',
       ctaLink: '/products/universal-life',
@@ -188,8 +184,7 @@ export const landingPageContent: LandingPageContent = {
       description: 'Lump-sum payment for serious illness',
       startingPrice: 'From $45/month',
       features: ['Covers 25+ conditions', 'Tax-free lump sum', 'Use funds as needed'],
-      imageUrl:
-        'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/f62823fc-52a5-4ee1-72ff-aa7e002aa800/public',
+      imageUrl: '/origin/plan-critical-illness.webp',
       imageAlt:
         'Concept of life insurance offers essential protection for family financial stability, covering medical and health care services to ensure their well-being. insurance, family, life, protection, money.',
       ctaLink: '/products/critical-illness',
@@ -693,8 +688,7 @@ export const landingPageContent: LandingPageContent = {
     title: 'Why British Columbians Choose Insured by Rajan',
     description:
       'As a fellow British Columbian, Rajan Thind understands the unique needs of families across our beautiful province—from Vancouver to Victoria, Kelowna to Surrey.',
-    imageUrl:
-      'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/28e6b85b-fb33-428e-f7af-7a669a26da00/publicContain',
+    imageUrl: '/origin/why-bc-image.webp',
     imageAlt:
       'Business hands, clients and signature on paper of legal contract, agreement and office consultation. Notary, advisor or people writing on documents for funding, terms and conditions or life insurance',
     valuePropositions: [
@@ -1041,7 +1035,7 @@ export const landingPageContent: LandingPageContent = {
   },
   navigation: [
     {
-      label: 'Why Choose',
+      label: 'Why Us',
       href: '#why-choose',
       isAnchor: true,
     },
@@ -1053,6 +1047,16 @@ export const landingPageContent: LandingPageContent = {
     {
       label: 'How It Works',
       href: '#how-it-works',
+      isAnchor: true,
+    },
+    {
+      label: 'Testimonials',
+      href: '#testimonials',
+      isAnchor: true,
+    },
+    {
+      label: 'About',
+      href: '#about',
       isAnchor: true,
     },
     {

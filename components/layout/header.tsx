@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { smoothScrollTo } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { LanguageSelector } from '@/components/shared/language-selector'
@@ -21,7 +22,7 @@ export function Header({ navigation }: HeaderProps) {
   const { t } = useTranslation()
 
   useEffect(() => {
-    const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'why-bc', 'faq', 'contact']
+    const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'testimonials', 'about', 'faq', 'contact']
     const observerOptions = {
       root: null,
       rootMargin: '-100px 0px -66%',
@@ -73,9 +74,15 @@ export function Header({ navigation }: HeaderProps) {
             href="/"
             className="flex-shrink-0 transition-transform hover:scale-105"
           >
-            <span className="text-2xl font-bold text-gray-900 shrink-0">
-              Insured by Rajan
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Insured by Rajan"
+              title="Insured by Rajan"
+              width={200}
+              height={112}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -87,9 +94,12 @@ export function Header({ navigation }: HeaderProps) {
                 (sectionId === '' && activeSection === 'hero')
               // Get translation key for navigation item - map common labels
               const labelMap: Record<string, string> = {
+                'Why Us': 'navigation.whyUs',
                 'Why Choose': 'navigation.whyChoose',
                 'Plans': 'navigation.plans',
                 'How It Works': 'navigation.howItWorks',
+                'Testimonials': 'navigation.testimonials',
+                'About': 'navigation.about',
                 'FAQ': 'navigation.faq',
                 'Contact': 'navigation.contact',
               }
@@ -140,9 +150,12 @@ export function Header({ navigation }: HeaderProps) {
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => {
                 const labelMap: Record<string, string> = {
+                  'Why Us': 'navigation.whyUs',
                   'Why Choose': 'navigation.whyChoose',
                   'Plans': 'navigation.plans',
                   'How It Works': 'navigation.howItWorks',
+                  'Testimonials': 'navigation.testimonials',
+                  'About': 'navigation.about',
                   'FAQ': 'navigation.faq',
                   'Contact': 'navigation.contact',
                 }

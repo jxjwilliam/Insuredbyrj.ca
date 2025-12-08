@@ -1,5 +1,9 @@
 Based on my research into the insurance agent "Rajansthind," here is the analysis and the improved information request list to help you build a professional website.
 
+- https://www.linkedin.com/in/rajan-thind-0b8882160/
+- https://insurelineinfinity.com/
+- [005-ui-improvements](https://insuredbyrj-ca.vercel.app/en)
+
 ### 1. Research & Analysis of the Agent
 
 * **Name & Identity:** The agent is **Rajan Thind** (likely the handle "Rajansthind" stands for Rajan S. Thind).

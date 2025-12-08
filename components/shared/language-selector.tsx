@@ -68,6 +68,7 @@ export function LanguageSelector({
       // Update URL to reflect new locale
       // Extract current path without locale prefix
       const supportedLocales = ['en', 'fr', 'pa', 'hi']
+      const defaultLocale = 'en'
       let pathWithoutLocale = pathname
       
       // Remove existing locale prefix if present
@@ -86,8 +87,15 @@ export function LanguageSelector({
         pathWithoutLocale = `/${pathWithoutLocale}`
       }
       
-      // Build new path with locale prefix
-      const newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+      // Build new path: English uses root, other languages use prefix
+      let newPath: string
+      if (newLocale === defaultLocale) {
+        // English: no prefix, use root
+        newPath = pathWithoutLocale === '/' ? '/' : pathWithoutLocale
+      } else {
+        // Other languages: add locale prefix
+        newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+      }
       
       // Navigate to new locale URL
       router.push(newPath)

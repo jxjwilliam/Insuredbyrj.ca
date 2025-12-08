@@ -9,6 +9,7 @@ import { smoothScrollTo } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { footerContent } from '@/lib/constants'
 import type { NavigationItem } from '@/lib/types'
+import QRCode from 'react-qr-code'
 
 /**
  * Footer component with company info, navigation links, contact details, social media, and legal links
@@ -59,6 +60,21 @@ export function Footer() {
             {footerContent.companyInfo.tagline && (
               <p className="text-sm text-gray-400">{t('footer.tagline', footerContent.companyInfo.tagline)}</p>
             )}
+            {/* Social Media Icons */}
+            <div className="flex gap-4 pt-2">
+              {footerContent.socialMediaLinks.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 rounded transition-colors duration-200"
+                  aria-label={`Visit our ${social.platform === 'twitter' ? 'X' : social.label} page (opens in new tab)`}
+                >
+                  {getSocialIcon(social.platform)}
+                </a>
+              ))}
+            </div>
           </motion.section>
 
           {/* Quick Links */}
@@ -145,7 +161,7 @@ export function Footer() {
             <NewsletterForm source="footer" />
           </motion.div>
 
-          {/* Social Media & Legal Links */}
+          {/* QR Code & Legal Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,21 +169,21 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="space-y-4"
           >
-            <h4 className="text-white font-semibold">{t('footer.followUs', 'Follow Us')}</h4>
-            <div className="flex gap-4 mb-4">
-              {footerContent.socialMediaLinks.map((social) => (
-                <a
-                  key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 rounded transition-colors duration-200"
-                  aria-label={`Visit our ${social.platform === 'twitter' ? 'X' : social.label} page (opens in new tab)`}
-                >
-                  {getSocialIcon(social.platform)}
-                </a>
-              ))}
+            {/* QR Code */}
+            <div className="space-y-2 mb-4">
+              <h4 className="text-white font-semibold text-sm">{t('footer.scanToVisit', 'Scan to Visit')}</h4>
+              <div className="flex justify-center lg:justify-start">
+                <div className="bg-white p-2 rounded-lg inline-block">
+                  <QRCode
+                    value="https://insuredbyrj-ca.vercel.app/en"
+                    size={120}
+                    level="M"
+                    style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+                  />
+                </div>
+              </div>
             </div>
+            
             <div className="space-y-2">
               <h4 className="text-white font-semibold">{t('footer.legal', 'Legal')}</h4>
               <ul className="space-y-2">

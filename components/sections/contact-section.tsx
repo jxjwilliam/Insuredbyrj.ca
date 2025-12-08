@@ -1,6 +1,6 @@
 'use client'
 
-import { Phone, Mail, MapPin, Clock, MessageSquare } from 'lucide-react'
+import { Phone, Mail, Clock, MessageSquare } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { landingPageContent } from '@/lib/constants'
@@ -108,16 +108,7 @@ export function ContactSection() {
 
           {/* Office Location */}
           <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                {t('contact.location.title', 'Office Location')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg font-semibold mb-6">
-                {contactDetails.address.fullAddress}
-              </p>
+            <CardContent className="p-0">
               <div className="w-full h-[600px] rounded-lg overflow-hidden">
                 <GoogleMap className="h-full" />
               </div>

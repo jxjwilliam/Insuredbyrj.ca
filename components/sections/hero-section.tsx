@@ -120,7 +120,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               </div>
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/20">
                 <ImageWithFallback
-                  src={hero?.imageUrl || 'https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/7efb3018-05ca-453e-0d48-cc1b38a44900/public'}
+                  src={hero?.imageUrl || '/origin/hero-image.webp'}
                   alt={imageAlt}
                   fill
                   className="object-cover"

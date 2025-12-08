@@ -58,8 +58,8 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src={whyBC?.imageUrl || ''}
-                  alt={whyBC?.imageAlt || ''}
+                  src={whyBC?.imageUrl || '/origin/why-bc-image.webp'}
+                  alt={whyBC?.imageAlt || 'Business hands, clients and signature on paper of legal contract, agreement and office consultation'}
                   width={600}
                   height={400}
                   className="w-full h-auto"

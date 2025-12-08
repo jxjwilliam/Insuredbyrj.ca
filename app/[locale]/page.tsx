@@ -6,7 +6,6 @@ import { WhyChooseSection } from '@/components/sections/why-choose'
 import { InsurancePlansSection } from '@/components/sections/insurance-plans'
 import { HowItWorksSection } from '@/components/sections/how-it-works'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
-import { PricingSection } from '@/components/sections/pricing-section'
 import { CompanyBackgroundSection } from '@/components/sections/company-background-section'
 import { FAQSection } from '@/components/sections/faq-section'
 import { ContactSection } from '@/components/sections/contact-section'
@@ -17,7 +16,11 @@ import { getSupportedLanguages } from '@/lib/i18n/config'
  * Generate static params for all supported locales
  */
 export async function generateStaticParams() {
-  const supportedLocales = getSupportedLanguages().map((lang) => lang.code)
+  // Exclude 'en' from static params since it's served at root
+  // English content is served via rewrite in middleware
+  const supportedLocales = getSupportedLanguages()
+    .map((lang) => lang.code)
+    .filter((locale) => locale !== 'en')
   return supportedLocales.map((locale) => ({
     locale,
   }))
@@ -57,13 +60,6 @@ export default async function HomePage({ params }: HomePageProps) {
       {landingPageContent.testimonials && landingPageContent.testimonials.length > 0 && (
         <TestimonialsSection testimonials={landingPageContent.testimonials} />
       )}
-      {landingPageContent.pricingScenarios &&
-        landingPageContent.pricingScenarios.length > 0 && (
-          <PricingSection
-            scenarios={landingPageContent.pricingScenarios}
-            plans={landingPageContent.insurancePlans}
-          />
-        )}
       {landingPageContent.companyBackground && (
         <CompanyBackgroundSection
           background={landingPageContent.companyBackground}

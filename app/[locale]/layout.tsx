@@ -21,7 +21,11 @@ interface LocaleLayoutProps {
  * This enables static generation for all language versions
  */
 export async function generateStaticParams() {
-  const supportedLocales = getSupportedLanguages().map((lang) => lang.code)
+  // Exclude 'en' from static params since it's served at root
+  // English content is served via rewrite in middleware
+  const supportedLocales = getSupportedLanguages()
+    .map((lang) => lang.code)
+    .filter((locale) => locale !== getDefaultLocale())
   return supportedLocales.map((locale) => ({
     locale,
   }))
@@ -45,11 +49,16 @@ export async function generateMetadata({
   }
   
   supportedLocales.forEach((lang) => {
-    alternates.languages[lang.code] = `${baseUrl}/${lang.code}`
+    // English uses root URL, other languages use prefix
+    if (lang.code === getDefaultLocale()) {
+      alternates.languages[lang.code] = baseUrl
+    } else {
+      alternates.languages[lang.code] = `${baseUrl}/${lang.code}`
+    }
   })
   
-  // Add x-default pointing to default locale
-  alternates.languages['x-default'] = `${baseUrl}/${getDefaultLocale()}`
+  // Add x-default pointing to root (English is default)
+  alternates.languages['x-default'] = baseUrl
 
   return {
     title: "Insured by Rajan: British Columbia's Trusted Life Insurance Agency",
