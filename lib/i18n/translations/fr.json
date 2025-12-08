@@ -7,8 +7,8 @@
       "href": "/get-quote"
     },
     "secondaryCTA": {
-      "text": "Parlez à un conseiller de la C.-B.",
-      "href": "/contact"
+      "text": "Parler à Rajan",
+      "href": "tel:7788300142"
     },
     "trustMicrocopy": [
       "Devis sans engagement",
@@ -210,6 +210,10 @@
     "cancellation": {
       "question": "Puis-je annuler ma police si ma situation change?",
       "answer": "Oui, vous pouvez annuler votre police d'assurance-vie à tout moment. La plupart des polices ont une période de \"regard gratuit\" de 10 jours où vous pouvez annuler pour un remboursement complet. Après cela, vous pouvez toujours annuler, bien que vous ne receviez pas de remboursement pour les polices temporaires. Pour les polices d'assurance-vie entière ou universelle avec valeur de rachat, vous pourriez avoir droit à recevoir la valeur de rachat. Nous sommes toujours là pour discuter de vos options si vos besoins changent."
+    },
+    "claimsProcess": {
+      "question": "Comment puis-je déposer une réclamation d'assurance-vie?",
+      "answer": "Déposer une réclamation d'assurance-vie est simple. **Contactez-nous immédiatement** au 778-830-0142 ou infinity@insureline.com lorsque vous devez déposer une réclamation. Nous vous guiderons tout au long du processus et fournirons tous les formulaires de réclamation nécessaires. Vous aurez besoin du certificat de décès original, du formulaire de réclamation rempli, des documents de police et de l'identification du bénéficiaire. La plupart des réclamations sont traitées dans un délai de 2 à 4 semaines, et une fois approuvées, la prestation de décès est versée directement aux bénéficiaires sans impôt."
     }
   },
   "footer": {

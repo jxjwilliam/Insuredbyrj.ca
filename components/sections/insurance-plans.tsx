@@ -1,10 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PlanCard } from '@/components/shared/plan-card'
 import { StaggerChildren } from '@/components/animations/stagger-children'
 import { useTranslation } from '@/lib/i18n/hooks'
+import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import type { InsurancePlan, DetailedPlanInformation } from '@/lib/types'
 
 interface InsurancePlansSectionProps {
@@ -23,6 +23,8 @@ export function InsurancePlansSection({
   detailedPlanInfo,
 }: InsurancePlansSectionProps) {
   const { t } = useTranslation()
+  const { openDialog: openQuoteDialog } = useQuoteDialog()
+  
   const getDetailedInfo = (planId: string): DetailedPlanInformation | undefined => {
     return detailedPlanInfo?.find((info) => info.planId === planId)
   }
@@ -61,11 +63,9 @@ export function InsurancePlansSection({
           <p className="text-gray-600 mb-4">
             {t('insurancePlans.ctaText', 'Not sure which plan is right for you?')}
           </p>
-          <Button asChild>
-            <Link href="/get-quote">
-              {t('insurancePlans.ctaButton', 'Get Personalized Recommendations')}
-              <span className="ml-2">→</span>
-            </Link>
+          <Button onClick={openQuoteDialog}>
+            {t('insurancePlans.ctaButton', 'Get Personalized Recommendations')}
+            <span className="ml-2">→</span>
           </Button>
         </div>
       </div>

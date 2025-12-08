@@ -48,7 +48,7 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
     }
     
     // Try to get FAQ from translations
-    const faqIds = ['coverageAmount', 'termVsWhole', 'healthImpact', 'coverageSpeed', 'taxImplications', 'cancellation']
+    const faqIds = ['coverageAmount', 'termVsWhole', 'healthImpact', 'coverageSpeed', 'taxImplications', 'cancellation', 'claimsProcess']
     const translatedFAQ = faqIds
       .map((id) => getFAQItem(id))
       .filter((item): item is FAQItem => item !== undefined)
@@ -59,41 +59,69 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
-  // Categorize FAQ items
+  // Categorize FAQ items with better logic
   const categorizeFAQ = (items: FAQItem[]) => {
     const categories: Record<string, FAQItem[]> = {
-      coverage: [],
-      claims: [],
-      pricing: [],
       general: [],
+      coverage: [],
+      pricing: [],
+      application: [],
+      claims: [],
     }
 
     items.forEach((item) => {
       const questionLower = item.question.toLowerCase()
       const answerLower = item.answer.toLowerCase()
+      const idLower = item.id.toLowerCase()
 
+      // Claims category
       if (
         questionLower.includes('claim') ||
         answerLower.includes('claim') ||
-        item.id.includes('claim')
+        idLower.includes('claim')
       ) {
         categories.claims.push(item)
-      } else if (
+      }
+      // Pricing category
+      else if (
         questionLower.includes('price') ||
         questionLower.includes('cost') ||
         questionLower.includes('premium') ||
         questionLower.includes('rate') ||
-        item.id.includes('price')
+        questionLower.includes('tax') ||
+        idLower.includes('price') ||
+        idLower.includes('tax')
       ) {
         categories.pricing.push(item)
-      } else if (
+      }
+      // Application/Process category
+      else if (
+        questionLower.includes('quickly') ||
+        questionLower.includes('how quickly') ||
+        questionLower.includes('get covered') ||
+        questionLower.includes('cancel') ||
+        questionLower.includes('application') ||
+        idLower.includes('speed') ||
+        idLower.includes('cancellation')
+      ) {
+        categories.application.push(item)
+      }
+      // Coverage category
+      else if (
         questionLower.includes('coverage') ||
         questionLower.includes('need') ||
         questionLower.includes('amount') ||
-        item.id.includes('coverage')
+        questionLower.includes('difference between') ||
+        questionLower.includes('term') ||
+        questionLower.includes('whole life') ||
+        idLower.includes('coverage') ||
+        idLower.includes('term') ||
+        idLower.includes('whole')
       ) {
         categories.coverage.push(item)
-      } else {
+      }
+      // General category (health, etc.)
+      else {
         categories.general.push(item)
       }
     })
@@ -174,26 +202,71 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
 
           {/* Category Tabs */}
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="coverage">
-                Coverage
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {categories.coverage.length}
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 h-auto">
+              <TabsTrigger 
+                value="all" 
+                className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+              >
+                All
+                <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  {faqItems.length}
                 </Badge>
               </TabsTrigger>
-              <TabsTrigger value="claims">
-                Claims
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {categories.claims.length}
-                </Badge>
-              </TabsTrigger>
-              <TabsTrigger value="pricing">
-                Pricing
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {categories.pricing.length}
-                </Badge>
-              </TabsTrigger>
+              {categories.general.length > 0 && (
+                <TabsTrigger 
+                  value="general" 
+                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                >
+                  General
+                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                    {categories.general.length}
+                  </Badge>
+                </TabsTrigger>
+              )}
+              {categories.coverage.length > 0 && (
+                <TabsTrigger 
+                  value="coverage" 
+                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                >
+                  Coverage
+                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                    {categories.coverage.length}
+                  </Badge>
+                </TabsTrigger>
+              )}
+              {categories.pricing.length > 0 && (
+                <TabsTrigger 
+                  value="pricing" 
+                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                >
+                  Pricing
+                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                    {categories.pricing.length}
+                  </Badge>
+                </TabsTrigger>
+              )}
+              {categories.application.length > 0 && (
+                <TabsTrigger 
+                  value="application" 
+                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                >
+                  Process
+                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                    {categories.application.length}
+                  </Badge>
+                </TabsTrigger>
+              )}
+              {categories.claims.length > 0 && (
+                <TabsTrigger 
+                  value="claims" 
+                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                >
+                  Claims
+                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                    {categories.claims.length}
+                  </Badge>
+                </TabsTrigger>
+              )}
             </TabsList>
           </Tabs>
         </div>

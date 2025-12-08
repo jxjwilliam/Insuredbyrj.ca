@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 import { BackToTopButton } from '@/components/shared/back-to-top-button'
 import { ErrorBoundary } from '@/components/shared/error-boundary'
 import { ContactDialogProvider } from '@/components/shared/contact-dialog-provider'
+import { QuoteDialogProvider } from '@/components/shared/quote-dialog-provider'
+import { ProductDialogProvider } from '@/components/shared/product-dialog-provider'
+import { ProcessDetailDialogProvider } from '@/components/shared/process-detail-dialog-provider'
 import { I18nProvider } from '@/lib/i18n/context'
 import { getSupportedLanguages, isSupportedLocale, getDefaultLocale } from '@/lib/i18n/config'
 import { loadTranslations } from '@/lib/i18n/utils'
@@ -119,7 +122,13 @@ export default async function LocaleLayout({
         <ErrorBoundary>
           <I18nProvider initialLocale={validLocale} translations={translations}>
             <ContactDialogProvider>
-              {children}
+              <QuoteDialogProvider>
+                <ProductDialogProvider>
+                  <ProcessDetailDialogProvider>
+                    {children}
+                  </ProcessDetailDialogProvider>
+                </ProductDialogProvider>
+              </QuoteDialogProvider>
             </ContactDialogProvider>
           </I18nProvider>
         </ErrorBoundary>

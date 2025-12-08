@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 import { smoothScrollTo } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n/hooks'
+import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import { LanguageSelector } from '@/components/shared/language-selector'
 import type { NavigationItem } from '@/lib/types'
 
@@ -20,6 +22,7 @@ export function Header({ navigation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
   const { t } = useTranslation()
+  const { openDialog: openQuoteDialog } = useQuoteDialog()
 
   useEffect(() => {
     const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'testimonials', 'about', 'faq', 'contact']
@@ -125,13 +128,13 @@ export function Header({ navigation }: HeaderProps) {
           {/* Language Selector & CTA Button (Desktop) */}
           <div className="hidden lg:flex items-center gap-4">
             <LanguageSelector />
-            <Link
-              href="/get-quote"
-              className="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
+            <Button
+              onClick={openQuoteDialog}
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               {t('common.getMyFreeQuote', 'Get My Free Quote')}
               <span className="ml-2">→</span>
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -174,13 +177,13 @@ export function Header({ navigation }: HeaderProps) {
               })}
               <div className="mt-4 space-y-4">
                 <LanguageSelector />
-                <Link
-                  href="/get-quote"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md w-full"
+                <Button
+                  onClick={openQuoteDialog}
+                  className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md"
                 >
                   {t('common.getMyFreeQuote', 'Get My Free Quote')}
                   <span className="ml-2">→</span>
-                </Link>
+                </Button>
               </div>
             </nav>
           </div>

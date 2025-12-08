@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import type { PricingScenario } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
@@ -27,6 +27,7 @@ export function PricingCalculator({
   showDisclaimer = true,
   className,
 }: PricingCalculatorProps) {
+  const { openDialog: openQuoteDialog } = useQuoteDialog()
   const [selectedAge, setSelectedAge] = useState<string>('all')
   const [selectedHealth, setSelectedHealth] = useState<string>('all')
   const [selectedCoverage, setSelectedCoverage] = useState<string>('all')
@@ -199,9 +200,7 @@ export function PricingCalculator({
 
       {/* CTA */}
       <div className="text-center pt-4">
-        <Button asChild>
-          <Link href="/get-quote">Get Your Personalized Quote</Link>
-        </Button>
+        <Button onClick={openQuoteDialog}>Get Your Personalized Quote</Button>
       </div>
     </div>
   )

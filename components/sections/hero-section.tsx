@@ -1,10 +1,10 @@
 'use client'
 
-import { CTAButton } from '@/components/shared/cta-button'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
-import { ImageWithFallback } from '@/components/shared/image-with-fallback'
+import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { Button } from '@/components/ui/button'
+import { HeroVideo } from '@/components/shared/hero-video'
 import type { HeroSection as HeroSectionType } from '@/lib/types'
 
 interface HeroSectionProps {
@@ -18,15 +18,18 @@ interface HeroSectionProps {
  */
 export function HeroSection({ hero }: HeroSectionProps) {
   const { t, translations } = useTranslation()
-  const { openDialog } = useContactDialog()
+  const { openDialog: openContactDialog } = useContactDialog()
+  const { openDialog: openQuoteDialog } = useQuoteDialog()
   
   // Use translations if available, fallback to hero prop for backward compatibility
   const headline = t('hero.headline', hero?.headline || 'Life Insurance That Stands the Test of Time')
   const subheadline = t('hero.subheadline', hero?.subheadline || 'Protecting British Columbia families...')
   const primaryCTAText = t('hero.primaryCTA.text', hero?.primaryCTA?.text || 'Get Your Free Quote')
-  const primaryCTAHref = t('hero.primaryCTA.href', hero?.primaryCTA?.href || '/get-quote')
-  const secondaryCTAText = t('hero.secondaryCTA.text', hero?.secondaryCTA?.text || 'Speak to a BC Advisor')
-  const secondaryCTAHref = t('hero.secondaryCTA.href', hero?.secondaryCTA?.href || '/contact')
+  const secondaryCTAText = t('hero.secondaryCTA.text', hero?.secondaryCTA?.text || 'Speak to Rajan')
+  const secondaryCTAHref = t('hero.secondaryCTA.href', hero?.secondaryCTA?.href || 'tel:7788300142')
+  
+  // Check if secondary CTA is a phone link
+  const isPhoneLink = secondaryCTAHref?.startsWith('tel:')
   
   // Get trust microcopy from translations array or fallback to hero prop
   const heroTranslations = translations?.hero
@@ -66,9 +69,9 @@ export function HeroSection({ hero }: HeroSectionProps) {
       />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="text-center lg:text-left space-y-8">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.1fr_1fr] gap-6 lg:gap-8 xl:gap-12 items-stretch max-w-7xl mx-auto">
+          {/* Left: Content */}
+          <div className="text-center lg:text-left space-y-6 lg:space-y-8 flex flex-col justify-center">
             <div className="inline-flex items-center space-x-2 bg-blue-500/10 backdrop-blur-sm border border-blue-500/30 rounded-full px-5 py-2 mb-4">
               <span className="text-blue-500 text-sm font-medium">
                 Licensed in British Columbia
@@ -82,19 +85,26 @@ export function HeroSection({ hero }: HeroSectionProps) {
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl lg:max-w-none mx-auto lg:mx-0">
               {subheadline}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <CTAButton cta={{ text: primaryCTAText, href: primaryCTAHref, variant: 'primary' }} />
-              {secondaryCTAHref === '/contact' ? (
-                <Button onClick={openDialog} variant="outline">
-                  {secondaryCTAText}
+              <Button onClick={openQuoteDialog} variant="default" size="lg">
+                {primaryCTAText}
+                <span className="ml-2">→</span>
+              </Button>
+              {isPhoneLink ? (
+                <Button asChild variant="outline" size="lg">
+                  <a href={secondaryCTAHref}>
+                    {secondaryCTAText}
+                  </a>
                 </Button>
               ) : (
-                <CTAButton cta={{ text: secondaryCTAText, href: secondaryCTAHref, variant: 'outline' }} />
+                <Button onClick={openContactDialog} variant="outline" size="lg">
+                  {secondaryCTAText}
+                </Button>
               )}
             </div>
 
@@ -112,34 +122,15 @@ export function HeroSection({ hero }: HeroSectionProps) {
             </p>
           </div>
 
-          {/* Right Image */}
-          <div className="relative hidden lg:block">
-            <div className="relative">
-              <div className="absolute -top-10 -right-10 text-9xl text-amber-500/20 font-serif z-0">
-                ∞
-              </div>
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-500/20">
-                <ImageWithFallback
-                  src={hero?.imageUrl || '/origin/hero-image.webp'}
-                  alt={imageAlt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Floating Card */}
-              <div className="absolute -bottom-8 -left-8 bg-white rounded-xl shadow-xl p-6 z-20">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-xl">🛡️</span>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">$500K+</div>
-                    <div className="text-sm text-gray-600">
-                      Coverage as low as $30/mo
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Right: Video */}
+          <div className="order-first lg:order-last flex items-center justify-center lg:justify-end">
+            <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl">
+              <HeroVideo
+                videoSrc="/hs.mp4"
+                coverImageSrc="/hs-cover-1.jpg"
+                mobileCoverImageSrc="/hs-cover-2.jpg"
+                alt={imageAlt}
+              />
             </div>
           </div>
         </div>

@@ -7,8 +7,8 @@
       "href": "/get-quote"
     },
     "secondaryCTA": {
-      "text": "Speak to a BC Advisor",
-      "href": "/contact"
+      "text": "Speak to Rajan",
+      "href": "tel:7788300142"
     },
     "trustMicrocopy": [
       "No obligation quote",
@@ -210,6 +210,10 @@
     "cancellation": {
       "question": "Can I cancel my policy if my situation changes?",
       "answer": "Yes, you can cancel your life insurance policy at any time. Most policies have a 10-day \"free look\" period where you can cancel for a full refund. After that, you can still cancel, though you won't receive a refund for term policies. For whole life or universal life policies with cash value, you may be entitled to receive the surrender value. We're always here to discuss your options if your needs change."
+    },
+    "claimsProcess": {
+      "question": "How do I file a life insurance claim?",
+      "answer": "Filing a life insurance claim is straightforward. **Contact us immediately** at 778-830-0142 or infinity@insureline.com when you need to file a claim. We'll guide you through the process and provide all necessary claim forms. You'll need the original death certificate, completed claim form, policy documents, and beneficiary identification. Most claims are processed within 2-4 weeks, and once approved, the death benefit is paid directly to beneficiaries tax-free."
     }
   },
   "footer": {

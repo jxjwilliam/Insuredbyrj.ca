@@ -11,8 +11,8 @@ export const landingPageContent: LandingPageContent = {
       variant: 'primary',
     },
     secondaryCTA: {
-      text: 'Speak to a BC Advisor',
-      href: '/contact',
+      text: 'Speak to Rajan',
+      href: 'tel:7788300142',
       variant: 'outline',
     },
     trustMicrocopy: [
@@ -1085,17 +1085,17 @@ export const footerContent: FooterContent = {
   socialMediaLinks: [
     {
       platform: 'facebook',
-      url: 'https://facebook.com/insurelineinfinity', // Update with actual URL when available
+      url: 'https://facebook.com/insuredbyrj',
       label: 'Facebook',
     },
     {
       platform: 'twitter',
-      url: 'https://x.com/insurelineinfinity', // Update with actual URL when available
+      url: 'https://x.com/insuredbyrj',
       label: 'X',
     },
     {
       platform: 'linkedin',
-      url: 'https://linkedin.com/company/insureline-infinity', // Update with actual URL when available
+      url: 'https://linkedin.com/company/insuredbyrj',
       label: 'LinkedIn',
     },
   ],
