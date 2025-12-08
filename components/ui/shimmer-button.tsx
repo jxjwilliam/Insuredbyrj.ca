@@ -1,7 +1,10 @@
 'use client'
 
-import { Button, type ButtonProps } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import type { ComponentPropsWithoutRef } from 'react'
+
+type ButtonProps = ComponentPropsWithoutRef<typeof Button>
 
 interface ShimmerButtonProps extends ButtonProps {
   shimmerColor?: string
@@ -44,3 +47,4 @@ export function ShimmerButton({
     </Button>
   )
 }
+

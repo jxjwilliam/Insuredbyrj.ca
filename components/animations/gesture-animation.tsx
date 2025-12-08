@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type MotionProps } from 'framer-motion'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 
 interface GestureAnimationProps {
@@ -29,7 +29,7 @@ export function GestureAnimation({
     return <div className={className}>{children}</div>
   }
 
-  const gestureProps: any = {}
+  const gestureProps: Partial<MotionProps> = {}
 
   if (gesture === 'hover' || gesture === 'tap') {
     gestureProps.whileHover = { scale: hoverScale }
@@ -52,3 +52,4 @@ export function GestureAnimation({
     </motion.div>
   )
 }
+

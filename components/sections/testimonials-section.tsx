@@ -6,7 +6,6 @@ import { Star, MapPin, CheckCircle2 } from 'lucide-react'
 import { Marquee, MarqueeItem } from '@/components/ui/marquee'
 import { MagicCard } from '@/components/ui/magic-card'
 import { ViewportAnimation } from '@/components/animations/viewport-animation'
-import { Skeleton } from '@/components/ui/skeleton'
 import type { Testimonial } from '@/lib/types'
 import { cn } from '@/lib/utils'
 

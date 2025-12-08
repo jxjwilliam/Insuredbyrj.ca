@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type MotionProps } from 'framer-motion'
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion'
 
 interface SlideInAnimationProps {
@@ -41,7 +41,7 @@ export function SlideIn({
   const initialY =
     direction === 'up' ? distance : direction === 'down' ? -distance : 0
 
-  const gestureProps: any = {}
+  const gestureProps: Partial<MotionProps> = {}
   if (gesture === 'hover') {
     gestureProps.whileHover = { scale: 1.05, transition: { duration: 0.2 } }
   }
