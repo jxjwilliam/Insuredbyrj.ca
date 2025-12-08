@@ -3,7 +3,8 @@
 **Feature**: UI/CSS Enhancements  
 **Specification**: `specs/001-ui-enhancements/spec.md`  
 **Status**: ✅ Complete (159/159 tasks, 100%)  
-**Date**: January 27, 2025
+**Date**: January 27, 2025  
+**Last Updated**: January 2025
 
 ---
 
@@ -52,10 +53,11 @@ Successfully enhanced the insurance landing page with modern animations, improve
 - `parallax.tsx`, `viewport-animation.tsx`, `gesture-animation.tsx`
 - `layout-animation.tsx`, `gradient-mesh.tsx`, `aurora-background.tsx`
 
-### MagicUI Components (9)
+### MagicUI Components (10)
 - `animated-gradient-text.tsx`, `sparkles-text.tsx`, `animated-beam.tsx`
 - `border-beam.tsx`, `shimmer-button.tsx`, `ripple-button.tsx`
 - `magic-card.tsx`, `bento-grid.tsx`, `meteors.tsx`
+- `text-animate.tsx` - Text animations with blurIn, fadeIn, slideUp, etc.
 
 ### Acernity UI Components (4)
 - `3d-card.tsx`, `spotlight-effect.tsx`, `aurora-background.tsx`, `gradient-mesh.tsx`
@@ -92,6 +94,7 @@ Successfully enhanced the insurance landing page with modern animations, improve
 - **Insurance Plans**: Viewport animations, 3D card effects
 - **Testimonials**: Magic cards with spotlight effects
 - **How It Works**: Viewport animations, gesture interactions
+- **About Section**: Blur fade text animation on "Our Story" and "Our Philosophy" headings (MagicUI TextAnimate)
 - **All Sections**: Scroll-triggered animations
 
 ### Accessibility Enhancements
@@ -100,6 +103,8 @@ Successfully enhanced the insurance landing page with modern animations, improve
 - Semantic HTML structure maintained
 - Keyboard navigation support
 - Reduced motion support
+- Cursor pointer on all clickable elements (buttons, links, CTAs)
+- Disabled elements show cursor-not-allowed
 
 ---
 
@@ -144,9 +149,32 @@ Successfully enhanced the insurance landing page with modern animations, improve
 
 **Core Files**: `app/[locale]/layout.tsx`, `app/globals.css`  
 **Section Components**: All 9 sections enhanced with animations and standardized spacing  
-**UI Components**: `button.tsx`, `input.tsx`, `textarea.tsx` (enhanced focus indicators)  
+**UI Components**: `button.tsx` (added cursor-pointer), `input.tsx`, `textarea.tsx` (enhanced focus indicators)  
 **Shared Components**: `plan-card.tsx` (added 3D card, gesture animations)  
-**Animation Components**: Enhanced `gsap-animations.tsx`, `fade-in.tsx`, `slide-in.tsx`, `stagger-children.tsx`
+**Animation Components**: Enhanced `gsap-animations.tsx`, `fade-in.tsx`, `slide-in.tsx`, `stagger-children.tsx`  
+**MagicUI Components**: Added `text-animate.tsx` for text animations (blurIn, fadeIn, etc.)
+
+## Recent Updates (January 2025)
+
+### Email Integration
+- **Resend Integration**: Contact form now sends emails via Resend API
+- Sends notification email to business and auto-reply to user
+- HTML email templates with professional styling
+
+### Legal Pages
+- **Privacy Policy**: Full PIPEDA-compliant privacy policy page
+- **Terms of Service**: Comprehensive terms of service page
+- Both pages linked from footer
+
+### Text Animations
+- **MagicUI TextAnimate**: Integrated MagicUI text-animate component
+- Applied blur fade animation to "Our Story" and "Our Philosophy" headings
+- Viewport-triggered animations with customizable delays
+
+### UX Improvements
+- **Cursor Pointer**: All clickable elements (buttons, links, CTAs) now show cursor: pointer
+- Global CSS rules ensure consistent cursor behavior
+- Disabled elements show cursor-not-allowed
 
 ---
 

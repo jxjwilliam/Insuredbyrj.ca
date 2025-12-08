@@ -430,6 +430,14 @@
     min-width: 44px;
     min-height: 44px;
   }
+  /* Cursor pointer for all clickable elements */
+  a, button, [role="button"], [onclick], [href], label[for], input[type="submit"], input[type="button"], input[type="reset"], select, summary {
+    cursor: pointer;
+  }
+  /* Disabled elements should show not-allowed cursor */
+  button:disabled, a[aria-disabled="true"], [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }
 
 /* Accessibility: Skip link styles */

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import type { CompanyBackground } from '@/lib/types'
 import { cn } from '@/lib/utils'
+import { TextAnimate } from '@/components/ui/text-animate'
 
 interface CompanyBackgroundSectionProps {
   background: CompanyBackground
@@ -152,7 +153,18 @@ export function CompanyBackgroundSection({
                   <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                     <Sparkles className="h-6 w-6 text-[#FF671F]" />
                   </div>
-                  <h4 className="text-2xl font-bold text-gray-900">Our Story</h4>
+                  <TextAnimate
+                    animation="blurIn"
+                    delay={0.2}
+                    duration={0.5}
+                    by="text"
+                    startOnView={true}
+                    once={true}
+                    as="h4"
+                    className="text-2xl font-bold text-gray-900"
+                  >
+                    Our Story
+                  </TextAnimate>
                 </div>
                 <p className="text-gray-700 leading-relaxed text-base">
                   {background.biography}
@@ -167,7 +179,18 @@ export function CompanyBackgroundSection({
                   <div className="w-12 h-12 bg-[#FF671F] rounded-xl flex items-center justify-center">
                     <Heart className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="text-2xl font-bold text-gray-900">Our Philosophy</h4>
+                  <TextAnimate
+                    animation="blurIn"
+                    delay={0.3}
+                    duration={0.5}
+                    by="text"
+                    startOnView={true}
+                    once={true}
+                    as="h4"
+                    className="text-2xl font-bold text-gray-900"
+                  >
+                    Our Philosophy
+                  </TextAnimate>
                 </div>
                 <blockquote className="text-gray-700 leading-relaxed text-base italic border-l-4 border-[#FF671F] pl-6">
                   &ldquo;{background.philosophy}&rdquo;

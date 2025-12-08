@@ -64,7 +64,27 @@ NEXT_PUBLIC_BASE_URL=https://insuredbyrj-ca.vercel.app
 # Google Maps API (optional, for map functionality)
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 NEXT_PUBLIC_GOOGLE_API_KEY=your_google_api_key
+
+# Resend Email Service (required for contact form)
+# Get your API key from https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxx
+
+# Business email address where contact form inquiries will be sent
+BUSINESS_EMAIL=infinity@insureline.com
+
+# Email address to send from (must be verified in Resend)
+# Format: "Display Name <email@domain.com>"
+# For testing, you can use: "Insured by Rajan <onboarding@resend.dev>"
+# For production, use your verified domain: "Insured by Rajan <noreply@yourdomain.com>"
+RESEND_FROM_EMAIL=Insured by Rajan <onboarding@resend.dev>
 ```
+
+**Setting up Resend**:
+1. Sign up at [Resend](https://resend.com)
+2. Create an API key at [Resend API Keys](https://resend.com/api-keys)
+3. Add the API key to `.env.local` as `RESEND_API_KEY`
+4. For testing, you can use `onboarding@resend.dev` as the from email
+5. For production, verify your domain in Resend and use your own domain email
 
 ### 4. Run the Development Server
 
@@ -174,6 +194,9 @@ npm run start
 | `NEXT_PUBLIC_BASE_URL` | Base URL of the application | Yes |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Google Maps API key | No |
 | `NEXT_PUBLIC_GOOGLE_API_KEY` | Alternative Google API key | No |
+| `RESEND_API_KEY` | Resend API key for email sending | Yes (for contact form) |
+| `BUSINESS_EMAIL` | Email address to receive contact inquiries | Yes (defaults to infinity@insureline.com) |
+| `RESEND_FROM_EMAIL` | Email address to send from (must be verified in Resend) | Yes (defaults to onboarding@resend.dev for testing) |
 
 ## 🎨 Styling
 
