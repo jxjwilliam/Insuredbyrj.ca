@@ -23,9 +23,12 @@
     "yearsOfService": "ਸੇਵਾ ਦੇ ਸਾਲ"
   },
   "navigation": {
+    "whyUs": "ਕਿਉਂ ਸਾਡੇ",
     "whyChoose": "ਕਿਉਂ ਚੁਣੋ",
     "plans": "ਯੋਜਨਾਵਾਂ",
     "howItWorks": "ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
+    "testimonials": "ਸਟੈਸਟੀਮੋਨੀਅਲ",
+    "about": "ਬਾਰੇ",
     "faq": "ਸਵਾਲ-ਜਵਾਬ",
     "contact": "ਸੰਪਰਕ"
   },
@@ -217,6 +220,7 @@
     "stayUpdated": "ਅਪਡੇਟ ਰਹੋ",
     "getInsuranceTips": "ਬੀਮਾ ਸੁਝਾਅ ਅਤੇ ਅਪਡੇਟ ਪ੍ਰਾਪਤ ਕਰੋ",
     "followUs": "ਸਾਡਾ ਪਾਲਣ ਕਰੋ",
+    "scanToVisit": "ਵਿਜ਼ਿਟ ਕਰਨ ਲਈ ਸਕੈਨ ਕਰੋ",
     "legal": "ਕਾਨੂੰਨੀ",
     "copyright": "© ਇੰਸ਼ਿਓਰਡ ਬਾਈ ਰਾਜਨ। ਸਾਰੇ ਅਧਿਕਾਰ ਸੁਰੱਖਿਤ।"
   },

@@ -23,9 +23,12 @@
     "yearsOfService": "Années de service"
   },
   "navigation": {
+    "whyUs": "Pourquoi nous",
     "whyChoose": "Pourquoi nous choisir",
     "plans": "Plans",
     "howItWorks": "Comment ça fonctionne",
+    "testimonials": "Témoignages",
+    "about": "À propos",
     "faq": "FAQ",
     "contact": "Contact"
   },
@@ -217,6 +220,7 @@
     "stayUpdated": "Restez informé",
     "getInsuranceTips": "Recevez des conseils et des mises à jour sur l'assurance",
     "followUs": "Suivez-nous",
+    "scanToVisit": "Scannez pour visiter",
     "legal": "Légal",
     "copyright": "© Insured by Rajan. Tous droits réservés."
   },
