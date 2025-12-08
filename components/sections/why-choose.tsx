@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslation } from '@/lib/i18n/hooks'
-import { HeartPulse, Wallet, Users, Clock } from 'lucide-react'
+import { HeartPulse, Wallet, Users, Clock, Shield, Lock, Award } from 'lucide-react'
 import { ViewportAnimation } from '@/components/animations/viewport-animation'
 import { GestureAnimation } from '@/components/animations/gesture-animation'
 import type { WhyChooseSection as WhyChooseSectionType } from '@/lib/types'
@@ -114,7 +114,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
         <div className="mt-12 pt-12 border-t border-gray-200">
           <div className="flex flex-wrap items-center justify-center gap-8 text-center">
             <div className="flex items-center space-x-3">
-              <span className="text-3xl text-blue-500">🛡️</span>
+              <Shield className="h-8 w-8 text-blue-500" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Licensed in BC
@@ -124,7 +124,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             </div>
             <div className="hidden sm:block w-px h-12 bg-gray-200" />
             <div className="flex items-center space-x-3">
-              <span className="text-3xl text-blue-500">🔒</span>
+              <Lock className="h-8 w-8 text-blue-500" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Secure & Private
@@ -134,7 +134,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             </div>
             <div className="hidden sm:block w-px h-12 bg-gray-200" />
             <div className="flex items-center space-x-3">
-              <span className="text-3xl text-blue-500">🏆</span>
+              <Award className="h-8 w-8 text-blue-500" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Award-Winning Service

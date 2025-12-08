@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PlanCard } from '@/components/shared/plan-card'
 import { StaggerChildren } from '@/components/animations/stagger-children'
@@ -68,7 +69,7 @@ export function InsurancePlansSection({
           </p>
           <Button onClick={openQuoteDialog} className="min-h-[44px]">
             {t('insurancePlans.ctaButton', 'Get Personalized Recommendations')}
-            <span className="ml-2">→</span>
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>

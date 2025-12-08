@@ -1,5 +1,6 @@
 'use client'
 
+import { Check, ArrowRight } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -194,7 +195,7 @@ export function ProductDetailDialog({
             <ul className="space-y-2">
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="text-blue-500 mt-1 mr-2">✓</span>
+                  <Check className="text-blue-500 mt-1 mr-2 h-4 w-4 flex-shrink-0" />
                   <span className="text-sm text-gray-700">{feature}</span>
                 </li>
               ))}
@@ -213,7 +214,7 @@ export function ProductDetailDialog({
           <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t">
             <Button onClick={handleGetQuote} className="flex-1" size="lg">
               Get Your Free Quote
-              <span className="ml-2">→</span>
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button
               onClick={() => onOpenChange(false)}
@@ -229,3 +230,4 @@ export function ProductDetailDialog({
     </Dialog>
   )
 }
+

@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowRight, Check, Circle } from 'lucide-react'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import { useTranslation } from '@/lib/i18n/hooks'
@@ -102,7 +103,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
               <Button onClick={openQuoteDialog} variant="default" size="lg" className="min-h-[44px] min-w-[44px]">
                 {primaryCTAText}
-                <span className="ml-2">→</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               {isPhoneLink ? (
                 <Button asChild variant="outline" size="lg" className="min-h-[44px] min-w-[44px]">
@@ -121,10 +122,10 @@ export function HeroSection({ hero }: HeroSectionProps) {
             <p className="text-sm text-gray-400 flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1">
               {trustMicrocopy.map((item, index) => (
                 <span key={index} className="flex items-center">
-                  <span className="text-blue-500 mr-1">✓</span>
+                  <Check className="text-blue-500 mr-1 h-4 w-4" />
                   {item}
                   {index < trustMicrocopy.length - 1 && (
-                    <span className="text-white/30 mx-2">•</span>
+                    <Circle className="text-white/30 mx-2 h-1 w-1 fill-current" />
                   )}
                 </span>
               ))}

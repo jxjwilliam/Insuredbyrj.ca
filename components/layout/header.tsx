@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { ArrowRight, X, Menu } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -133,7 +134,7 @@ export function Header({ navigation }: HeaderProps) {
               className="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               {t('common.getMyFreeQuote', 'Get My Free Quote')}
-              <span className="ml-2">→</span>
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
 
@@ -144,7 +145,11 @@ export function Header({ navigation }: HeaderProps) {
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
           >
-            <span className="text-2xl">{mobileMenuOpen ? '✕' : '☰'}</span>
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
 
@@ -183,7 +188,7 @@ export function Header({ navigation }: HeaderProps) {
                   className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md min-h-[44px]"
                 >
                   {t('common.getMyFreeQuote', 'Get My Free Quote')}
-                  <span className="ml-2">→</span>
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </nav>

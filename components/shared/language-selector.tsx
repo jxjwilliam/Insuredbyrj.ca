@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Globe } from 'lucide-react'
+import { Globe, Check } from 'lucide-react'
 
 interface LanguageSelectorProps {
   /** Optional CSS classes */
@@ -179,9 +179,7 @@ export function LanguageSelector({
                 </span>
               </div>
               {isSelected && (
-                <span className="ml-auto text-blue-500" aria-hidden="true">
-                  ✓
-                </span>
+                <Check className="ml-auto h-4 w-4 text-blue-500" aria-hidden="true" />
               )}
             </DropdownMenuItem>
           )

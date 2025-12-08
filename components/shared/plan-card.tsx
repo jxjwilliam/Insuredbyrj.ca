@@ -1,5 +1,6 @@
 'use client'
 
+import { Check } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/shared/image-with-fallback'
@@ -58,7 +59,7 @@ export function PlanCard({ plan, detailedInfo }: PlanCardProps) {
         <ul className="space-y-2 mb-6">
           {plan.features.map((feature, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-blue-500 mt-1 mr-2">✓</span>
+              <Check className="text-blue-500 mt-1 mr-2 h-4 w-4 flex-shrink-0" />
               <span className="text-sm text-gray-600">{feature}</span>
             </li>
           ))}

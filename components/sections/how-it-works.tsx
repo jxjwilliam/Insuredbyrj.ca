@@ -8,7 +8,7 @@ import { useProcessDetailDialog } from '@/components/shared/process-detail-dialo
 import { useTranslation } from '@/lib/i18n/hooks'
 import { ViewportAnimation } from '@/components/animations/viewport-animation'
 import { GestureAnimation } from '@/components/animations/gesture-animation'
-import { Clock, ClipboardCheck, Search, Shield } from 'lucide-react'
+import { Clock, ClipboardCheck, Search, Shield, ArrowRight, Phone, Lock, Circle } from 'lucide-react'
 import type {
   HowItWorksSection as HowItWorksSectionType,
   ProcessDetail,
@@ -63,11 +63,6 @@ export function HowItWorksSection({
   }
   return (
     <section id="how-it-works" className="py-16 bg-white relative overflow-hidden">
-      {/* Background Infinity Pattern */}
-      <div className="absolute top-10 right-10 text-[10rem] text-blue-500 opacity-5 font-serif">
-        ∞
-      </div>
-
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
@@ -81,9 +76,6 @@ export function HowItWorksSection({
 
         {/* Timeline */}
         <div className="relative">
-          {/* Connecting Line - positioned to connect icons, not through text */}
-          <div className="hidden lg:block absolute top-[120px] left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-blue-500 via-amber-500 to-blue-500 z-0" />
-
           <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
             {steps.map((step, stepIndex) => {
               const stepNumber = stepIndex + 1
@@ -158,16 +150,20 @@ export function HowItWorksSection({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button onClick={openQuoteDialog} size="lg" className="min-h-[44px]">
                 Start Your Free Quote
-                <span className="ml-2">→</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button onClick={openContactDialog} variant="outline" size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 min-h-[44px]">
-                <span className="mr-2">📞</span>
+                <Phone className="mr-2 h-4 w-4" />
                 Talk to Rajan
               </Button>
             </div>
-            <p className="text-sm text-gray-400 mt-6">
-              <span className="mr-2">🔒</span>
-              No credit card required • Free quotes • No obligation
+            <p className="text-sm text-gray-400 mt-6 flex items-center flex-wrap gap-2">
+              <Lock className="mr-2 h-4 w-4" />
+              <span>No credit card required</span>
+              <Circle className="h-1 w-1 fill-current mx-1" />
+              <span>Free quotes</span>
+              <Circle className="h-1 w-1 fill-current mx-1" />
+              <span>No obligation</span>
             </p>
           </div>
         </div>

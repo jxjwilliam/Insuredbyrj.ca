@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { FileText, Clock, Phone, Mail, CheckCircle2 } from 'lucide-react'
+import { FileText, Clock, Phone, Mail, CheckCircle2, ArrowRight } from 'lucide-react'
 import type { ClaimsProcessInfo } from '@/lib/types'
 
 interface ClaimsProcessSectionProps {
@@ -180,7 +180,7 @@ export function ClaimsProcessSection({
             <Button asChild size="lg">
               <Link href="/contact">
                 Need Help with a Claim? Contact Us
-                <span className="ml-2">→</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>

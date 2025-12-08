@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   Sparkles,
   Shield,
+  ArrowRight,
 } from 'lucide-react'
 import type { CompanyBackground } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -54,7 +55,28 @@ export function CompanyBackgroundSection({
             <Users className="h-8 w-8 text-[#FF671F]" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            About <span className="text-[#FF671F]">Insured by Rajan</span>
+            <TextAnimate
+              animation="blurIn"
+              delay={0.4}
+              duration={0.8}
+              by="word"
+              startOnView={true}
+              once={true}
+              className="inline"
+            >
+              About
+            </TextAnimate>{' '}
+            <TextAnimate
+              animation="blurIn"
+              delay={0.5}
+              duration={0.8}
+              by="word"
+              startOnView={true}
+              once={true}
+              className="inline text-[#FF671F]"
+            >
+              Insured by Rajan
+            </TextAnimate>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             Learn more about Rajan Thind and why British Columbia families trust
@@ -88,15 +110,42 @@ export function CompanyBackgroundSection({
                 <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center">
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                      <TextAnimate
+                        animation="blurIn"
+                        delay={0.4}
+                        duration={0.8}
+                        by="text"
+                        startOnView={true}
+                        once={true}
+                        as="h3"
+                        className="text-3xl font-bold text-gray-900 mb-2"
+                      >
                         {background.ownerName}
-                      </h3>
-                      <p className="text-xl text-[#FF671F] font-semibold mb-4">
+                      </TextAnimate>
+                      <TextAnimate
+                        animation="blurIn"
+                        delay={0.5}
+                        duration={0.8}
+                        by="text"
+                        startOnView={true}
+                        once={true}
+                        as="p"
+                        className="text-xl text-[#FF671F] font-semibold mb-4"
+                      >
                         {background.ownerTitle}
-                      </p>
-                      <p className="text-lg text-gray-700 font-medium">
+                      </TextAnimate>
+                      <TextAnimate
+                        animation="blurIn"
+                        delay={0.6}
+                        duration={0.8}
+                        by="text"
+                        startOnView={true}
+                        once={true}
+                        as="p"
+                        className="text-lg text-gray-700 font-medium"
+                      >
                         {background.companyName}
-                      </p>
+                      </TextAnimate>
                     </div>
 
                     {background.brandAffiliation && (
@@ -155,8 +204,8 @@ export function CompanyBackgroundSection({
                   </div>
                   <TextAnimate
                     animation="blurIn"
-                    delay={0.2}
-                    duration={0.5}
+                    delay={0.4}
+                    duration={0.8}
                     by="text"
                     startOnView={true}
                     once={true}
@@ -181,8 +230,8 @@ export function CompanyBackgroundSection({
                   </div>
                   <TextAnimate
                     animation="blurIn"
-                    delay={0.3}
-                    duration={0.5}
+                    delay={0.4}
+                    duration={0.8}
                     by="text"
                     startOnView={true}
                     once={true}
@@ -206,7 +255,18 @@ export function CompanyBackgroundSection({
                 <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
                   <Award className="h-6 w-6 text-amber-600" />
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900">Experience & Expertise</h4>
+                <TextAnimate
+                  animation="blurIn"
+                  delay={0.4}
+                  duration={0.8}
+                  by="text"
+                  startOnView={true}
+                  once={true}
+                  as="h4"
+                  className="text-2xl font-bold text-gray-900"
+                >
+                  Experience & Expertise
+                </TextAnimate>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -219,7 +279,18 @@ export function CompanyBackgroundSection({
 
                 {background.experience.specialties.length > 0 && (
                   <div className="md:col-span-2">
-                    <h5 className="font-semibold text-gray-900 mb-3">Specialties</h5>
+                    <TextAnimate
+                      animation="blurIn"
+                      delay={0.4}
+                      duration={0.8}
+                      by="text"
+                      startOnView={true}
+                      once={true}
+                      as="h5"
+                      className="font-semibold text-gray-900 mb-3"
+                    >
+                      Specialties
+                    </TextAnimate>
                     <div className="space-y-2">
                       {background.experience.specialties.map((specialty, idx) => (
                         <div
@@ -237,7 +308,18 @@ export function CompanyBackgroundSection({
 
               {background.experience.certifications.length > 0 && (
                 <div>
-                  <h5 className="font-semibold text-gray-900 mb-3">Certifications</h5>
+                  <TextAnimate
+                    animation="blurIn"
+                    delay={0.4}
+                    duration={0.8}
+                    by="text"
+                    startOnView={true}
+                    once={true}
+                    as="h5"
+                    className="font-semibold text-gray-900 mb-3"
+                  >
+                    Certifications
+                  </TextAnimate>
                   <div className="flex flex-wrap gap-3">
                     {background.experience.certifications.map((cert, idx) => (
                       <Badge
@@ -265,7 +347,18 @@ export function CompanyBackgroundSection({
                     <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center">
                       <Heart className="h-6 w-6 text-pink-600" />
                     </div>
-                    <h4 className="text-2xl font-bold text-gray-900">Our Values</h4>
+                    <TextAnimate
+                      animation="blurIn"
+                      delay={0.4}
+                      duration={0.8}
+                      by="text"
+                      startOnView={true}
+                      once={true}
+                      as="h4"
+                      className="text-2xl font-bold text-gray-900"
+                    >
+                      Our Values
+                    </TextAnimate>
                   </div>
                   <div className="space-y-3">
                     {background.values.map((value, idx) => (
@@ -290,7 +383,18 @@ export function CompanyBackgroundSection({
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                       <Sparkles className="h-6 w-6 text-purple-600" />
                     </div>
-                    <h4 className="text-2xl font-bold text-gray-900">What Makes Us Different</h4>
+                    <TextAnimate
+                      animation="blurIn"
+                      delay={0.4}
+                      duration={0.8}
+                      by="text"
+                      startOnView={true}
+                      once={true}
+                      as="h4"
+                      className="text-2xl font-bold text-gray-900"
+                    >
+                      What Makes Us Different
+                    </TextAnimate>
                   </div>
                   <div className="space-y-3">
                     {background.differentiators.map((diff, idx) => (
@@ -321,9 +425,18 @@ export function CompanyBackgroundSection({
                   <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                     <Building2 className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="text-2xl sm:text-3xl font-bold text-white">
-                    Benefits of {background.brandAffiliation.name} Affiliation
-                  </h4>
+                  <TextAnimate
+                    animation="blurIn"
+                    delay={0.4}
+                    duration={0.8}
+                    by="word"
+                    startOnView={true}
+                    once={true}
+                    as="h4"
+                    className="text-2xl sm:text-3xl font-bold text-white"
+                  >
+                    {`Benefits of ${background.brandAffiliation.name} Affiliation`}
+                  </TextAnimate>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
                   {background.brandAffiliation.benefits.map((benefit, idx) => (
@@ -344,7 +457,7 @@ export function CompanyBackgroundSection({
           <div className="text-center pt-8">
             <Button onClick={openDialog} size="lg" className="px-8 py-6 text-lg font-semibold shadow-lg min-h-[44px]">
               Get in Touch with Rajan
-              <span className="ml-2">→</span>
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>

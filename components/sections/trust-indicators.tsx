@@ -1,5 +1,6 @@
 'use client'
 
+import { Shield, Building2, Award, Calendar, MapPin, Handshake, CheckCircle2, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { ExpandableContent } from '@/components/shared/expandable-content'
@@ -91,16 +92,16 @@ export function TrustIndicators({
             {/* Credentials Grid - Matching Why Choose card style */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {credentials.map((credential) => {
-                // Map icon names to emojis
-                const iconMap: Record<string, string> = {
-                  'shield-check': '🛡️',
-                  'building': '🏢',
-                  'award': '🏆',
-                  'calendar': '📅',
-                  'map-pin': '📍',
-                  'handshake': '🤝',
+                // Map icon names to Lucide React icons
+                const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+                  'shield-check': Shield,
+                  'building': Building2,
+                  'award': Award,
+                  'calendar': Calendar,
+                  'map-pin': MapPin,
+                  'handshake': Handshake,
                 }
-                const icon = iconMap[credential.icon || ''] || '✅'
+                const IconComponent = iconMap[credential.icon || ''] || CheckCircle2
 
                 return (
                   <div
@@ -109,7 +110,7 @@ export function TrustIndicators({
                   >
                     {/* Icon */}
                     <div className="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      <span className="text-2xl text-white">{icon}</span>
+                      <IconComponent className="h-8 w-8 text-white" />
                     </div>
 
                     {/* Badge */}
@@ -148,7 +149,7 @@ export function TrustIndicators({
                                 className="text-blue-600 hover:text-blue-700 hover:underline inline-flex items-center gap-1 font-medium"
                               >
                                 Verify credential
-                                <span aria-hidden="true">→</span>
+                                <ArrowRight className="h-4 w-4" aria-hidden="true" />
                               </Link>
                             )}
                           </div>
@@ -166,7 +167,7 @@ export function TrustIndicators({
                         className="text-blue-600 hover:text-blue-700 hover:underline inline-flex items-center gap-1 text-sm font-medium mt-4"
                       >
                         Verify credential
-                        <span aria-hidden="true">→</span>
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
                       </Link>
                     )}
                   </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { Star, Lightbulb, ArrowRight, Users } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/shared/image-with-fallback'
@@ -71,7 +72,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-6 border-4 border-blue-500">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-2xl">👥</span>
+                      <Users className="text-white h-7 w-7" />
                     </div>
                     <div>
                       <div className="text-3xl font-bold text-gray-900">
@@ -90,7 +91,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
           {/* Right: Content */}
           <div className="order-1 lg:order-2 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2">
-              <span className="text-amber-500">⭐</span>
+              <Star className="text-amber-500 h-4 w-4 fill-amber-500" />
               <span className="text-gray-900 text-sm font-semibold">
                 Trusted by BC Families
               </span>
@@ -113,7 +114,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
                   className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                    <span className="text-blue-500 text-xl">💡</span>
+                    <Lightbulb className="text-blue-500 h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 mb-1">
@@ -132,7 +133,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
               <Button asChild>
                 <Link href="/about">
                   Learn More About Us
-                  <span className="ml-2">→</span>
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { Check } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { PricingCalculator } from '@/components/shared/pricing-calculator'
 import { Card, CardContent } from '@/components/ui/card'
@@ -161,7 +162,10 @@ export function PricingSection({
           <h3 className="text-xl font-bold mb-4">What&apos;s Included in Your Premium?</h3>
           <div className="grid sm:grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="font-medium mb-2">✓ Included:</p>
+              <p className="font-medium mb-2 flex items-center gap-2">
+                <Check className="h-4 w-4" />
+                Included:
+              </p>
               <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-2">
                 <li>Death benefit coverage</li>
                 <li>Policy administration</li>

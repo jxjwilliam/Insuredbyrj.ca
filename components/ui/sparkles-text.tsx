@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -62,9 +63,10 @@ export function SparklesText({
           animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, delay: Math.random() * 1 }}
         >
-          ✨
+          <Sparkles className="h-4 w-4" />
         </motion.span>
       ))}
     </span>
   )
 }
+
