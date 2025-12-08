@@ -2,8 +2,6 @@
 
 import { useTranslation } from '@/lib/i18n/hooks'
 import { HeartPulse, Wallet, Users, Clock } from 'lucide-react'
-import { MagicCard } from '@/components/ui/magic-card'
-import { DotPattern } from '@/components/ui/dot-pattern'
 import type { WhyChooseSection as WhyChooseSectionType } from '@/lib/types'
 
 interface WhyChooseSectionProps {
@@ -12,7 +10,7 @@ interface WhyChooseSectionProps {
 
 /**
  * Why Choose section component displaying four benefit points
- * Uses translations from i18n system with MagicUI enhancements
+ * Uses translations from i18n system
  * @param whyChoose - Optional Why Choose section content data (for backward compatibility)
  */
 export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
@@ -32,30 +30,10 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
   
   // Color scheme - alternating between primary (blue) and accent (amber/orange)
   const colorSchemes = [
-    { 
-      bg: 'bg-blue-500', 
-      icon: HeartPulse,
-      gradientFrom: '#3B82F6',
-      gradientTo: '#60A5FA',
-    },
-    { 
-      bg: 'bg-amber-500', 
-      icon: Wallet,
-      gradientFrom: '#F59E0B',
-      gradientTo: '#FBBF24',
-    },
-    { 
-      bg: 'bg-blue-500', 
-      icon: Users,
-      gradientFrom: '#3B82F6',
-      gradientTo: '#60A5FA',
-    },
-    { 
-      bg: 'bg-amber-500', 
-      icon: Clock,
-      gradientFrom: '#F59E0B',
-      gradientTo: '#FBBF24',
-    },
+    { bg: 'bg-blue-500', icon: HeartPulse },
+    { bg: 'bg-amber-500', icon: Wallet },
+    { bg: 'bg-blue-500', icon: Users },
+    { bg: 'bg-amber-500', icon: Clock },
   ]
   
   // Translate benefits
@@ -83,21 +61,11 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
   ]
   
   return (
-    <section id="why-choose" className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
-      {/* Background Pattern */}
-      <DotPattern 
-        className="opacity-20"
-        width={20}
-        height={20}
-        cx={1}
-        cy={1}
-        cr={1}
-      />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+    <section id="why-choose" className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 rounded-2xl mb-6 border border-blue-500/20 backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 rounded-2xl mb-6 border border-blue-500/20">
             <span className="text-3xl text-blue-500 font-serif">∞</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -116,33 +84,18 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             const colorScheme = colorSchemes[index]
             
             return (
-              <MagicCard
+              <div
                 key={index}
-                className="rounded-2xl overflow-hidden"
-                gradientSize={250}
-                gradientFrom={colorScheme.gradientFrom}
-                gradientTo={colorScheme.gradientTo}
-                gradientColor="rgba(255, 255, 255, 0.1)"
-                gradientOpacity={0.6}
+                className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"
               >
-                <div className="relative bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 border border-gray-200/50 backdrop-blur-sm transition-all duration-300 group-hover:border-gray-300/50">
-                  {/* Icon Container with enhanced hover effect */}
-                  <div className={`relative w-16 h-16 ${colorScheme.bg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <IconComponent className="text-2xl text-white relative z-10" aria-hidden="true" />
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                    {benefit.description}
-                  </p>
-                  
-                  {/* Subtle glow effect on hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/0 via-amber-500/0 to-blue-500/0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none" />
+                <div className={`w-16 h-16 ${colorScheme.bg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <IconComponent className="text-2xl text-white" aria-hidden="true" />
                 </div>
-              </MagicCard>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+              </div>
             )
           })}
         </div>
