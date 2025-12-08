@@ -4,6 +4,9 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Star, MapPin, CheckCircle2 } from 'lucide-react'
 import { Marquee, MarqueeItem } from '@/components/ui/marquee'
+import { MagicCard } from '@/components/ui/magic-card'
+import { ViewportAnimation } from '@/components/animations/viewport-animation'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Testimonial } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
@@ -77,10 +80,12 @@ export function TestimonialsSection({
         </div>
 
         {/* Testimonials Marquee */}
-        <Marquee pauseOnHover className="[--duration:40s]">
-          {testimonials.map((testimonial) => (
-            <MarqueeItem key={testimonial.id} className="w-[350px]">
-              <Card className="h-full hover:shadow-lg transition-shadow m-0">
+        <ViewportAnimation direction="up" duration={0.6}>
+          <Marquee pauseOnHover className="[--duration:40s]">
+            {testimonials.map((testimonial) => (
+              <MarqueeItem key={testimonial.id} className="w-[350px]">
+                <MagicCard>
+                  <Card className="h-full hover:shadow-lg transition-shadow m-0 border-0">
                 <CardContent className="p-6 flex flex-col h-full">
                   {/* Header */}
                   <div className="mb-4">
@@ -113,10 +118,12 @@ export function TestimonialsSection({
                     </p>
                   </div>
                 </CardContent>
-              </Card>
-            </MarqueeItem>
-          ))}
-        </Marquee>
+                  </Card>
+                </MagicCard>
+              </MarqueeItem>
+            ))}
+          </Marquee>
+        </ViewportAnimation>
       </div>
     </section>
   )

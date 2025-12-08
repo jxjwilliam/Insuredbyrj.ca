@@ -48,11 +48,11 @@ export function CompanyBackgroundSection({
     >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-2xl mb-6">
             <Users className="h-8 w-8 text-[#FF671F]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             About <span className="text-[#FF671F]">Insured by Rajan</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
@@ -319,7 +319,7 @@ export function CompanyBackgroundSection({
 
           {/* CTA Section */}
           <div className="text-center pt-8">
-            <Button onClick={openDialog} size="lg" className="px-8 py-6 text-lg font-semibold shadow-lg">
+            <Button onClick={openDialog} size="lg" className="px-8 py-6 text-lg font-semibold shadow-lg min-h-[44px]">
               Get in Touch with Rajan
               <span className="ml-2">→</span>
             </Button>

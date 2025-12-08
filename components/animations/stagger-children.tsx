@@ -8,6 +8,9 @@ interface StaggerChildrenAnimationProps {
   staggerDelay?: number // Delay between each child
   animation?: 'fadeIn' | 'slideUp' | 'scale'
   className?: string
+  layout?: boolean // Enable layout animations
+  whileInView?: boolean // Trigger on viewport entry
+  viewport?: { once?: boolean; margin?: string }
 }
 
 /**
@@ -20,6 +23,9 @@ export function StaggerChildren({
   staggerDelay = 0.1,
   animation = 'fadeIn',
   className,
+  layout = false,
+  whileInView = false,
+  viewport = { once: true, margin: '-100px' },
 }: StaggerChildrenAnimationProps) {
   const prefersReducedMotion = useReducedMotion()
 
@@ -58,16 +64,28 @@ export function StaggerChildren({
     }
   }
 
+  const animationProps = whileInView
+    ? {
+        variants: containerVariants,
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport,
+      }
+    : {
+        variants: containerVariants,
+        initial: 'hidden',
+        animate: 'visible',
+      }
+
   return (
     <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
+      {...animationProps}
+      layout={layout}
       className={className}
     >
       {Array.isArray(children)
         ? children.map((child, index) => (
-            <motion.div key={index} variants={getChildVariants()}>
+            <motion.div key={index} variants={getChildVariants()} layout={layout}>
               {child}
             </motion.div>
           ))

@@ -2,6 +2,8 @@
 
 import { useTranslation } from '@/lib/i18n/hooks'
 import { HeartPulse, Wallet, Users, Clock } from 'lucide-react'
+import { ViewportAnimation } from '@/components/animations/viewport-animation'
+import { GestureAnimation } from '@/components/animations/gesture-animation'
 import type { WhyChooseSection as WhyChooseSectionType } from '@/lib/types'
 
 interface WhyChooseSectionProps {
@@ -61,7 +63,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
   ]
   
   return (
-    <section id="why-choose" className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <section id="why-choose" className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
@@ -78,16 +80,22 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
         </div>
 
         {/* Features Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {benefits.map((benefit, index) => {
             const IconComponent = iconMap[benefit.icon] || colorSchemes[index].icon
             const colorScheme = colorSchemes[index]
             
             return (
-              <div
+              <ViewportAnimation
                 key={index}
-                className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"
+                direction="up"
+                delay={index * 0.1}
+                duration={0.6}
               >
+                <GestureAnimation gesture="hover" hoverScale={1.05}>
+                  <div
+                    className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"
+                  >
                 <div className={`w-16 h-16 ${colorScheme.bg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                   <IconComponent className="text-2xl text-white" aria-hidden="true" />
                 </div>
@@ -95,13 +103,15 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
                   {benefit.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-              </div>
+                  </div>
+                </GestureAnimation>
+              </ViewportAnimation>
             )
           })}
         </div>
 
         {/* Trust Badge Bar */}
-        <div className="mt-16 pt-12 border-t border-gray-200">
+        <div className="mt-12 pt-12 border-t border-gray-200">
           <div className="flex flex-wrap items-center justify-center gap-8 text-center">
             <div className="flex items-center space-x-3">
               <span className="text-3xl text-blue-500">🛡️</span>

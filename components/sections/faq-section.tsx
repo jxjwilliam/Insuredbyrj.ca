@@ -174,7 +174,7 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
     <section id="faq" className="py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Common <span className="text-blue-500">Questions</span> About Life
             Insurance
@@ -295,9 +295,9 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <p className="text-gray-600 mb-4">Still have questions?</p>
-          <Button onClick={openDialog}>
+          <Button onClick={openDialog} className="min-h-[44px]">
             <span className="mr-2">💬</span>
             Chat With an Expert
           </Button>

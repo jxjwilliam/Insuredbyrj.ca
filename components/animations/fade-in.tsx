@@ -9,6 +9,8 @@ interface FadeInAnimationProps {
   duration?: number
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   className?: string
+  whileInView?: boolean // Trigger on viewport entry
+  viewport?: { once?: boolean; margin?: string }
 }
 
 /**
@@ -21,6 +23,8 @@ export function FadeIn({
   duration = 0.5,
   direction = 'none',
   className,
+  whileInView = false,
+  viewport = { once: true, margin: '-100px' },
 }: FadeInAnimationProps) {
   const prefersReducedMotion = useReducedMotion()
 
@@ -31,13 +35,21 @@ export function FadeIn({
   const initialY = direction === 'up' ? 20 : direction === 'down' ? -20 : 0
   const initialX = direction === 'left' ? 20 : direction === 'right' ? -20 : 0
 
+  const animationProps = whileInView
+    ? {
+        initial: { opacity: 0, y: initialY, x: initialX },
+        whileInView: { opacity: 1, y: 0, x: 0 },
+        viewport,
+        transition: { delay, duration, ease: 'easeOut' },
+      }
+    : {
+        initial: { opacity: 0, y: initialY, x: initialX },
+        animate: { opacity: 1, y: 0, x: 0 },
+        transition: { delay, duration },
+      }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: initialY, x: initialX }}
-      animate={{ opacity: 1, y: 0, x: 0 }}
-      transition={{ delay, duration }}
-      className={className}
-    >
+    <motion.div {...animationProps} className={className}>
       {children}
     </motion.div>
   )

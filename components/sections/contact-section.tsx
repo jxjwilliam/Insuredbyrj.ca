@@ -26,16 +26,16 @@ export function ContactSection() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               {t('contact.title', 'Get in Touch')}
             </h2>
-            <p className="text-base text-gray-600">
+            <p className="text-lg text-gray-600 leading-relaxed">
               {t('contact.description', 'We\'re here to help. Reach out to Rajan directly for personalized insurance advice.')}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
             {/* Phone */}
             <Card>
               <CardHeader>
@@ -116,8 +116,8 @@ export function ContactSection() {
           </Card>
 
           {/* Contact Form CTA */}
-          <div className="text-center mt-8">
-            <Button onClick={openDialog} size="lg" className="px-8">
+          <div className="text-center mt-12">
+            <Button onClick={openDialog} size="lg" className="px-8 min-h-[44px]">
               <MessageSquare className="h-5 w-5 mr-2" />
               {t('contact.formButton', 'Send Us a Message')}
             </Button>

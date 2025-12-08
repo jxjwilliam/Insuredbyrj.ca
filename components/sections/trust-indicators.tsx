@@ -44,11 +44,11 @@ export function TrustIndicators({
 
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Trust Indicators Stats */}
         <AnimatedSection animation="fadeIn" delay={0.2}>
-          <div className="grid grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-3 gap-8 mb-12">
           {indicators.map((indicator, index) => {
             const credential = getCredentialById(indicator.credentialId)
             return (
@@ -74,9 +74,9 @@ export function TrustIndicators({
 
         {/* Detailed Credentials Section */}
         {showDetails && credentials && credentials.length > 0 && (
-          <div className="mt-20">
+          <div className="mt-16">
             {/* Section Header - Matching Why Choose style */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-6">
                 <span className="text-3xl text-blue-500 font-serif">∞</span>
               </div>
@@ -89,7 +89,7 @@ export function TrustIndicators({
             </div>
 
             {/* Credentials Grid - Matching Why Choose card style */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {credentials.map((credential) => {
                 // Map icon names to emojis
                 const iconMap: Record<string, string> = {

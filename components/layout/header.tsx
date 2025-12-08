@@ -140,8 +140,9 @@ export function Header({ navigation }: HeaderProps) {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors"
+            className="lg:hidden p-2 text-gray-700 hover:text-blue-500 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
           >
             <span className="text-2xl">{mobileMenuOpen ? '✕' : '☰'}</span>
           </button>
@@ -179,7 +180,7 @@ export function Header({ navigation }: HeaderProps) {
                 <LanguageSelector />
                 <Button
                   onClick={openQuoteDialog}
-                  className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md"
+                  className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md min-h-[44px]"
                 >
                   {t('common.getMyFreeQuote', 'Get My Free Quote')}
                   <span className="ml-2">→</span>

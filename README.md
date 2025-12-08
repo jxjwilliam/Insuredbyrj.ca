@@ -5,14 +5,17 @@ Modern, multilingual life insurance agency website for British Columbia. Built w
 ## 🌟 Features
 
 - **Multi-language Support**: Full internationalization with support for English, French, Punjabi, and Hindi
-- **Responsive Design**: Mobile-first design that works seamlessly across all devices
-- **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+- **Responsive Design**: Mobile-first design that works seamlessly across all devices (320px+)
+- **Modern UI**: Built with shadcn/ui components, MagicUI, and Acernity UI components
+- **Advanced Animations**: GSAP ScrollTrigger, Framer Motion viewport animations, parallax effects
+- **Visual Effects**: Aurora backgrounds, gradient meshes, shimmer buttons, border beams, 3D cards
 - **Contact Forms**: Integrated contact and newsletter subscription forms
 - **Product Information**: Detailed information about term life, whole life, universal life, and critical illness insurance
 - **Interactive Maps**: Google Maps integration for office location
 - **QR Code**: Footer QR code for easy mobile access
 - **SEO Optimized**: Proper meta tags, hreflang tags, and semantic HTML
-- **Accessibility**: WCAG compliant with ARIA labels and keyboard navigation
+- **Accessibility**: WCAG 2.1 AA compliant with ARIA labels, keyboard navigation, and reduced motion support
+- **Design System**: Consistent spacing, typography, colors, and component styling
 
 ## 🚀 Tech Stack
 
@@ -20,7 +23,9 @@ Modern, multilingual life insurance agency website for British Columbia. Built w
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/) (built on Radix UI)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/) with ScrollTrigger
+- **UI Enhancements**: MagicUI components & Acernity UI components
+- **Fonts**: Google Fonts (Inter, Playfair Display, Montserrat)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Testing**: [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/react), [Playwright](https://playwright.dev/)
 - **QR Code**: [react-qr-code](https://www.npmjs.com/package/react-qr-code)
