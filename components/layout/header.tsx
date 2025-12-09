@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { ArrowRight, X, Menu } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { smoothScrollTo } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n/hooks'
@@ -24,6 +25,8 @@ export function Header({ navigation }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<string>('')
   const { t } = useTranslation()
   const { openDialog: openQuoteDialog } = useQuoteDialog()
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     const sections = ['hero', 'why-choose', 'plans', 'how-it-works', 'testimonials', 'about', 'faq', 'contact']
@@ -58,13 +61,40 @@ export function Header({ navigation }: HeaderProps) {
     }
   }, [])
 
+  // Handle hash scrolling when navigating from other pages
+  useEffect(() => {
+    const isHomePage = pathname === '/' || pathname === '/en' || pathname.match(/^\/[a-z]{2}$/)
+    
+    if (isHomePage && typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '')
+      if (hash) {
+        // Wait for page to render, then scroll
+        setTimeout(() => {
+          smoothScrollTo(hash, 100)
+        }, 100)
+      }
+    }
+  }, [pathname])
+
   const handleNavClick = (
     item: NavigationItem,
     e: React.MouseEvent<HTMLAnchorElement>
   ) => {
     if (item.isAnchor) {
       e.preventDefault()
-      smoothScrollTo(item.href.replace('#', ''), 100)
+      const sectionId = item.href.replace('#', '').replace('/', '')
+      
+      // Check if we're on the home page
+      const isHomePage = pathname === '/' || pathname === '/en' || pathname.match(/^\/[a-z]{2}$/)
+      
+      if (isHomePage) {
+        // On home page, just scroll to section
+        smoothScrollTo(sectionId, 100)
+      } else {
+        // Not on home page, navigate to home with hash
+        // The useEffect will handle scrolling after navigation
+        router.push(`/#${sectionId}`)
+      }
     }
     setMobileMenuOpen(false)
   }

@@ -1,6 +1,8 @@
 'use client'
 
+import React, { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
+import confetti, { type CreateTypes } from 'canvas-confetti'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -9,18 +11,22 @@ import { useTranslation } from '@/lib/i18n/hooks'
 import { landingPageContent } from '@/lib/constants'
 import {
   Building2,
-  Award,
-  Users,
   Heart,
   MapPin,
   CheckCircle2,
   Sparkles,
   Shield,
   ArrowRight,
+  Handshake,
+  FileText,
+  Headphones,
 } from 'lucide-react'
+import ColourfulText from '@/components/ui/colourful-text'
 import type { CompanyBackground } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { TextAnimate } from '@/components/ui/text-animate'
+import { GSAPScrollAnimation } from '@/components/animations/gsap-animations'
+import { ViewportAnimation } from '@/components/animations/viewport-animation'
 
 interface CompanyBackgroundSectionProps {
   background: CompanyBackground
@@ -43,22 +49,81 @@ export function CompanyBackgroundSection({
 }: CompanyBackgroundSectionProps) {
   const { openDialog } = useContactDialog()
   const { t } = useTranslation()
+  const [isImageHovered, setIsImageHovered] = useState(false)
+  const confettiIntervalRef = useRef<number | null>(null)
+  const confettiCanvasRef = useRef<HTMLCanvasElement>(null)
+  const confettiInstanceRef = useRef<CreateTypes | null>(null)
+
+  // Initialize confetti instance with the canvas
+  useEffect(() => {
+    if (confettiCanvasRef.current && typeof window !== 'undefined') {
+      confettiInstanceRef.current = confetti.create(confettiCanvasRef.current, {
+        resize: true,
+        useWorker: true,
+      })
+    }
+  }, [])
+
+  const handleInfoMouseEnter = () => {
+    if (!confettiInstanceRef.current) return
+
+    const duration = 2000
+    const animationEnd = Date.now() + duration
+    const defaults = { 
+      startVelocity: 30, 
+      spread: 360, 
+      ticks: 60, 
+      zIndex: 1000,
+    }
+
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min
+
+    const interval = window.setInterval(() => {
+      const timeLeft = animationEnd - Date.now()
+
+      if (timeLeft <= 0) {
+        if (confettiIntervalRef.current) {
+          clearInterval(confettiIntervalRef.current)
+          confettiIntervalRef.current = null
+        }
+        return
+      }
+
+      const particleCount = 50 * (timeLeft / duration)
+      confettiInstanceRef.current?.({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      })
+      confettiInstanceRef.current?.({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      })
+    }, 250)
+
+    confettiIntervalRef.current = interval
+  }
+
+  const handleInfoMouseLeave = () => {
+    if (confettiIntervalRef.current) {
+      clearInterval(confettiIntervalRef.current)
+      confettiIntervalRef.current = null
+    }
+  }
+
   return (
     <section
       id="about"
-      className={cn('py-16 bg-gradient-to-br from-orange-50/50 via-white to-green-50/50', className)}
+      className={cn('py-16 bg-gradient-to-br from-blue-50/30 via-white to-gray-50/30', className)}
     >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-2xl mb-6">
-            <Users className="h-8 w-8 text-[#FF671F]" />
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             <TextAnimate
               animation="blurIn"
-              delay={0.4}
-              duration={0.8}
               by="word"
               startOnView={true}
               once={true}
@@ -68,12 +133,10 @@ export function CompanyBackgroundSection({
             </TextAnimate>{' '}
             <TextAnimate
               animation="blurIn"
-              delay={0.5}
-              duration={0.8}
               by="word"
               startOnView={true}
               once={true}
-              className="inline text-[#FF671F]"
+              className="inline text-primary"
             >
               Insured by Rajan
             </TextAnimate>
@@ -86,14 +149,24 @@ export function CompanyBackgroundSection({
 
         {/* Hero Card with Image and Key Info */}
         <div className="max-w-6xl mx-auto mb-12">
-          <Card className="overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-white to-orange-50/30">
-            <CardContent className="p-0">
+          <Card className="overflow-hidden border border-gray-200 shadow-2xl bg-gradient-to-br from-white to-primary/10 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-shadow duration-500">
+              <CardContent className="p-0">
               <div className="grid lg:grid-cols-3 gap-0">
                 {/* Image Section */}
                 {showImage && background.imageUrl && (
-                  <div className="lg:col-span-1 relative h-64 lg:h-auto bg-gradient-to-br from-orange-100 to-orange-200">
-                    <div className="absolute inset-0 flex items-center justify-center p-8">
-                      <div className="relative w-full max-w-xs aspect-square rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/50">
+                  <div 
+                    className="lg:col-span-1 relative h-64 lg:h-auto bg-gradient-to-br from-primary/20 to-primary/30 overflow-hidden"
+                    onMouseEnter={() => setIsImageHovered(true)}
+                    onMouseLeave={() => setIsImageHovered(false)}
+                  >
+                    <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                      isImageHovered ? 'p-0' : 'p-8'
+                    }`}>
+                      <div className={`relative w-full overflow-hidden transition-all duration-500 ${
+                        isImageHovered 
+                          ? 'h-full w-full rounded-none shadow-none ring-0' 
+                          : 'max-w-xs aspect-square rounded-2xl shadow-2xl ring-4 ring-white/50'
+                      }`}>
                         <Image
                           src={background.imageUrl}
                           alt={`${background.ownerName} - ${background.ownerTitle}`}
@@ -107,13 +180,20 @@ export function CompanyBackgroundSection({
                 )}
 
                 {/* Key Info Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="space-y-4">
+                <div 
+                  className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden"
+                  onMouseEnter={handleInfoMouseEnter}
+                  onMouseLeave={handleInfoMouseLeave}
+                >
+                  <canvas
+                    ref={confettiCanvasRef}
+                    className="absolute inset-0 pointer-events-none z-0"
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                  <div className="relative z-10 space-y-4">
                     <div>
                       <TextAnimate
                         animation="blurIn"
-                        delay={0.4}
-                        duration={0.8}
                         by="text"
                         startOnView={true}
                         once={true}
@@ -124,35 +204,40 @@ export function CompanyBackgroundSection({
                       </TextAnimate>
                       <TextAnimate
                         animation="blurIn"
-                        delay={0.5}
-                        duration={0.8}
                         by="text"
                         startOnView={true}
                         once={true}
                         as="p"
-                        className="text-xl text-[#FF671F] font-semibold mb-4"
+                        className="text-xl text-primary font-semibold mb-4"
                       >
                         {background.ownerTitle}
                       </TextAnimate>
-                      <TextAnimate
-                        animation="blurIn"
-                        delay={0.6}
-                        duration={0.8}
-                        by="text"
-                        startOnView={true}
-                        once={true}
-                        as="p"
-                        className="text-lg text-gray-700 font-medium"
-                      >
-                        {background.companyName}
-                      </TextAnimate>
+                      <div className="flex items-center gap-2">
+                        <TextAnimate
+                          animation="blurIn"
+                          by="text"
+                          startOnView={true}
+                          once={true}
+                          as="p"
+                          className="text-lg text-gray-700 font-medium"
+                        >
+                          {background.companyName}
+                        </TextAnimate>
+                        <Image
+                          src="/images/infinity.jpeg"
+                          alt="Infinity Insurance Services logo"
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
 
                     {background.brandAffiliation && (
                       <div className="flex items-center gap-3 pt-2">
                         <Badge
                           variant="outline"
-                          className="bg-orange-50 border-orange-200 text-[#FF671F] px-4 py-2 text-sm font-semibold"
+                          className="bg-primary/10 border-primary/30 text-primary px-4 py-2 text-sm font-semibold"
                         >
                           <Building2 className="h-4 w-4 mr-2" />
                           {background.brandAffiliation.name} {background.brandAffiliation.type}
@@ -160,29 +245,40 @@ export function CompanyBackgroundSection({
                       </div>
                     )}
 
-                    {background.location && (
-                      <div className="pt-2">
-                        <div className="flex items-center gap-2 text-gray-600 mb-2">
-                          <MapPin className="h-5 w-5 text-[#046A38]" />
-                          <span className="text-sm">{background.location.fullAddress}</span>
-                        </div>
-                        {landingPageContent.serviceAreas && (
-                          <div className="flex items-start gap-2 text-gray-600">
-                            <span className="text-sm font-medium text-gray-700">
-                              {t('contact.serviceAreas', 'Service Areas')}:
-                            </span>
-                            <span className="text-sm">
-                              {t('contact.primary', 'Primary')}: {landingPageContent.serviceAreas.primary.join(', ')}
-                              {landingPageContent.serviceAreas.secondary &&
-                                landingPageContent.serviceAreas.secondary.length > 0 && (
-                                  <span>
-                                    {' '}
-                                    | {t('contact.secondary', 'Secondary')}: {landingPageContent.serviceAreas.secondary.join(', ')}
-                                  </span>
-                                )}
-                            </span>
-                          </div>
-                        )}
+                    {/* Specialties */}
+                    {background.experience.specialties.length > 0 && (
+                      <div className="pt-4">
+                        <h5 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                          <div className="w-1 h-5 bg-primary rounded-full"></div>
+                          <TextAnimate
+                            animation="blurIn"
+                            by="text"
+                            startOnView={true}
+                            once={true}
+                            className="inline"
+                          >
+                            Specialties
+                          </TextAnimate>
+                        </h5>
+                        <ul className="space-y-3 list-none">
+                          {background.experience.specialties.map((specialty, idx) => {
+                            // Map icons to specialties based on content
+                            const iconMap = [
+                              { Icon: Headphones, color: 'text-amber-500' }, // Life Insurance - service/support
+                              { Icon: FileText, color: 'text-primary' }, // Estate Planning - documents
+                              { Icon: Handshake, color: 'text-amber-500' }, // Business Succession - partnership
+                              { Icon: MapPin, color: 'text-primary' }, // Newcomer to Canada - location
+                            ]
+                            const { Icon, color } = iconMap[idx] || { Icon: CheckCircle2, color: 'text-primary' }
+                            
+                            return (
+                              <li key={idx} className="flex items-start gap-3 text-sm text-gray-800">
+                                <Icon className={`h-5 w-5 ${color} shrink-0 mt-0.5`} />
+                                <span>{specialty}</span>
+                              </li>
+                            )
+                          })}
+                        </ul>
                       </div>
                     )}
                   </div>
@@ -194,230 +290,155 @@ export function CompanyBackgroundSection({
 
         {/* Main Content Grid */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {/* Our Story Card */}
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
-                    <Sparkles className="h-6 w-6 text-[#FF671F]" />
+          {/* Our Story & Philosophy - Merged Card */}
+          <GSAPScrollAnimation animation="fadeIn" start="top 80%">
+            <Card className="border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-white to-primary/5 mb-8">
+              <CardContent className="p-8 lg:p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Heart className="h-8 w-8 text-white" />
                   </div>
-                  <TextAnimate
-                    animation="blurIn"
-                    delay={0.4}
-                    duration={0.8}
-                    by="text"
-                    startOnView={true}
-                    once={true}
-                    as="h4"
-                    className="text-2xl font-bold text-gray-900"
-                  >
-                    Our Story
-                  </TextAnimate>
-                </div>
-                <p className="text-gray-700 leading-relaxed text-base">
-                  {background.biography}
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Philosophy Card */}
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-orange-50 to-white">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-[#FF671F] rounded-xl flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-white" />
-                  </div>
-                  <TextAnimate
-                    animation="blurIn"
-                    delay={0.4}
-                    duration={0.8}
-                    by="text"
-                    startOnView={true}
-                    once={true}
-                    as="h4"
-                    className="text-2xl font-bold text-gray-900"
-                  >
-                    Our Philosophy
-                  </TextAnimate>
-                </div>
-                <blockquote className="text-gray-700 leading-relaxed text-base italic border-l-4 border-[#FF671F] pl-6">
-                  &ldquo;{background.philosophy}&rdquo;
-                </blockquote>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Experience & Expertise Card */}
-          <Card className="border-0 shadow-lg mb-8 bg-white">
-            <CardContent className="p-8">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                  <Award className="h-6 w-6 text-amber-600" />
-                </div>
-                <TextAnimate
-                  animation="blurIn"
-                  delay={0.4}
-                  duration={0.8}
-                  by="text"
-                  startOnView={true}
-                  once={true}
-                  as="h4"
-                  className="text-2xl font-bold text-gray-900"
-                >
-                  Experience & Expertise
-                </TextAnimate>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6 mb-6">
-                <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-white rounded-xl border border-orange-100">
-                  <div className="text-4xl font-bold text-[#FF671F] mb-2">
-                    {background.experience.years}+
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700">Years of Service</div>
-                </div>
-
-                {background.experience.specialties.length > 0 && (
-                  <div className="md:col-span-2">
+                  <div>
                     <TextAnimate
                       animation="blurIn"
-                      delay={0.4}
-                      duration={0.8}
-                      by="text"
-                      startOnView={true}
-                      once={true}
-                      as="h5"
-                      className="font-semibold text-gray-900 mb-3"
-                    >
-                      Specialties
-                    </TextAnimate>
-                    <div className="space-y-2">
-                      {background.experience.specialties.map((specialty, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <CheckCircle2 className="h-5 w-5 text-[#046A38] mt-0.5 shrink-0" />
-                          <span className="text-sm text-gray-700">{specialty}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {background.experience.certifications.length > 0 && (
-                <div>
-                  <TextAnimate
-                    animation="blurIn"
-                    delay={0.4}
-                    duration={0.8}
-                    by="text"
-                    startOnView={true}
-                    once={true}
-                    as="h5"
-                    className="font-semibold text-gray-900 mb-3"
-                  >
-                    Certifications
-                  </TextAnimate>
-                  <div className="flex flex-wrap gap-3">
-                    {background.experience.certifications.map((cert, idx) => (
-                      <Badge
-                        key={idx}
-                        variant="secondary"
-                        className="bg-green-100 text-[#046A38] border-green-200 px-4 py-2 text-sm font-semibold"
-                      >
-                        <Shield className="h-4 w-4 mr-2" />
-                        {cert}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Values and Differentiators Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {/* Values Card */}
-            {background.values.length > 0 && (
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center">
-                      <Heart className="h-6 w-6 text-pink-600" />
-                    </div>
-                    <TextAnimate
-                      animation="blurIn"
-                      delay={0.4}
-                      duration={0.8}
                       by="text"
                       startOnView={true}
                       once={true}
                       as="h4"
-                      className="text-2xl font-bold text-gray-900"
+                      className="text-3xl font-bold text-gray-900"
                     >
-                      Our Values
+                      Our Story & Philosophy
                     </TextAnimate>
+                    <p className="text-sm text-gray-600 mt-1">Who we are and what drives us</p>
                   </div>
-                  <div className="space-y-3">
-                    {background.values.map((value, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-3 p-4 bg-gradient-to-r from-pink-50 to-white rounded-lg border border-pink-100 hover:border-pink-200 transition-colors"
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-pink-600 mt-0.5 shrink-0" />
-                        <span className="text-gray-700 font-medium">{value}</span>
-                      </div>
-                    ))}
+                </div>
+                
+                <div className="space-y-6">
+                  {/* Story Section */}
+                  <div>
+                    <h5 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-primary" />
+                      Our Journey
+                    </h5>
+                    <p className="text-gray-700 leading-relaxed">
+                      {background.biography.includes('15 years of dedicated service') ? (
+                        <>
+                          {background.biography.split('15 years of dedicated service')[0]}
+                          <span className="inline-block text-lg font-semibold">
+                            <ColourfulText text="15 years of dedicated service" />
+                          </span>
+                          {background.biography.split('15 years of dedicated service')[1]}
+                        </>
+                      ) : (
+                        background.biography
+                      )}
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
-            )}
 
-            {/* Differentiators Card */}
-            {background.differentiators.length > 0 && (
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                      <Sparkles className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <TextAnimate
-                      animation="blurIn"
-                      delay={0.4}
-                      duration={0.8}
-                      by="text"
-                      startOnView={true}
-                      once={true}
-                      as="h4"
-                      className="text-2xl font-bold text-gray-900"
-                    >
-                      What Makes Us Different
-                    </TextAnimate>
+                  {/* Philosophy Section */}
+                  <div className="pt-6 border-t border-primary/20">
+                    <h5 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Heart className="h-5 w-5 text-primary" />
+                      Our Core Belief
+                    </h5>
+                    <blockquote className="text-gray-700 leading-relaxed text-lg italic border-l-4 border-primary pl-6 bg-primary/5 py-4 rounded-r-lg">
+                      &ldquo;{background.philosophy}&rdquo;
+                    </blockquote>
                   </div>
-                  <div className="space-y-3">
-                    {background.differentiators.map((diff, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-3 p-4 bg-gradient-to-r from-purple-50 to-white rounded-lg border border-purple-100 hover:border-purple-200 transition-colors"
+                </div>
+              </CardContent>
+            </Card>
+          </GSAPScrollAnimation>
+
+
+          {/* Values & What Makes Us Different - Merged Card */}
+          {(background.values.length > 0 || background.differentiators.length > 0) && (
+            <GSAPScrollAnimation animation="fadeIn" start="top 80%">
+              <Card className="border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white mb-8">
+                <CardContent className="p-8 lg:p-10">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+                      <Sparkles className="h-8 w-8 text-white" />
+                    </div>
+                    <div>
+                      <TextAnimate
+                        animation="blurIn"
+                        by="text"
+                        startOnView={true}
+                        once={true}
+                        as="h4"
+                        className="text-3xl font-bold text-gray-900"
                       >
-                        <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center shrink-0 mt-0.5">
-                          <span className="text-white text-xs font-bold">{idx + 1}</span>
+                        Why Choose Us
+                      </TextAnimate>
+                      <p className="text-sm text-gray-600 mt-1">Our values and what sets us apart</p>
+                    </div>
+                  </div>
+
+                  <div className="grid lg:grid-cols-2 gap-8">
+                    {/* Values Section */}
+                    {background.values.length > 0 && (
+                      <div>
+                        <h5 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-primary rounded-full"></div>
+                          Our Core Values
+                        </h5>
+                        <div className="space-y-3">
+                          {background.values.map((value, idx) => (
+                            <ViewportAnimation 
+                              key={idx}
+                              direction="up"
+                              delay={idx * 0.1}
+                              duration={0.3}
+                            >
+                              <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-primary/5 to-white rounded-xl border border-primary/20 hover:border-primary/40 hover:bg-primary/10 transition-all duration-300 group">
+                                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors shrink-0 mt-0.5">
+                                  <Heart className="h-5 w-5 text-primary" />
+                                </div>
+                                <span className="text-gray-800 font-medium pt-0.5">{value}</span>
+                              </div>
+                            </ViewportAnimation>
+                          ))}
                         </div>
-                        <span className="text-gray-700 font-medium">{diff}</span>
                       </div>
-                    ))}
+                    )}
+
+                    {/* Differentiators Section */}
+                    {background.differentiators.length > 0 && (
+                      <div>
+                        <h5 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-primary rounded-full"></div>
+                          What Makes Us Different
+                        </h5>
+                        <div className="space-y-3">
+                          {background.differentiators.map((diff, idx) => (
+                            <ViewportAnimation 
+                              key={idx}
+                              direction="up"
+                              delay={idx * 0.1}
+                              duration={0.3}
+                            >
+                              <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-primary/5 to-white rounded-xl border border-primary/20 hover:border-primary/40 hover:bg-primary/10 transition-all duration-300 group">
+                                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                                  <span className="text-white text-sm font-bold">{idx + 1}</span>
+                                </div>
+                                <span className="text-gray-800 font-medium pt-0.5">{diff}</span>
+                              </div>
+                            </ViewportAnimation>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
-            )}
-          </div>
+            </GSAPScrollAnimation>
+          )}
 
           {/* Brand Affiliation Benefits Card */}
           {background.brandAffiliation && background.brandAffiliation.benefits.length > 0 && (
-            <div className="mb-8 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 lg:p-12 text-center relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 text-9xl text-white opacity-10 font-serif">
+            <div className="mb-8 benefits-card rounded-3xl p-8 lg:p-12 text-center relative shadow-2xl">
+              <div className="absolute top-0 right-0 text-9xl text-white opacity-10 font-serif z-0 animate-infinity">
                 ∞
               </div>
               <div className="relative z-10">
@@ -427,8 +448,6 @@ export function CompanyBackgroundSection({
                   </div>
                   <TextAnimate
                     animation="blurIn"
-                    delay={0.4}
-                    duration={0.8}
                     by="word"
                     startOnView={true}
                     once={true}
@@ -442,7 +461,7 @@ export function CompanyBackgroundSection({
                   {background.brandAffiliation.benefits.map((benefit, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-3 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors text-left"
+                      className="flex items-start gap-3 p-4 bg-white/25 rounded-lg backdrop-blur-sm border border-white/40 hover:bg-white/35 transition-colors text-left shadow-sm"
                     >
                       <CheckCircle2 className="h-5 w-5 text-white mt-0.5 shrink-0" />
                       <span className="text-white font-medium">{benefit}</span>

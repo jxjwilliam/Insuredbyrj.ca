@@ -92,3 +92,91 @@ export function sanitizeShareText(text: string, maxLength: number = 200): string
   return trimmed.length > maxLength ? trimmed.substring(0, maxLength) + '...' : trimmed
 }
 
+/**
+ * Parses a formatted number string (e.g., "10K+", "15+", "1.5M") to a numeric value
+ * @param value - The formatted number string
+ * @returns An object with the numeric value, display format, and suffix
+ */
+export function parseFormattedNumber(value: string): { 
+  numericValue: number
+  displayFormat: 'short' | 'long'
+  suffix: string
+  originalValue: number
+} {
+  // Remove any non-numeric characters except decimal point, K, M, B, and +
+  const cleaned = value.trim().toUpperCase()
+  
+  // Extract numeric part
+  const numericMatch = cleaned.match(/^([\d.]+)/)
+  if (!numericMatch) {
+    return { numericValue: 0, displayFormat: 'long', suffix: '', originalValue: 0 }
+  }
+  
+  const numericPart = parseFloat(numericMatch[1])
+  const hasPlus = cleaned.includes('+')
+  
+  // Extract suffix (K, M, B, +, etc.)
+  let suffix = cleaned.replace(/^[\d.]+/, '')
+  
+  // Convert based on suffix
+  let multiplier = 1
+  let displayFormat: 'short' | 'long' = 'long'
+  
+  if (suffix.includes('K')) {
+    multiplier = 1000
+    displayFormat = 'short'
+    suffix = 'K' + (hasPlus ? '+' : '')
+  } else if (suffix.includes('M')) {
+    multiplier = 1000000
+    displayFormat = 'short'
+    suffix = 'M' + (hasPlus ? '+' : '')
+  } else if (suffix.includes('B')) {
+    multiplier = 1000000000
+    displayFormat = 'short'
+    suffix = 'B' + (hasPlus ? '+' : '')
+  } else if (hasPlus) {
+    suffix = '+'
+  } else {
+    suffix = ''
+  }
+  
+  return {
+    numericValue: numericPart * multiplier,
+    displayFormat,
+    suffix,
+    originalValue: numericPart,
+  }
+}
+
+/**
+ * Formats a number for display (e.g., 10 with 'K+' suffix -> "10K+", 15 with '+' suffix -> "15+")
+ * @param value - The numeric value
+ * @param format - Display format ('short' or 'long')
+ * @param suffix - Additional suffix to append (e.g., "K+", "+")
+ * @returns Formatted string
+ */
+export function formatNumberForDisplay(
+  value: number,
+  format: 'short' | 'long' = 'long',
+  suffix: string = ''
+): string {
+  // For short format with K/M/B in suffix, just append the suffix
+  if (format === 'short' && suffix) {
+    // If suffix already contains K/M/B, just append it
+    if (suffix.includes('K') || suffix.includes('M') || suffix.includes('B')) {
+      return `${Math.round(value)}${suffix}`
+    }
+    // Otherwise, format based on value size
+    if (value >= 1000000000) {
+      return `${(value / 1000000000).toFixed(1)}B${suffix}`
+    } else if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)}M${suffix}`
+    } else if (value >= 1000) {
+      return `${(value / 1000).toFixed(0)}K${suffix}`
+    }
+  }
+  
+  // For long format or no special formatting needed
+  return `${Math.round(value)}${suffix}`
+}
+

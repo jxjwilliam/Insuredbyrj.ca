@@ -8,10 +8,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Search } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import type { FAQItem } from '@/lib/types'
@@ -56,7 +54,6 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
     // If we have translated FAQ, use it; otherwise use props
     return translatedFAQ.length > 0 ? translatedFAQ : faq
   }, [faq, t])
-  const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
   // Categorize FAQ items with better logic
@@ -131,24 +128,12 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
 
   const categories = useMemo(() => categorizeFAQ(faqItems), [faqItems])
 
-  // Filter FAQ based on search and category
+  // Filter FAQ based on category
   const filteredFAQ = useMemo(() => {
-    let items =
-      selectedCategory === 'all'
-        ? faqItems
-        : categories[selectedCategory as keyof typeof categories] || []
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase()
-      items = items.filter(
-        (item) =>
-          item.question.toLowerCase().includes(query) ||
-          item.answer.toLowerCase().includes(query)
-      )
-    }
-
-    return items
-  }, [faqItems, searchQuery, selectedCategory, categories])
+    return selectedCategory === 'all'
+      ? faqItems
+      : categories[selectedCategory as keyof typeof categories] || []
+  }, [faqItems, selectedCategory, categories])
 
   // Render markdown-like formatting in answers
   const renderAnswer = (answer: string) => {
@@ -176,7 +161,7 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Common <span className="text-blue-500">Questions</span> About Life
+            Common <span className="text-primary">Questions</span> About Life
             Insurance
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
@@ -185,40 +170,33 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
           </p>
         </div>
 
-        {/* Search and Category Filters */}
-        <div className="max-w-4xl mx-auto mb-8 space-y-4">
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search FAQs..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-              aria-label="Search FAQ questions and answers"
-            />
-          </div>
-
+        {/* Category Filters */}
+        <div className="max-w-4xl mx-auto mb-8">
           {/* Category Tabs */}
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 h-auto">
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 h-auto bg-white p-1.5 rounded-lg shadow-md border border-gray-100">
               <TabsTrigger 
                 value="all" 
-                className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
               >
                 All
-                <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                <Badge 
+                  variant="secondary" 
+                  className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                >
                   {faqItems.length}
                 </Badge>
               </TabsTrigger>
               {categories.general.length > 0 && (
                 <TabsTrigger 
                   value="general" 
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
                 >
                   General
-                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  <Badge 
+                    variant="secondary" 
+                    className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                  >
                     {categories.general.length}
                   </Badge>
                 </TabsTrigger>
@@ -226,10 +204,13 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
               {categories.coverage.length > 0 && (
                 <TabsTrigger 
                   value="coverage" 
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
                 >
                   Coverage
-                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  <Badge 
+                    variant="secondary" 
+                    className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                  >
                     {categories.coverage.length}
                   </Badge>
                 </TabsTrigger>
@@ -237,10 +218,13 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
               {categories.pricing.length > 0 && (
                 <TabsTrigger 
                   value="pricing" 
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
                 >
                   Pricing
-                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  <Badge 
+                    variant="secondary" 
+                    className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                  >
                     {categories.pricing.length}
                   </Badge>
                 </TabsTrigger>
@@ -248,10 +232,13 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
               {categories.application.length > 0 && (
                 <TabsTrigger 
                   value="application" 
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
                 >
                   Process
-                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  <Badge 
+                    variant="secondary" 
+                    className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                  >
                     {categories.application.length}
                   </Badge>
                 </TabsTrigger>
@@ -259,10 +246,13 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
               {categories.claims.length > 0 && (
                 <TabsTrigger 
                   value="claims" 
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white py-2.5"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-md py-2.5 rounded-md transition-all duration-200 hover:bg-gray-50 data-[state=active]:hover:bg-primary/90"
                 >
                   Claims
-                  <Badge variant="secondary" className="ml-2 text-xs px-1.5 py-0.5">
+                  <Badge 
+                    variant="secondary" 
+                    className="badge-in-tab ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary border-primary/20"
+                  >
                     {categories.claims.length}
                   </Badge>
                 </TabsTrigger>
@@ -277,7 +267,7 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
             <Accordion type="single" collapsible className="w-full">
               {filteredFAQ.map((item) => (
                 <AccordionItem key={item.id} value={item.id}>
-                  <AccordionTrigger className="text-left hover:text-blue-500">
+                  <AccordionTrigger className="text-left hover:text-primary">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent>{renderAnswer(item.answer)}</AccordionContent>
@@ -297,8 +287,11 @@ export function FAQSection({ faq = [] }: FAQSectionProps) {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-4">Still have questions?</p>
-          <Button onClick={openDialog} className="min-h-[44px]">
-            <span className="mr-2">💬</span>
+          <Button 
+            onClick={openDialog} 
+            className="min-h-[44px] bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 px-6 py-3 rounded-lg font-semibold"
+          >
+            <span className="mr-2 text-lg">💬</span>
             Chat With an Expert
           </Button>
         </div>

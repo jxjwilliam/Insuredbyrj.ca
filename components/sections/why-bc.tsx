@@ -69,9 +69,9 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
 
               {/* Floating Stats Cards */}
               {whyBC?.statistics && whyBC.statistics.length > 0 && (
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-6 border-4 border-blue-500">
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-6 border-4 border-primary">
                   <div className="flex items-center space-x-4">
-                    <div className="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center">
+                    <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center">
                       <Users className="text-white h-7 w-7" />
                     </div>
                     <div>
@@ -90,7 +90,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
 
           {/* Right: Content */}
           <div className="order-1 lg:order-2 space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2">
+            <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
               <Star className="text-amber-500 h-4 w-4 fill-amber-500" />
               <span className="text-gray-900 text-sm font-semibold">
                 Trusted by BC Families
@@ -99,7 +99,7 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               {title.split('Insured by Rajan')[0]}
-              <span className="text-blue-500">Insured by Rajan</span>
+              <span className="text-primary">Insured by Rajan</span>
             </h2>
 
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -113,8 +113,8 @@ export function WhyBCSection({ whyBC }: WhyBCSectionProps) {
                   key={index}
                   className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                    <Lightbulb className="text-blue-500 h-6 w-6" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Lightbulb className="text-primary h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 mb-1">

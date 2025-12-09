@@ -947,6 +947,7 @@ export const landingPageContent: LandingPageContent = {
       'Local community commitment',
       'Honest, pressure-free advice',
       'Lifetime client relationships',
+      'Continuous education and industry expertise',
     ],
     differentiators: [
       'BC-licensed expert with deep local knowledge',

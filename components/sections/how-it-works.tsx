@@ -1,7 +1,6 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import { useProcessDetailDialog } from '@/components/shared/process-detail-dialog-provider'
@@ -67,7 +66,7 @@ export function HowItWorksSection({
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {title.split(' ')[0]} <span className="text-blue-500">{title.split(' ').slice(1).join(' ')}</span>
+            {title.split(' ')[0]} <span className="text-primary">{title.split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             {description}
@@ -89,44 +88,42 @@ export function HowItWorksSection({
                   duration={0.6}
                 >
                   <GestureAnimation gesture="hover" hoverScale={1.05}>
-                    <Card
-                      className="group text-center border-2 hover:border-blue-500 transition-all duration-300 hover:shadow-xl"
+                    <div
+                      className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 text-center"
                       data-testid="process-step"
                     >
-                  <CardContent className="p-6">
-                    <div className="relative inline-flex items-center justify-center mb-6">
-                      {/* Circle Background */}
-                      <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
-                        <IconComponent className="h-10 w-10 text-white" />
+                      <div className="relative inline-flex items-center justify-center mb-6">
+                        {/* Icon Container - matching Why Choose style */}
+                        <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg relative">
+                          <IconComponent className="text-2xl text-white" aria-hidden="true" />
+                        </div>
+                        {/* Step Number Badge */}
+                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg z-20">
+                          {stepNumber}
+                        </div>
                       </div>
-                      {/* Step Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg z-20">
-                        {stepNumber}
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        {step.description}
+                      </p>
+                      <div className="inline-flex items-center text-sm text-primary font-semibold mb-6">
+                        <Clock className="h-4 w-4 mr-2" />
+                        {step.timeIndicator}
                       </div>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {step.description}
-                    </p>
-                    <div className="inline-flex items-center text-sm text-blue-500 font-semibold mb-6">
-                      <Clock className="h-4 w-4 mr-2" />
-                      {step.timeIndicator}
-                    </div>
 
-                    {/* View Detailed Information Button */}
-                    {processDetail && (
-                      <Button
-                        onClick={() => openProcessDetailDialog(processDetail)}
-                        variant="outline"
-                        className="w-full min-h-[44px]"
-                      >
-                        View Detailed Information
-                      </Button>
-                    )}
-                  </CardContent>
-                    </Card>
+                      {/* View Detailed Information Button */}
+                      {processDetail && (
+                        <Button
+                          onClick={() => openProcessDetailDialog(processDetail)}
+                          variant="outline"
+                          className="w-full min-h-[44px] border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                        >
+                          View Detailed Information
+                        </Button>
+                      )}
+                    </div>
                   </GestureAnimation>
                 </ViewportAnimation>
               )
@@ -135,8 +132,8 @@ export function HowItWorksSection({
         </div>
 
         {/* Bottom CTA Card */}
-        <div className="mt-12 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 lg:p-12 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 text-9xl text-white opacity-10 font-serif">
+        <div className="mt-12 benefits-card rounded-3xl p-8 lg:p-12 text-center relative shadow-2xl">
+          <div className="absolute top-0 right-0 text-9xl text-white opacity-10 font-serif z-0 animate-infinity">
             ∞
           </div>
           <div className="relative z-10">
@@ -157,7 +154,7 @@ export function HowItWorksSection({
                 Talk to Rajan
               </Button>
             </div>
-            <p className="text-sm text-gray-400 mt-6 flex items-center flex-wrap gap-2">
+            <p className="text-sm text-white mt-6 flex items-center flex-wrap gap-2">
               <Lock className="mr-2 h-4 w-4" />
               <span>No credit card required</span>
               <Circle className="h-1 w-1 fill-current mx-1" />

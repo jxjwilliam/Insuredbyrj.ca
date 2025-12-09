@@ -18,7 +18,7 @@ export function NewsletterSection() {
           transition={{ duration: 0.5 }}
           className="max-w-2xl mx-auto text-center"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500 text-white mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-6">
             <Mail className="h-8 w-8" aria-hidden="true" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">

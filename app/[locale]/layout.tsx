@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Montserrat } from 'next/font/google'
+import { Inter, Playfair_Display, Montserrat, Raleway, Outfit, Manrope } from 'next/font/google'
 import { BackToTopButton } from '@/components/shared/back-to-top-button'
 import { ErrorBoundary } from '@/components/shared/error-boundary'
 import { ContactDialogProvider } from '@/components/shared/contact-dialog-provider'
@@ -30,6 +30,27 @@ const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-montserrat',
   weight: ['400', '600', '700']
+})
+
+const raleway = Raleway({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-raleway',
+  weight: ['400', '500', '600', '700']
+})
+
+const outfit = Outfit({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-outfit',
+  weight: ['300', '400', '500', '600', '700']
+})
+
+const manrope = Manrope({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-manrope',
+  weight: ['300', '400', '500', '600', '700']
 })
 
 interface LocaleLayoutProps {
@@ -129,7 +150,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={validLocale} className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} ${montserrat.variable} ${inter.className}`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} ${montserrat.variable} ${raleway.variable} ${outfit.variable} ${manrope.variable} ${inter.className}`} suppressHydrationWarning>
         {/* Skip to main content link for accessibility */}
         <a
           href="#main-content"

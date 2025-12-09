@@ -74,14 +74,14 @@ export function ClaimsProcessSection({
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href={`tel:${claimsInfo.howToFile.contactMethods.phone}`}
-                    className="flex items-center gap-2 text-blue-600 hover:underline"
+                    className="flex items-center gap-2 text-primary hover:underline"
                   >
                     <Phone className="h-4 w-4" />
                     {claimsInfo.howToFile.contactMethods.phone}
                   </a>
                   <a
                     href={`mailto:${claimsInfo.howToFile.contactMethods.email}`}
-                    className="flex items-center gap-2 text-blue-600 hover:underline"
+                    className="flex items-center gap-2 text-primary hover:underline"
                   >
                     <Mail className="h-4 w-4" />
                     {claimsInfo.howToFile.contactMethods.email}

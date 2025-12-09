@@ -1,6 +1,6 @@
 'use client'
 
-import { Phone, Mail, Clock, MessageSquare } from 'lucide-react'
+import { Phone, Mail, Clock, MessageSquare, MapPin } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n/hooks'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
 import { landingPageContent } from '@/lib/constants'
@@ -35,19 +35,19 @@ export function ContactSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
             {/* Phone */}
-            <Card>
+            <Card className="group bg-white rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Phone className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-primary">
+                  <Phone className="h-5 w-5 text-primary" />
                   {t('contact.phone.title', 'Phone')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <a
                   href={`tel:${contactDetails.phone.primary.replace(/\s/g, '-')}`}
-                  className="text-2xl font-bold text-blue-600 hover:underline"
+                  className="text-2xl font-bold text-primary hover:underline"
                   aria-label={`Call us at ${contactDetails.phone.primary}`}
                 >
                   {contactDetails.phone.primary}
@@ -61,17 +61,17 @@ export function ContactSection() {
             </Card>
 
             {/* Email */}
-            <Card>
+            <Card className="group bg-white rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Mail className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-primary">
+                  <Mail className="h-5 w-5 text-primary" />
                   {t('contact.email.title', 'Email')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <a
                   href={`mailto:${contactDetails.email.primary}`}
-                  className="text-lg font-semibold text-blue-600 hover:underline break-all"
+                  className="text-lg font-semibold text-primary hover:underline break-all"
                   aria-label={`Email us at ${contactDetails.email.primary}`}
                 >
                   {contactDetails.email.primary}
@@ -85,10 +85,10 @@ export function ContactSection() {
             </Card>
 
             {/* Office Hours */}
-            <Card>
+            <Card className="group bg-white rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-primary">
+                  <Clock className="h-5 w-5 text-primary" />
                   {t('contact.hours.title', 'Office Hours')}
                 </CardTitle>
               </CardHeader>
@@ -101,6 +101,24 @@ export function ContactSection() {
                   {contactDetails.officeHours.sunday && (
                     <p className="text-muted-foreground">{contactDetails.officeHours.sunday}</p>
                   )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Office Location */}
+            <Card className="group bg-white rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-primary">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  {t('contact.location.title', 'Office Location')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-1 text-sm text-gray-700">
+                  <p className="font-medium">{contactDetails.address.street}</p>
+                  <p className="text-muted-foreground">
+                    {contactDetails.address.city}, {contactDetails.address.province} {contactDetails.address.postalCode}
+                  </p>
                 </div>
               </CardContent>
             </Card>

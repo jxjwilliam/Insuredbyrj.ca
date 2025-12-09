@@ -15,6 +15,34 @@ import { ImageWithFallback } from '@/components/shared/image-with-fallback'
 import { useQuoteDialog } from '@/components/shared/quote-dialog-provider'
 import type { InsurancePlan, DetailedPlanInformation } from '@/lib/types'
 
+/**
+ * Get gradient colors and accent color for each plan type
+ */
+function getPlanColors(planId: string) {
+  switch (planId) {
+    case 'term-life':
+      return {
+        accentColor: 'text-[var(--primary-color)]',
+      }
+    case 'whole-life':
+      return {
+        accentColor: 'text-[var(--accent2-color)]',
+      }
+    case 'universal-life':
+      return {
+        accentColor: 'text-[var(--dark-text-color)]',
+      }
+    case 'critical-illness':
+      return {
+        accentColor: 'text-[#DC2626]',
+      }
+    default:
+      return {
+        accentColor: 'text-[var(--primary-color)]',
+      }
+  }
+}
+
 interface ProductDetailDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -33,6 +61,13 @@ export function ProductDetailDialog({
   detailedInfo,
 }: ProductDetailDialogProps) {
   const { openDialog: openQuoteDialog } = useQuoteDialog()
+  const colors = getPlanColors(plan.id)
+
+  // Parse price to format it like the card: "From $25/month"
+  const priceMatch = plan.startingPrice.match(/^([^$]*)\$?([0-9]+)\/(.+)$/)
+  const priceText = priceMatch ? priceMatch[1].trim() : 'From'
+  const priceNumber = priceMatch ? priceMatch[2] : plan.startingPrice.replace(/[^0-9]/g, '')
+  const priceUnit = priceMatch ? priceMatch[3] : 'month'
 
   const handleGetQuote = () => {
     onOpenChange(false)
@@ -179,11 +214,13 @@ export function ProductDetailDialog({
           {/* Pricing */}
           <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
             <div>
-              <p className="text-sm text-gray-600">Starting from</p>
-              <p className="text-3xl font-bold text-blue-600">{plan.startingPrice}</p>
+              <p className="text-sm text-[var(--gray-text-color)]">Starting from</p>
+              <p className={`text-3xl font-bold ${colors.accentColor} font-[var(--font-family-heading)]`}>
+                {priceText} $<span>{priceNumber}</span><span className="text-base font-normal text-[var(--gray-text-color)]">/{priceUnit}</span>
+              </p>
             </div>
             {plan.isPopular && (
-              <Badge className="bg-amber-500 text-white px-4 py-2">
+              <Badge className="bg-[var(--accent2-color)] text-[var(--secondary-button-text-color)] px-4 py-2">
                 Most Popular
               </Badge>
             )}

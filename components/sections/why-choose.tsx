@@ -4,6 +4,8 @@ import { useTranslation } from '@/lib/i18n/hooks'
 import { HeartPulse, Wallet, Users, Clock, Shield, Lock, Award } from 'lucide-react'
 import { ViewportAnimation } from '@/components/animations/viewport-animation'
 import { GestureAnimation } from '@/components/animations/gesture-animation'
+import { Badge } from '@/components/ui/badge'
+import { landingPageContent } from '@/lib/constants'
 import type { WhyChooseSection as WhyChooseSectionType } from '@/lib/types'
 
 interface WhyChooseSectionProps {
@@ -32,9 +34,9 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
   
   // Color scheme - alternating between primary (blue) and accent (amber/orange)
   const colorSchemes = [
-    { bg: 'bg-blue-500', icon: HeartPulse },
+    { bg: 'bg-primary', icon: HeartPulse },
     { bg: 'bg-amber-500', icon: Wallet },
-    { bg: 'bg-blue-500', icon: Users },
+    { bg: 'bg-primary', icon: Users },
     { bg: 'bg-amber-500', icon: Clock },
   ]
   
@@ -67,17 +69,45 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/10 rounded-2xl mb-6 border border-blue-500/20">
-            <span className="text-3xl text-blue-500 font-serif">∞</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             {title.split('Insured by Rajan')[0]}
-            <span className="text-blue-500">Insured by Rajan</span>
+            <span className="text-primary">Insured by Rajan</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             {description}
           </p>
         </div>
+
+        {/* Certifications Section - Left Side */}
+        {landingPageContent.companyBackground?.experience?.certifications &&
+          landingPageContent.companyBackground.experience.certifications.length > 0 && (
+            <div className="max-w-6xl mx-auto mb-12">
+              <div className="bg-gradient-to-br from-primary/5 to-white rounded-2xl p-8 border border-primary/20">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <Shield className="h-6 w-6 text-primary" />
+                  Certifications & Credentials
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {landingPageContent.companyBackground.experience.certifications.map((cert, idx) => (
+                    <ViewportAnimation
+                      key={idx}
+                      direction="up"
+                      delay={idx * 0.05}
+                      duration={0.3}
+                    >
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/10 text-primary border-primary/30 hover:bg-primary/20 hover:border-primary/50 hover:scale-110 transition-all duration-300 px-5 py-2.5 text-sm font-semibold shadow-md cursor-default"
+                      >
+                        <Shield className="h-4 w-4 mr-2" />
+                        {cert}
+                      </Badge>
+                    </ViewportAnimation>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
         {/* Features Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -114,7 +144,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
         <div className="mt-12 pt-12 border-t border-gray-200">
           <div className="flex flex-wrap items-center justify-center gap-8 text-center">
             <div className="flex items-center space-x-3">
-              <Shield className="h-8 w-8 text-blue-500" />
+              <Shield className="h-8 w-8 text-primary" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Licensed in BC
@@ -124,7 +154,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             </div>
             <div className="hidden sm:block w-px h-12 bg-gray-200" />
             <div className="flex items-center space-x-3">
-              <Lock className="h-8 w-8 text-blue-500" />
+              <Lock className="h-8 w-8 text-primary" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Secure & Private
@@ -134,7 +164,7 @@ export function WhyChooseSection({ whyChoose }: WhyChooseSectionProps) {
             </div>
             <div className="hidden sm:block w-px h-12 bg-gray-200" />
             <div className="flex items-center space-x-3">
-              <Award className="h-8 w-8 text-blue-500" />
+              <Award className="h-8 w-8 text-primary" />
               <div className="text-left">
                 <div className="text-sm font-semibold text-gray-900">
                   Award-Winning Service
