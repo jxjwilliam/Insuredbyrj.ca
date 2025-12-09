@@ -21,7 +21,6 @@ import {
   FileText,
   Headphones,
 } from 'lucide-react'
-import ColourfulText from '@/components/ui/colourful-text'
 import type { CompanyBackground } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { TextAnimate } from '@/components/ui/text-animate'
@@ -155,17 +154,17 @@ export function CompanyBackgroundSection({
                 {/* Image Section */}
                 {showImage && background.imageUrl && (
                   <div 
-                    className="lg:col-span-1 relative h-64 lg:h-auto bg-gradient-to-br from-primary/20 to-primary/30 overflow-hidden"
+                    className="lg:col-span-1 relative h-64 lg:h-auto bg-[#8cc63e]/50 overflow-hidden benefits-card-image"
                     onMouseEnter={() => setIsImageHovered(true)}
                     onMouseLeave={() => setIsImageHovered(false)}
                   >
                     <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
-                      isImageHovered ? 'p-0' : 'p-8'
+                      isImageHovered ? 'p-0' : 'p-6'
                     }`}>
                       <div className={`relative w-full overflow-hidden transition-all duration-500 ${
                         isImageHovered 
                           ? 'h-full w-full rounded-none shadow-none ring-0' 
-                          : 'max-w-xs aspect-square rounded-2xl shadow-2xl ring-4 ring-white/50'
+                          : 'max-w-sm aspect-square rounded-2xl shadow-2xl ring-4 ring-white/50'
                       }`}>
                         <Image
                           src={background.imageUrl}
@@ -321,17 +320,7 @@ export function CompanyBackgroundSection({
                       Our Journey
                     </h5>
                     <p className="text-gray-700 leading-relaxed">
-                      {background.biography.includes('15 years of dedicated service') ? (
-                        <>
-                          {background.biography.split('15 years of dedicated service')[0]}
-                          <span className="inline-block text-lg font-semibold">
-                            <ColourfulText text="15 years of dedicated service" />
-                          </span>
-                          {background.biography.split('15 years of dedicated service')[1]}
-                        </>
-                      ) : (
-                        background.biography
-                      )}
+                      {background.biography}
                     </p>
                   </div>
 
