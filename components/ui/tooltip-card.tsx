@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -31,31 +31,7 @@ export const Tooltip = ({
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (isVisible && contentRef.current) {
-      // Measure tooltip dimensions
-      const measureTooltip = () => {
-        if (contentRef.current) {
-          const height = contentRef.current.scrollHeight;
-          setHeight(height);
-          // Update position after measuring
-          if (containerRef.current) {
-            requestAnimationFrame(() => {
-              const newPosition = calculatePosition(mouse.x, mouse.y);
-              setPosition(newPosition);
-            });
-          }
-        }
-      };
-      
-      // Measure immediately and after a short delay to ensure DOM is ready
-      measureTooltip();
-      const timeout = setTimeout(measureTooltip, 10);
-      return () => clearTimeout(timeout);
-    }
-  }, [isVisible, content, mouse.x, mouse.y]);
-
-  const calculatePosition = (mouseX: number, mouseY: number) => {
+  const calculatePosition = useCallback((mouseX: number, mouseY: number) => {
     if (!containerRef.current)
       return { x: 0, y: 0 };
 
@@ -106,7 +82,31 @@ export const Tooltip = ({
     }
 
     return { x: finalX, y: finalY };
-  };
+  }, [height]);
+
+  useEffect(() => {
+    if (isVisible && contentRef.current) {
+      // Measure tooltip dimensions
+      const measureTooltip = () => {
+        if (contentRef.current) {
+          const height = contentRef.current.scrollHeight;
+          setHeight(height);
+          // Update position after measuring
+          if (containerRef.current) {
+            requestAnimationFrame(() => {
+              const newPosition = calculatePosition(mouse.x, mouse.y);
+              setPosition(newPosition);
+            });
+          }
+        }
+      };
+      
+      // Measure immediately and after a short delay to ensure DOM is ready
+      measureTooltip();
+      const timeout = setTimeout(measureTooltip, 10);
+      return () => clearTimeout(timeout);
+    }
+  }, [isVisible, content, mouse.x, mouse.y, calculatePosition]);
 
   const updateMousePosition = (mouseX: number, mouseY: number) => {
     setMouse({ x: mouseX, y: mouseY });
@@ -217,7 +217,7 @@ export const Tooltip = ({
         setPosition(newPosition);
       });
     }
-  }, [isVisible, height, mouse.x, mouse.y]);
+  }, [isVisible, height, mouse.x, mouse.y, calculatePosition]);
 
   // Update position on scroll/resize
   useEffect(() => {
@@ -237,7 +237,7 @@ export const Tooltip = ({
       window.removeEventListener('scroll', updatePosition, true);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [isVisible, mouse.x, mouse.y]);
+  }, [isVisible, mouse.x, mouse.y, calculatePosition]);
 
   // Cleanup timeout on unmount
   useEffect(() => {

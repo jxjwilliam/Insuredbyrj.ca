@@ -1,21 +1,17 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import confetti, { type CreateTypes } from 'canvas-confetti'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useContactDialog } from '@/components/shared/contact-dialog-provider'
-import { useTranslation } from '@/lib/i18n/hooks'
-import { landingPageContent } from '@/lib/constants'
 import {
   Building2,
   Heart,
   MapPin,
   CheckCircle2,
   Sparkles,
-  Shield,
   ArrowRight,
   Handshake,
   FileText,
@@ -47,70 +43,7 @@ export function CompanyBackgroundSection({
   className,
 }: CompanyBackgroundSectionProps) {
   const { openDialog } = useContactDialog()
-  const { t } = useTranslation()
   const [isImageHovered, setIsImageHovered] = useState(false)
-  const confettiIntervalRef = useRef<number | null>(null)
-  const confettiCanvasRef = useRef<HTMLCanvasElement>(null)
-  const confettiInstanceRef = useRef<CreateTypes | null>(null)
-
-  // Initialize confetti instance with the canvas
-  useEffect(() => {
-    if (confettiCanvasRef.current && typeof window !== 'undefined') {
-      confettiInstanceRef.current = confetti.create(confettiCanvasRef.current, {
-        resize: true,
-        useWorker: true,
-      })
-    }
-  }, [])
-
-  const handleInfoMouseEnter = () => {
-    if (!confettiInstanceRef.current) return
-
-    const duration = 2000
-    const animationEnd = Date.now() + duration
-    const defaults = { 
-      startVelocity: 30, 
-      spread: 360, 
-      ticks: 60, 
-      zIndex: 1000,
-    }
-
-    const randomInRange = (min: number, max: number) =>
-      Math.random() * (max - min) + min
-
-    const interval = window.setInterval(() => {
-      const timeLeft = animationEnd - Date.now()
-
-      if (timeLeft <= 0) {
-        if (confettiIntervalRef.current) {
-          clearInterval(confettiIntervalRef.current)
-          confettiIntervalRef.current = null
-        }
-        return
-      }
-
-      const particleCount = 50 * (timeLeft / duration)
-      confettiInstanceRef.current?.({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-      })
-      confettiInstanceRef.current?.({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-      })
-    }, 250)
-
-    confettiIntervalRef.current = interval
-  }
-
-  const handleInfoMouseLeave = () => {
-    if (confettiIntervalRef.current) {
-      clearInterval(confettiIntervalRef.current)
-      confettiIntervalRef.current = null
-    }
-  }
 
   return (
     <section
@@ -180,15 +113,8 @@ export function CompanyBackgroundSection({
 
                 {/* Key Info Section */}
                 <div 
-                  className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden"
-                  onMouseEnter={handleInfoMouseEnter}
-                  onMouseLeave={handleInfoMouseLeave}
+                  className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden bg-gradient-to-br from-[#8cc63e]/10 via-white to-[#8cc63e]/5"
                 >
-                  <canvas
-                    ref={confettiCanvasRef}
-                    className="absolute inset-0 pointer-events-none z-0"
-                    style={{ width: '100%', height: '100%' }}
-                  />
                   <div className="relative z-10 space-y-4">
                     <div>
                       <TextAnimate

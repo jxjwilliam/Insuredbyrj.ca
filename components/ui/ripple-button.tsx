@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { ComponentPropsWithoutRef } from 'react'
-import { Slot } from '@radix-ui/react-slot'
 
 type ButtonProps = ComponentPropsWithoutRef<typeof Button>
 

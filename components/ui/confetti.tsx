@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import confetti from 'canvas-confetti'
-import type { CreateTypes, GlobalOptions, Options } from 'canvas-confetti'
+import type { CreateTypes, Options } from 'canvas-confetti'
 
 export interface ConfettiRef {
   fire: (options?: Options) => void
@@ -19,7 +19,7 @@ interface ConfettiProps {
  * Confetti component
  * Renders a canvas element that can trigger confetti animations
  */
-export function Confetti({ className, onMouseEnter, onMouseLeave, options }: ConfettiProps) {
+export function Confetti({ className, onMouseEnter, onMouseLeave }: ConfettiProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const confettiRef = useRef<CreateTypes | null>(null)
 
