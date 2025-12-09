@@ -541,6 +541,13 @@
   }
 }
 
+/* Hide SVG backgrounds on hover */
+.benefits-card-image:hover::before,
+.benefits-card-image:hover::after {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 @layer base {
   * {
     @apply border-border;
